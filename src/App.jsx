@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Header, Footer } from './components';
+import AOS from 'aos';
+import { Header, Footer, BackToTop } from './components';
 import { Home, About, Services, WhoWeServe, Contact, Products } from './pages';
 
 const VALID_VIEWS = ['home', 'about', 'services', 'who-we-serve', 'contact', 'products'];
@@ -58,6 +59,26 @@ export default function App() {
     };
   }, []);
 
+  // Initialize AOS with strong, responsive animation curves
+  useEffect(() => {
+    AOS.init({
+      duration: 850,
+      easing: 'ease-out-cubic',
+      once: false,
+      offset: 80,
+      delay: 50,
+      mirror: true,
+    });
+  }, []);
+
+  // Re-calculate and trigger AOS on view navigation
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      AOS.refreshHard();
+    }, 120);
+    return () => clearTimeout(timer);
+  }, [activeView]);
+
   const renderCurrentPage = () => {
     switch (activeView) {
       case 'home':
@@ -102,6 +123,9 @@ export default function App() {
 
       {/* Shared Site Footer */}
       <Footer onNavigate={handleNavigate} />
+
+      {/* Floating Back To Top Button on Every Page */}
+      <BackToTop />
     </div>
   );
 }

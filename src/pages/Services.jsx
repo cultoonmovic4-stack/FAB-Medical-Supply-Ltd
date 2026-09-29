@@ -85,7 +85,11 @@ export default function Services({ onNavigate }) {
         <Container>
           <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 xl:gap-12 items-center">
             {/* Left Column: Eyebrow, Main Headline & Supporting Text */}
-            <div className="lg:col-span-5 space-y-6">
+            <div
+              className="lg:col-span-5 space-y-6"
+              data-aos="fade-right"
+              data-aos-duration="900"
+            >
               {/* Eyebrow */}
               <div className="flex items-center space-x-2.5">
                 <span className="w-5 h-[2px] bg-[#21409A]" aria-hidden="true" />
@@ -112,7 +116,12 @@ export default function Services({ onNavigate }) {
             </div>
 
             {/* Center Column: Vertical Technical Line with 4 Numbered Points */}
-            <div className="lg:col-span-3 py-2">
+            <div
+              className="lg:col-span-3 py-2"
+              data-aos="fade-up"
+              data-aos-duration="900"
+              data-aos-delay="150"
+            >
               <nav aria-label="Services overview index" className="relative pl-2 sm:pl-4">
                 {/* Continuous thin blue vertical connecting line */}
                 <div
@@ -121,8 +130,13 @@ export default function Services({ onNavigate }) {
                 />
 
                 <ol className="space-y-6 sm:space-y-7 list-none m-0 p-0">
-                  {heroIndexPoints.map((pt) => (
-                    <li key={pt.num} className="relative flex items-center space-x-3.5 group">
+                  {heroIndexPoints.map((pt, idx) => (
+                    <li
+                      key={pt.num}
+                      className="relative flex items-center space-x-3.5 group"
+                      data-aos="fade-up"
+                      data-aos-delay={100 + idx * 80}
+                    >
                       {/* Circular Number Marker */}
                       <span
                         className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-[#21409A] bg-white flex items-center justify-center text-[11px] sm:text-xs font-mono font-bold text-[#21409A] z-10 shadow-sm flex-shrink-0"
@@ -141,7 +155,12 @@ export default function Services({ onNavigate }) {
             </div>
 
             {/* Right Column: Editorial Photographic Composition */}
-            <div className="lg:col-span-4 flex flex-col items-center lg:items-end">
+            <div
+              className="lg:col-span-4 flex flex-col items-center lg:items-end"
+              data-aos="fade-left"
+              data-aos-duration="1000"
+              data-aos-delay="250"
+            >
               <div className="relative w-full max-w-md lg:max-w-none">
                 {/* Dynamic Angled Medical Equipment Photographic Object */}
                 <div className="relative overflow-hidden shadow-[0_12px_36px_rgba(33,64,154,0.08)] bg-white border border-slate-100">
@@ -176,7 +195,11 @@ export default function Services({ onNavigate }) {
       >
         <Container>
           {/* Section Introduction */}
-          <div className="max-w-2xl mb-12 lg:mb-16 space-y-3">
+          <div
+            className="max-w-2xl mb-12 lg:mb-16 space-y-3"
+            data-aos="fade-up"
+            data-aos-duration="850"
+          >
             <div className="flex items-center space-x-2">
               <span className="w-2 h-2 bg-[#21409A]" aria-hidden="true" />
               <span className="text-xs font-mono font-bold tracking-[0.2em] text-[#21409A] uppercase">
@@ -197,10 +220,13 @@ export default function Services({ onNavigate }) {
 
           {/* 2x2 Alternating Editorial Services Layout */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 xl:gap-x-16 gap-y-12 lg:gap-y-16">
-            {servicesList.map((service) => (
+            {servicesList.map((service, idx) => (
               <article
                 key={service.num}
                 className="flex flex-col sm:flex-row items-start gap-5 lg:gap-6 group"
+                data-aos="fade-up"
+                data-aos-duration="900"
+                data-aos-delay={idx * 150}
               >
                 {/* Supporting Photographic Image */}
                 <div className="w-full sm:w-48 md:w-52 lg:w-48 xl:w-52 aspect-[16/9] sm:aspect-[4/3] flex-shrink-0 overflow-hidden bg-slate-100 border border-slate-200 shadow-sm relative">
@@ -245,7 +271,11 @@ export default function Services({ onNavigate }) {
         aria-labelledby="service-boundary-heading"
       >
         <Container>
-          <div className="border border-[#DCE7F2] bg-white p-5 sm:p-6 lg:p-7 shadow-[0_2px_12px_rgba(33,64,154,0.02)]">
+          <div
+            className="border border-[#DCE7F2] bg-white p-5 sm:p-6 lg:p-7 shadow-[0_2px_12px_rgba(33,64,154,0.02)]"
+            data-aos="zoom-in"
+            data-aos-duration="850"
+          >
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-8">
               {/* Left Label with Blue Vertical Accent */}
               <div className="flex items-center space-x-3 flex-shrink-0">
@@ -283,7 +313,11 @@ export default function Services({ onNavigate }) {
             {/* ======================================================== */}
             {/* LEFT: Dominant Headline, Paragraph & FAB Brand Wordmark (Col 5) */}
             {/* ======================================================== */}
-            <div className="lg:col-span-5 flex flex-col justify-between z-10">
+            <div
+              className="lg:col-span-5 flex flex-col justify-between z-10"
+              data-aos="fade-right"
+              data-aos-duration="900"
+            >
               <div>
                 {/* Eyebrow with Red Dash */}
                 <div className="flex items-center space-x-2.5 mb-6">
@@ -322,7 +356,12 @@ export default function Services({ onNavigate }) {
             {/* ======================================================== */}
             {/* CENTER: Medical-Equipment Graphic & Technical Construction (Col 4) */}
             {/* ======================================================== */}
-            <div className="lg:col-span-4 flex items-center justify-center relative py-6 lg:py-0">
+            <div
+              className="lg:col-span-4 flex items-center justify-center relative py-6 lg:py-0"
+              data-aos="zoom-in"
+              data-aos-duration="950"
+              data-aos-delay="150"
+            >
               {/* Technical Blueprint SVG Guidelines & Axes */}
               <div className="relative flex items-center justify-center w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] xl:w-[350px] xl:h-[350px]">
                 {/* SVG Construction System */}
@@ -365,7 +404,12 @@ export default function Services({ onNavigate }) {
             {/* ======================================================== */}
             {/* RIGHT: Precise Contact Info & Restrained LET'S TALK Link (Col 3) */}
             {/* ======================================================== */}
-            <div className="lg:col-span-3 flex flex-col justify-between py-2 lg:pl-4 xl:pl-6 z-10">
+            <div
+              className="lg:col-span-3 flex flex-col justify-between py-2 lg:pl-4 xl:pl-6 z-10"
+              data-aos="fade-left"
+              data-aos-duration="900"
+              data-aos-delay="250"
+            >
               <div>
                 {/* Eyebrow */}
                 <div className="flex items-center space-x-2 mb-2">

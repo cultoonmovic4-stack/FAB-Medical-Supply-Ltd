@@ -34,7 +34,11 @@ export default function About({ onNavigate }) {
         </div>
 
         <Container className="relative z-10 py-14 sm:py-18 lg:py-22 xl:py-26">
-          <div className="max-w-2xl xl:max-w-[620px]">
+          <div
+            className="max-w-2xl xl:max-w-[620px]"
+            data-aos="fade-right"
+            data-aos-duration="900"
+          >
             {/* Eyebrow with Blue Rule */}
             <div className="flex items-center space-x-3 mb-5 sm:mb-7">
               <span className="w-8 h-[2.5px] bg-[#21409A] rounded-full flex-shrink-0" aria-hidden="true" />
@@ -59,7 +63,11 @@ export default function About({ onNavigate }) {
             </p>
 
             {/* Mobile / Tablet Photographic Object (<lg) */}
-            <div className="block lg:hidden my-7 sm:my-9 relative rounded-xl overflow-hidden shadow-sm border border-slate-200">
+            <div
+              className="block lg:hidden my-7 sm:my-9 relative rounded-xl overflow-hidden shadow-sm border border-slate-200"
+              data-aos="zoom-in"
+              data-aos-duration="900"
+            >
               <img
                 src={aboutHeroEquipImg}
                 alt="Clinical operating theatre equipped with patient vital signs monitor and medical instruments"
@@ -69,7 +77,11 @@ export default function About({ onNavigate }) {
             </div>
 
             {/* Bottom-Left Identity & Metadata Cluster */}
-            <div className="flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-6 pt-1">
+            <div
+              className="flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-6 pt-1"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
               {/* Authentic FAB Logo Wordmark */}
               <div className="flex-shrink-0">
                 <img
@@ -106,7 +118,11 @@ export default function About({ onNavigate }) {
       >
         <Container>
           {/* Section Label: THE COMPANY */}
-          <div className="flex items-center space-x-3 mb-10 sm:mb-14 lg:mb-16">
+          <div
+            className="flex items-center space-x-3 mb-10 sm:mb-14 lg:mb-16"
+            data-aos="fade-up"
+            data-aos-duration="850"
+          >
             <span className="w-8 h-[2px] bg-[#21409A] rounded-full flex-shrink-0" aria-hidden="true" />
             <h2
               id="the-company-heading"
@@ -119,14 +135,23 @@ export default function About({ onNavigate }) {
           {/* Asymmetric Composition Field */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-start">
             {/* Main Company Statement - Dominant Editorial Typography (Left / Middle) */}
-            <div className="lg:col-span-8 xl:col-span-8 lg:pl-4 xl:pl-8">
+            <div
+              className="lg:col-span-8 xl:col-span-8 lg:pl-4 xl:pl-8"
+              data-aos="fade-right"
+              data-aos-duration="900"
+            >
               <p className="text-2xl sm:text-3xl md:text-4xl lg:text-[38px] xl:text-[44px] font-bold text-[#0F172A] leading-[1.3] sm:leading-[1.25] lg:leading-[1.22] tracking-tight">
                 FAB Medical Supplies Ltd. provides medical equipment, instruments and reagents through procurement, supply, delivery, marketing, sales, servicing and repair.
               </p>
             </div>
 
             {/* Existing Medical Equipment Photograph - Detached Lower-Right Visual Object */}
-            <div className="lg:col-span-4 xl:col-span-4 flex justify-end lg:pt-16 xl:pt-20">
+            <div
+              className="lg:col-span-4 xl:col-span-4 flex justify-end lg:pt-16 xl:pt-20"
+              data-aos="fade-left"
+              data-aos-duration="950"
+              data-aos-delay="150"
+            >
               <div className="w-full max-w-[280px] sm:max-w-[320px] lg:max-w-none ml-auto">
                 <img
                   src={aboutCompanyEquipImg}
@@ -161,7 +186,11 @@ export default function About({ onNavigate }) {
           {/* DESKTOP ASYMMETRIC OPERATING-SYSTEM FIELD (lg+) */}
           <div className="hidden lg:block relative min-h-[640px] xl:min-h-[680px]">
             {/* 1. Top-Left Eyebrow, Dominant Headline & Supporting Statement */}
-            <div className="absolute left-0 top-0 max-w-[340px] xl:max-w-[380px] z-10">
+            <div
+              className="absolute left-0 top-0 max-w-[340px] xl:max-w-[380px] z-10"
+              data-aos="fade-right"
+              data-aos-duration="900"
+            >
               <div className="mb-4">
                 <span className="text-xs font-bold uppercase tracking-[0.14em] text-[#21409A] block mb-1.5">
                   WHAT FAB DOES
@@ -182,7 +211,7 @@ export default function About({ onNavigate }) {
             </div>
 
             {/* 2. Top-Right FAB Brand Anchor */}
-            <div className="absolute right-0 top-0 z-10">
+            <div className="absolute right-0 top-0 z-10" data-aos="fade-left" data-aos-delay="150">
               <img
                 src={fabLogoImg}
                 alt="FAB Medical Supplies Ltd."
@@ -191,7 +220,12 @@ export default function About({ onNavigate }) {
             </div>
 
             {/* 3. Center Laboratory Microscope Photographic Anchor (V-Point Cut) */}
-            <div className="absolute left-[36%] xl:left-[35%] -top-6 xl:-top-8 w-[380px] xl:w-[420px] z-10 pointer-events-none select-none">
+            <div
+              className="absolute left-[36%] xl:left-[35%] -top-6 xl:-top-8 w-[380px] xl:w-[420px] z-10 pointer-events-none select-none"
+              data-aos="zoom-in"
+              data-aos-duration="1000"
+              data-aos-delay="150"
+            >
               <img
                 src={aboutMicroscopeImg}
                 alt="High-precision laboratory research microscope optics supplied by FAB Medical Supplies Ltd."
@@ -201,7 +235,11 @@ export default function About({ onNavigate }) {
             </div>
 
             {/* 4. Function 01: PROCUREMENT & SUPPLY (Upper-Right below logo) */}
-            <div className="absolute right-0 top-[150px] xl:top-[165px] max-w-[240px] xl:max-w-[260px] z-10">
+            <div
+              className="absolute right-0 top-[150px] xl:top-[165px] max-w-[240px] xl:max-w-[260px] z-10"
+              data-aos="fade-left"
+              data-aos-delay="200"
+            >
               <div className="flex items-center space-x-2.5 mb-2">
                 <span className="text-sm xl:text-base font-bold text-[#21409A]">01</span>
                 <span className="w-10 h-[1.5px] bg-[#93C5FD]" aria-hidden="true" />
@@ -217,7 +255,11 @@ export default function About({ onNavigate }) {
             </div>
 
             {/* 5. Function 02: MARKETING & SALES (Mid-Left below headline) */}
-            <div className="absolute left-[16%] xl:left-[17%] top-[370px] xl:top-[390px] max-w-[240px] xl:max-w-[260px] z-10">
+            <div
+              className="absolute left-[16%] xl:left-[17%] top-[370px] xl:top-[390px] max-w-[240px] xl:max-w-[260px] z-10"
+              data-aos="fade-right"
+              data-aos-delay="300"
+            >
               <div className="flex items-center space-x-2.5 mb-2">
                 <span className="text-sm xl:text-base font-bold text-[#21409A]">02</span>
                 <span className="w-10 h-[1.5px] bg-[#93C5FD]" aria-hidden="true" />
@@ -231,7 +273,11 @@ export default function About({ onNavigate }) {
             </div>
 
             {/* 6. Function 03: DELIVERY (Center-Bottom under microscope V-point) */}
-            <div className="absolute left-[44%] xl:left-[43%] top-[450px] xl:top-[475px] max-w-[220px] xl:max-w-[240px] z-10">
+            <div
+              className="absolute left-[44%] xl:left-[43%] top-[450px] xl:top-[475px] max-w-[220px] xl:max-w-[240px] z-10"
+              data-aos="fade-up"
+              data-aos-delay="350"
+            >
               <div className="flex items-center space-x-2.5 mb-2">
                 <span className="text-sm xl:text-base font-bold text-[#21409A]">03</span>
                 <span className="w-10 h-[1.5px] bg-[#93C5FD]" aria-hidden="true" />
@@ -245,7 +291,11 @@ export default function About({ onNavigate }) {
             </div>
 
             {/* 7. Function 04: SERVICE & REPAIR (Lower-Right) */}
-            <div className="absolute right-[4%] xl:right-[6%] top-[450px] xl:top-[475px] max-w-[230px] xl:max-w-[250px] z-10">
+            <div
+              className="absolute right-[4%] xl:right-[6%] top-[450px] xl:top-[475px] max-w-[230px] xl:max-w-[250px] z-10"
+              data-aos="fade-left"
+              data-aos-delay="400"
+            >
               <div className="flex items-center space-x-2.5 mb-2">
                 <span className="text-sm xl:text-base font-bold text-[#21409A]">04</span>
                 <span className="w-10 h-[1.5px] bg-[#93C5FD]" aria-hidden="true" />

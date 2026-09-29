@@ -7,3 +7,4 @@ export { default as Button } from './Button';
 export { default as ProductCard } from './ProductCard';
 export { default as ProductDetail } from './ProductDetail';
 export { default as ParticleRingLoader } from './ParticleRingLoader';
+export { default as BackToTop } from './BackToTop';

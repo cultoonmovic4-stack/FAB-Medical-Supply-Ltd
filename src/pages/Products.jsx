@@ -92,7 +92,11 @@ export default function Products({ initialCategory = 'all', onNavigate }) {
         <Container>
           <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
             {/* Left Column: Asymmetrical Editorial Heading & Premise */}
-            <div className="lg:col-span-8 space-y-6">
+            <div
+              className="lg:col-span-8 space-y-6"
+              data-aos="fade-right"
+              data-aos-duration="900"
+            >
               {/* Eyebrow */}
               <div className="flex items-center space-x-3">
                 <span className="w-2.5 h-2.5 bg-[#E11D48]" aria-hidden="true" />
@@ -127,7 +131,12 @@ export default function Products({ initialCategory = 'all', onNavigate }) {
             </div>
 
             {/* Right Column: Technical Metadata & Dynamic Inventory Counters */}
-            <div className="lg:col-span-4 border-l-2 border-[#21409A]/20 pl-6 lg:pl-8 space-y-6">
+            <div
+              className="lg:col-span-4 border-l-2 border-[#21409A]/20 pl-6 lg:pl-8 space-y-6"
+              data-aos="fade-left"
+              data-aos-duration="900"
+              data-aos-delay="150"
+            >
               <div>
                 <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-slate-400 block mb-1">
                   CURRENT VERIFIED INVENTORY
@@ -396,7 +405,7 @@ export default function Products({ initialCategory = 'all', onNavigate }) {
           ======================================================== */}
       <section className="bg-white border-t border-slate-200 py-16 lg:py-20">
         <Container>
-          <div className="border border-slate-200 bg-[#FAFCFE] p-8 lg:p-12 relative overflow-hidden">
+          <div className="border border-slate-200 bg-[#FAFCFE] p-8 lg:p-12 relative overflow-hidden" data-aos="fade-up">
             {/* Top Registration Corner Marks */}
             <div className="absolute top-2 left-2 text-[10px] font-mono text-slate-300 select-none">+</div>
             <div className="absolute top-2 right-2 text-[10px] font-mono text-slate-300 select-none">+</div>

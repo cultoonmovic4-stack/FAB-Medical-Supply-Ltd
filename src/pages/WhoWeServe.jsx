@@ -119,7 +119,11 @@ export default function WhoWeServe() {
         <Container className="relative max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-6 items-center">
             {/* Primary Area: Eyebrow, Large H1 & Supporting Paragraph (Col 5) */}
-            <div className="lg:col-span-5 space-y-6 z-10">
+            <div
+              className="lg:col-span-5 space-y-6 z-10"
+              data-aos="fade-right"
+              data-aos-duration="900"
+            >
               {/* Eyebrow */}
               <div className="flex items-center space-x-2.5">
                 <span className="w-5 h-[2px] bg-[#21409A]" aria-hidden="true" />
@@ -147,7 +151,12 @@ export default function WhoWeServe() {
             </div>
 
             {/* Center Area: Diagonal Rule + 2-Column Environment Label Index (Col 4) */}
-            <div className="lg:col-span-4 flex items-center space-x-6 sm:space-x-8 z-10">
+            <div
+              className="lg:col-span-4 flex items-center space-x-6 sm:space-x-8 z-10"
+              data-aos="fade-up"
+              data-aos-duration="900"
+              data-aos-delay="150"
+            >
               {/* Slanted Connecting Rule (SVG) */}
               <div className="hidden lg:block w-8 h-48 flex-shrink-0" aria-hidden="true">
                 <svg className="w-full h-full" viewBox="0 0 32 160" fill="none">
@@ -159,8 +168,13 @@ export default function WhoWeServe() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-7 sm:gap-y-8 flex-1">
                 {/* Column 1 */}
                 <div className="space-y-6 sm:space-y-7">
-                  {heroLeftLabels.map((lbl) => (
-                    <div key={lbl.name} className="space-y-1">
+                  {heroLeftLabels.map((lbl, idx) => (
+                    <div
+                      key={lbl.name}
+                      className="space-y-1"
+                      data-aos="fade-up"
+                      data-aos-delay={100 + idx * 80}
+                    >
                       <span className="text-xs sm:text-[13px] font-mono font-bold uppercase tracking-[0.14em] text-[#21409A] block leading-tight">
                         {lbl.name}
                       </span>
@@ -171,8 +185,13 @@ export default function WhoWeServe() {
 
                 {/* Column 2 */}
                 <div className="space-y-6 sm:space-y-7">
-                  {heroRightLabels.map((lbl) => (
-                    <div key={lbl.name} className="space-y-1">
+                  {heroRightLabels.map((lbl, idx) => (
+                    <div
+                      key={lbl.name}
+                      className="space-y-1"
+                      data-aos="fade-up"
+                      data-aos-delay={150 + idx * 80}
+                    >
                       <span className="text-xs sm:text-[13px] font-mono font-bold uppercase tracking-[0.14em] text-[#21409A] block leading-tight">
                         {lbl.name}
                       </span>
@@ -184,7 +203,12 @@ export default function WhoWeServe() {
             </div>
 
             {/* Right Area: Partially Cropped Editorial Clinical Photographic Fragment (Col 3) */}
-            <div className="lg:col-span-3 flex justify-end relative">
+            <div
+              className="lg:col-span-3 flex justify-end relative"
+              data-aos="fade-left"
+              data-aos-duration="1000"
+              data-aos-delay="250"
+            >
               <div className="relative w-56 sm:w-64 lg:w-full max-w-[320px] xl:max-w-[360px] h-64 sm:h-80 lg:h-96 overflow-hidden flex items-center justify-end select-none">
                 <img
                   src={heroPhotoImg}
@@ -207,7 +231,11 @@ export default function WhoWeServe() {
       >
         <Container className="max-w-7xl">
           {/* Section Introduction */}
-          <div className="max-w-2xl mb-12 lg:mb-16 space-y-3">
+          <div
+            className="max-w-2xl mb-12 lg:mb-16 space-y-3"
+            data-aos="fade-up"
+            data-aos-duration="850"
+          >
             <div className="flex items-center space-x-2">
               <span className="w-5 h-[2px] bg-[#21409A]" aria-hidden="true" />
               <span className="text-xs font-mono font-bold tracking-[0.22em] text-[#21409A] uppercase">
@@ -247,7 +275,11 @@ export default function WhoWeServe() {
             </svg>
 
             {/* Central Ecosystem Hub */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex items-center justify-center">
+            <div
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex items-center justify-center"
+              data-aos="zoom-in"
+              data-aos-duration="1000"
+            >
               <div className="relative w-40 h-40 rounded-full border border-blue-200 bg-white shadow-[0_12px_32px_rgba(33,64,154,0.08)] flex flex-col items-center justify-center p-4 text-center">
                 <div className="absolute inset-[-7px] rounded-full border border-dashed border-blue-200/80" aria-hidden="true" />
                 <span className="text-[#E11D48] text-sm font-mono font-bold leading-none mb-1.5 select-none" aria-hidden="true">+</span>
@@ -262,7 +294,12 @@ export default function WhoWeServe() {
             <div className="space-y-24 lg:space-y-28 xl:space-y-32 relative z-10">
               {/* TOP TIER */}
               <div className="grid grid-cols-12 gap-4 lg:gap-6 items-center">
-                <div className="col-span-4 flex items-center space-x-3.5 group">
+                <div
+                  className="col-span-4 flex items-center space-x-3.5 group"
+                  data-aos="fade-right"
+                  data-aos-duration="850"
+                  data-aos-delay="100"
+                >
                   <div className="w-40 sm:w-48 lg:w-56 xl:w-60 h-auto flex-shrink-0 drop-shadow-sm transition-transform duration-300 group-hover:scale-[1.03]">
                     <img src={envRadiologyImg} alt="Radiology & Imaging" className="w-full h-auto block select-none" />
                   </div>
@@ -274,7 +311,12 @@ export default function WhoWeServe() {
                   </div>
                 </div>
 
-                <div className="col-span-4 flex items-center space-x-3.5 pl-2 lg:pl-4 group">
+                <div
+                  className="col-span-4 flex items-center space-x-3.5 pl-2 lg:pl-4 group"
+                  data-aos="fade-down"
+                  data-aos-duration="850"
+                  data-aos-delay="150"
+                >
                   <div className="w-40 sm:w-48 lg:w-56 xl:w-60 h-auto flex-shrink-0 drop-shadow-sm transition-transform duration-300 group-hover:scale-[1.03]">
                     <img src={envOutpatientImg} alt="Outpatient & Consultation" className="w-full h-auto block select-none" />
                   </div>
@@ -286,7 +328,12 @@ export default function WhoWeServe() {
                   </div>
                 </div>
 
-                <div className="col-span-4 flex items-center space-x-3.5 pl-2 lg:pl-4 group">
+                <div
+                  className="col-span-4 flex items-center space-x-3.5 pl-2 lg:pl-4 group"
+                  data-aos="fade-left"
+                  data-aos-duration="850"
+                  data-aos-delay="200"
+                >
                   <div className="w-40 sm:w-48 lg:w-56 xl:w-60 h-auto flex-shrink-0 drop-shadow-sm transition-transform duration-300 group-hover:scale-[1.03]">
                     <img src={envEmergencyImg} alt="Emergency & ICU" className="w-full h-auto block select-none" />
                   </div>
@@ -301,7 +348,12 @@ export default function WhoWeServe() {
 
               {/* MIDDLE TIER */}
               <div className="grid grid-cols-12 gap-4 lg:gap-6 items-center">
-                <div className="col-span-4 flex items-center space-x-3.5 group">
+                <div
+                  className="col-span-4 flex items-center space-x-3.5 group"
+                  data-aos="fade-right"
+                  data-aos-duration="850"
+                  data-aos-delay="250"
+                >
                   <div className="w-40 sm:w-48 lg:w-56 xl:w-60 h-auto flex-shrink-0 drop-shadow-sm transition-transform duration-300 group-hover:scale-[1.03]">
                     <img src={envMaternityImg} alt="Maternity & Pediatrics" className="w-full h-auto block select-none" />
                   </div>
@@ -315,7 +367,12 @@ export default function WhoWeServe() {
 
                 <div className="col-span-4 pointer-events-none" />
 
-                <div className="col-span-4 flex items-center space-x-3.5 pl-2 lg:pl-4 group">
+                <div
+                  className="col-span-4 flex items-center space-x-3.5 pl-2 lg:pl-4 group"
+                  data-aos="fade-left"
+                  data-aos-duration="850"
+                  data-aos-delay="300"
+                >
                   <div className="w-40 sm:w-48 lg:w-56 xl:w-60 h-auto flex-shrink-0 drop-shadow-sm transition-transform duration-300 group-hover:scale-[1.03]">
                     <img src={envLabImg} alt="Laboratory" className="w-full h-auto block select-none" />
                   </div>
@@ -330,7 +387,12 @@ export default function WhoWeServe() {
 
               {/* BOTTOM TIER */}
               <div className="grid grid-cols-12 gap-4 lg:gap-6 items-center">
-                <div className="col-span-4 flex items-center space-x-3.5 group">
+                <div
+                  className="col-span-4 flex items-center space-x-3.5 group"
+                  data-aos="fade-right"
+                  data-aos-duration="850"
+                  data-aos-delay="350"
+                >
                   <div className="w-40 sm:w-48 lg:w-56 xl:w-60 h-auto flex-shrink-0 drop-shadow-sm transition-transform duration-300 group-hover:scale-[1.03]">
                     <img src={envTheatreImg} alt="Theatre" className="w-full h-auto block select-none" />
                   </div>
@@ -342,7 +404,12 @@ export default function WhoWeServe() {
                   </div>
                 </div>
 
-                <div className="col-span-4 flex items-center space-x-3.5 pl-2 lg:pl-4 group">
+                <div
+                  className="col-span-4 flex items-center space-x-3.5 pl-2 lg:pl-4 group"
+                  data-aos="fade-up"
+                  data-aos-duration="850"
+                  data-aos-delay="400"
+                >
                   <div className="w-40 sm:w-48 lg:w-56 xl:w-60 h-auto flex-shrink-0 drop-shadow-sm transition-transform duration-300 group-hover:scale-[1.03]">
                     <img src={envWardImg} alt="General Ward" className="w-full h-auto block select-none" />
                   </div>
@@ -354,7 +421,12 @@ export default function WhoWeServe() {
                   </div>
                 </div>
 
-                <div className="col-span-4 flex items-center space-x-3.5 pl-2 lg:pl-4 group">
+                <div
+                  className="col-span-4 flex items-center space-x-3.5 pl-2 lg:pl-4 group"
+                  data-aos="fade-left"
+                  data-aos-duration="850"
+                  data-aos-delay="450"
+                >
                   <div className="w-40 sm:w-48 lg:w-56 xl:w-60 h-auto flex-shrink-0 drop-shadow-sm transition-transform duration-300 group-hover:scale-[1.03]">
                     <img src={envUtilityImg} alt="Supporting / Utility Services" className="w-full h-auto block select-none" />
                   </div>
@@ -371,7 +443,11 @@ export default function WhoWeServe() {
 
           {/* RESPONSIVE MOBILE SEQUENCE */}
           <div className="block md:hidden space-y-8 pt-4">
-            <div className="w-44 h-44 mx-auto rounded-full border border-blue-200 bg-white shadow-sm flex flex-col items-center justify-center p-4 text-center relative mb-8">
+            <div
+              className="w-44 h-44 mx-auto rounded-full border border-blue-200 bg-white shadow-sm flex flex-col items-center justify-center p-4 text-center relative mb-8"
+              data-aos="zoom-in"
+              data-aos-duration="850"
+            >
               <div className="absolute inset-[-5px] rounded-full border border-dashed border-blue-200" aria-hidden="true" />
               <span className="text-[#E11D48] text-sm font-mono font-bold leading-none mb-1 select-none" aria-hidden="true">+</span>
               <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#21409A] leading-tight block">
@@ -381,8 +457,13 @@ export default function WhoWeServe() {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {environmentNodes.map((node) => (
-                <div key={node.id} className="flex items-center space-x-4 bg-slate-50/50 p-3.5 border border-slate-100">
+              {environmentNodes.map((node, idx) => (
+                <div
+                  key={node.id}
+                  className="flex items-center space-x-4 bg-slate-50/50 p-3.5 border border-slate-100"
+                  data-aos="fade-up"
+                  data-aos-delay={idx * 80}
+                >
                   <div className="w-36 sm:w-40 h-auto flex-shrink-0 drop-shadow-sm">
                     <img src={node.image} alt={node.alt} className="w-full h-auto block" loading="lazy" />
                   </div>
@@ -409,7 +490,11 @@ export default function WhoWeServe() {
       >
         <Container className="max-w-7xl">
           {/* Section Introduction */}
-          <div className="max-w-3xl mb-12 lg:mb-16 space-y-3">
+          <div
+            className="max-w-3xl mb-12 lg:mb-16 space-y-3"
+            data-aos="fade-up"
+            data-aos-duration="850"
+          >
             <div className="flex items-center space-x-2.5">
               <span className="px-2 py-0.5 bg-[#21409A] text-white text-[10px] font-mono font-bold tracking-wider">
                 03
@@ -434,7 +519,11 @@ export default function WhoWeServe() {
           {/* Supply Network Composition (Design D Layout) */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
             {/* Left Column: 9 Environments Network List with Circuit Nodes */}
-            <div className="lg:col-span-5 space-y-4">
+            <div
+              className="lg:col-span-5 space-y-4"
+              data-aos="fade-right"
+              data-aos-duration="900"
+            >
               <div className="border border-slate-100 bg-[#FAFCFE] p-6 sm:p-8 space-y-4">
                 <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-slate-400 block pb-1 border-b border-slate-200">
                   HEALTHCARE SUPPLY SCOPE
@@ -457,7 +546,12 @@ export default function WhoWeServe() {
             </div>
 
             {/* Right Column: Visual Network Diagram with Stepped Parallelogram Photos */}
-            <div className="lg:col-span-7 flex justify-center lg:justify-end">
+            <div
+              className="lg:col-span-7 flex justify-center lg:justify-end"
+              data-aos="fade-left"
+              data-aos-duration="1000"
+              data-aos-delay="200"
+            >
               <div className="relative w-full max-w-2xl overflow-hidden bg-white">
                 <img
                   src={supplyNetworkDiagramImg}
@@ -481,7 +575,11 @@ export default function WhoWeServe() {
       >
         <Container className="max-w-7xl">
           {/* Section Introduction */}
-          <div className="max-w-3xl mb-12 lg:mb-16 space-y-3">
+          <div
+            className="max-w-3xl mb-12 lg:mb-16 space-y-3"
+            data-aos="fade-up"
+            data-aos-duration="850"
+          >
             <div className="flex items-center space-x-2.5">
               <span className="px-2 py-0.5 bg-[#21409A] text-white text-[10px] font-mono font-bold tracking-wider">
                 04
@@ -504,10 +602,18 @@ export default function WhoWeServe() {
           </div>
 
           {/* 4-Stage Horizontal Supply Network (Design D Pipeline) */}
-          <div className="bg-white border border-slate-200 p-6 sm:p-8 lg:p-10 shadow-sm">
+          <div
+            className="bg-white border border-slate-200 p-6 sm:p-8 lg:p-10 shadow-sm"
+            data-aos="fade-up"
+            data-aos-duration="900"
+          >
             <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-4 items-center">
               {/* Stage 1: Suppliers & Manufacturers (Col 1-3) */}
-              <div className="md:col-span-3 space-y-3 text-center sm:text-left">
+              <div
+                className="md:col-span-3 space-y-3 text-center sm:text-left"
+                data-aos="fade-right"
+                data-aos-delay="100"
+              >
                 <div className="w-full aspect-[16/9] sm:aspect-[2/1] overflow-hidden bg-slate-100 border border-slate-200 shadow-sm">
                   <img
                     src={chainSuppliersImg}
@@ -532,7 +638,11 @@ export default function WhoWeServe() {
               </div>
 
               {/* Stage 2: Central FAB Anchor (Col 4-5) */}
-              <div className="md:col-span-3 relative flex flex-col items-center justify-center p-4 text-center">
+              <div
+                className="md:col-span-3 relative flex flex-col items-center justify-center p-4 text-center"
+                data-aos="zoom-in"
+                data-aos-delay="200"
+              >
                 {/* Background Uganda Map Silhouette */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-15 pointer-events-none select-none" aria-hidden="true">
                   <img src={ugandaMapImg} alt="" className="w-28 h-auto object-contain" />
@@ -557,7 +667,11 @@ export default function WhoWeServe() {
               </div>
 
               {/* Stage 3: Supply Partners (Col 7-9) */}
-              <div className="md:col-span-2 space-y-3 text-center sm:text-left">
+              <div
+                className="md:col-span-2 space-y-3 text-center sm:text-left"
+                data-aos="fade-left"
+                data-aos-delay="300"
+              >
                 <div className="w-full aspect-[16/9] sm:aspect-[2/1] overflow-hidden bg-slate-100 border border-slate-200 shadow-sm">
                   <img
                     src={chainPartnersImg}
@@ -575,7 +689,11 @@ export default function WhoWeServe() {
               </div>
 
               {/* Stage 4: Healthcare Environments (Col 10-12) */}
-              <div className="md:col-span-2 space-y-3 text-center sm:text-left">
+              <div
+                className="md:col-span-2 space-y-3 text-center sm:text-left"
+                data-aos="fade-left"
+                data-aos-delay="400"
+              >
                 <div className="w-full aspect-[16/9] sm:aspect-[2/1] overflow-hidden bg-slate-100 border border-slate-200 shadow-sm">
                   <img
                     src={chainHospitalsImg}

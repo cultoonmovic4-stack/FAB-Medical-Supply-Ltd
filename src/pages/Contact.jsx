@@ -47,7 +47,11 @@ export default function Contact() {
         <Container className="relative max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Left Area: Eyebrow & Oversized Headline (Col 5) */}
-            <div className="lg:col-span-5 space-y-4 z-10">
+            <div
+              className="lg:col-span-5 space-y-4 z-10"
+              data-aos="fade-right"
+              data-aos-duration="900"
+            >
               {/* Eyebrow */}
               <div className="flex items-center space-x-2.5">
                 <span className="text-xs font-mono font-bold tracking-[0.2em] text-[#21409A] uppercase">
@@ -67,7 +71,12 @@ export default function Contact() {
             </div>
 
             {/* Middle-Right Area: Asymmetrical Supporting Premise (Col 4) */}
-            <div className="lg:col-span-4 space-y-3 z-10 lg:pl-4">
+            <div
+              className="lg:col-span-4 space-y-3 z-10 lg:pl-4"
+              data-aos="fade-left"
+              data-aos-duration="900"
+              data-aos-delay="150"
+            >
               <div className="flex items-center space-x-2">
                 <span className="w-6 h-[1.5px] bg-[#21409A]" aria-hidden="true" />
                 <span className="text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-[#21409A]">
@@ -87,7 +96,12 @@ export default function Contact() {
             </div>
 
             {/* Far-Right Area: Vertical Service Guarantee (Col 3) */}
-            <div className="lg:col-span-3 hidden lg:flex items-center justify-end z-10">
+            <div
+              className="lg:col-span-3 hidden lg:flex items-center justify-end z-10"
+              data-aos="zoom-in"
+              data-aos-duration="850"
+              data-aos-delay="250"
+            >
               <div className="border-l border-slate-200 pl-6 py-6 space-y-3">
                 <div className="w-8 h-8 rounded-full border border-slate-200 flex items-center justify-center text-[#21409A]">
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -115,7 +129,11 @@ export default function Contact() {
         <Container className="max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-start">
             {/* Introduction: Headline & Premise (Col 3) */}
-            <div className="lg:col-span-3 space-y-4">
+            <div
+              className="lg:col-span-3 space-y-4"
+              data-aos="fade-right"
+              data-aos-duration="900"
+            >
               <div className="flex items-center space-x-2">
                 <span className="text-xs font-mono font-bold text-[#21409A]">02</span>
                 <span className="w-6 h-[1.5px] bg-[#21409A]" aria-hidden="true" />
@@ -140,7 +158,12 @@ export default function Contact() {
               {/* ======================================================== */}
               {/* CHANNEL 1: CALL FAB */}
               {/* ======================================================== */}
-              <div className="flex flex-col justify-between space-y-6 md:px-6 lg:px-8 group">
+              <div
+                className="flex flex-col justify-between space-y-6 md:px-6 lg:px-8 group"
+                data-aos="fade-up"
+                data-aos-duration="900"
+                data-aos-delay="150"
+              >
                 <div className="space-y-4">
                   {/* Channel Index Tag */}
                   <div className="flex items-center space-x-2 text-xs font-mono text-slate-400">
@@ -202,7 +225,12 @@ export default function Contact() {
               {/* ======================================================== */}
               {/* CHANNEL 2: MESSAGE FAB */}
               {/* ======================================================== */}
-              <div className="flex flex-col justify-between space-y-6 md:px-6 lg:px-8 group">
+              <div
+                className="flex flex-col justify-between space-y-6 md:px-6 lg:px-8 group"
+                data-aos="fade-up"
+                data-aos-duration="900"
+                data-aos-delay="250"
+              >
                 <div className="space-y-4">
                   {/* Channel Index Tag */}
                   <div className="flex items-center space-x-2 text-xs font-mono text-slate-400">
@@ -272,7 +300,12 @@ export default function Contact() {
               {/* ======================================================== */}
               {/* CHANNEL 3: VISIT OUR OFFICE */}
               {/* ======================================================== */}
-              <div className="flex flex-col justify-between space-y-6 md:px-6 lg:px-8 group">
+              <div
+                className="flex flex-col justify-between space-y-6 md:px-6 lg:px-8 group"
+                data-aos="fade-up"
+                data-aos-duration="900"
+                data-aos-delay="350"
+              >
                 <div className="space-y-4">
                   {/* Channel Index Tag */}
                   <div className="flex items-center space-x-2 text-xs font-mono text-slate-400">

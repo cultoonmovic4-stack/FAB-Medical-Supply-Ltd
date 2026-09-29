@@ -22,6 +22,9 @@ export default function ProductCard({ product, onSelect, index = 0, total = 54 }
   return (
     <article
       onClick={() => onSelect(product)}
+      data-aos="fade-up"
+      data-aos-duration="850"
+      data-aos-delay={(index % 4) * 80}
       className={`group cursor-pointer bg-white border border-slate-200/90 transition-all duration-300 flex flex-col justify-between relative overflow-hidden ${
         variant === 1
           ? 'hover:border-[#21409A] hover:shadow-[0_12px_28px_rgba(33,64,154,0.06)]'
