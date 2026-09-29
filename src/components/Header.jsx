@@ -63,7 +63,7 @@ export default function Header({ activeView = 'home', onNavigate }) {
   };
 
   return (
-    <header className="bg-white border-b border-[#D9E0E7] shadow-[0_1px_3px_0_rgba(0,0,0,0.03)] sticky top-0 z-40">
+    <header className="bg-white border-b border-[#D9E0E7] shadow-[0_1px_3px_0_rgba(0,0,0,0.03)] sticky top-0 z-50 w-full">
       <Container>
         <div className="h-20 flex items-center justify-between lg:grid lg:grid-cols-[auto_1fr_auto] gap-8 lg:gap-12 xl:gap-16">
           {/* Left section: Compact, vertically aligned FAB branding */}

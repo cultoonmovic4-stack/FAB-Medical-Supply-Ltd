@@ -19,13 +19,17 @@ body {
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
 }
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
 }
+
+/* Prevent horizontal scroll from AOS offscreen animations without breaking sticky headers */
+main {
+  overflow-x: clip;
+}
+
 
 /* Very Strong AOS Transitions & Keyframes */
 [data-aos] {
