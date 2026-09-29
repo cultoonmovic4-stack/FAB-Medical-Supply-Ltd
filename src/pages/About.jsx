@@ -111,54 +111,122 @@ export default function About({ onNavigate }) {
         </Container>
       </section>
 
-      {/* Section 2: THE COMPANY - Calm Editorial Asymmetry */}
+      {/* Section 2: THE COMPANY - Approved Design 4 Editorial Composition */}
       <section
-        className="bg-white border-b border-border py-16 sm:py-20 lg:py-28 xl:py-32 relative overflow-hidden"
+        className="bg-white border-b border-border py-16 sm:py-20 lg:py-24 xl:py-28 relative overflow-hidden"
         aria-labelledby="the-company-heading"
       >
         <Container>
-          {/* Section Label: THE COMPANY */}
-          <div
-            className="flex items-center space-x-3 mb-10 sm:mb-14 lg:mb-16"
-            data-aos="fade-up"
-            data-aos-duration="850"
-          >
-            <span className="w-8 h-[2px] bg-[#21409A] rounded-full flex-shrink-0" aria-hidden="true" />
-            <h2
-              id="the-company-heading"
-              className="text-xs sm:text-sm font-bold uppercase tracking-[0.14em] text-[#21409A]"
-            >
-              THE COMPANY
-            </h2>
-          </div>
-
-          {/* Asymmetric Composition Field */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-start">
-            {/* Main Company Statement - Dominant Editorial Typography (Left / Middle) */}
+          {/* Main Asymmetric Grid: Typography Hierarchy & Editorial Circular Object */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 xl:gap-16 items-center">
+            {/* Left / Middle: Editorial Identity & Factual Company Statements */}
             <div
-              className="lg:col-span-8 xl:col-span-8 lg:pl-4 xl:pl-8"
+              className="lg:col-span-7 xl:col-span-7"
               data-aos="fade-right"
               data-aos-duration="900"
             >
-              <p className="text-2xl sm:text-3xl md:text-4xl lg:text-[38px] xl:text-[44px] font-bold text-[#0F172A] leading-[1.3] sm:leading-[1.25] lg:leading-[1.22] tracking-tight">
-                FAB Medical Supplies Ltd. provides medical equipment, instruments and reagents through procurement, supply, delivery, marketing, sales, servicing and repair.
+              {/* 1. Small Editorial Label */}
+              <div className="flex items-center space-x-3 mb-5 sm:mb-6">
+                <span className="w-8 h-[2.5px] bg-[#21409A] rounded-full flex-shrink-0" aria-hidden="true" />
+                <span className="text-xs sm:text-sm font-mono font-bold uppercase tracking-[0.2em] text-[#21409A]">
+                  THE COMPANY
+                </span>
+              </div>
+
+              {/* 2. Dominant Company Identity */}
+              <h2
+                id="the-company-heading"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-[46px] xl:text-[52px] font-black text-[#0F172A] leading-[1.06] tracking-tight uppercase mb-6 sm:mb-8"
+              >
+                FAB MEDICAL<br />
+                <span className="text-[#21409A]">SUPPLIES LTD.</span>
+              </h2>
+
+              {/* 3. Concise Company Statement (Source: FAB Company Profile PDF) */}
+              <p className="text-base sm:text-lg lg:text-[19px] font-semibold text-slate-900 leading-relaxed max-w-xl mb-6">
+                FAB Medical Supplies Ltd. deals in the procurement and supply of medical equipment, instruments and reagents used in laboratories, theatres and general medical products.
               </p>
+
+              {/* 4. Supporting Statement (Market Position & Supply Relationships) */}
+              <div className="border-l-2 border-[#21409A] pl-4 sm:pl-5 max-w-lg">
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                  Drawing on established connections within Uganda&apos;s healthcare supply ecosystem, the company maintains active distribution relationships across wholesale and retail medical channels to ensure dependable delivery to clinical facilities nationwide.
+                </p>
+              </div>
             </div>
 
-            {/* Existing Medical Equipment Photograph - Detached Lower-Right Visual Object */}
+            {/* Right: Design 4 Circular Editorial Object with Concentric Orbital Arc & Technical Red Accent */}
             <div
-              className="lg:col-span-4 xl:col-span-4 flex justify-end lg:pt-16 xl:pt-20"
+              className="lg:col-span-5 xl:col-span-5 flex justify-center lg:justify-end"
               data-aos="fade-left"
               data-aos-duration="950"
-              data-aos-delay="150"
+              data-aos-delay="100"
             >
-              <div className="w-full max-w-[280px] sm:max-w-[320px] lg:max-w-none ml-auto">
-                <img
-                  src={aboutCompanyEquipImg}
-                  alt="Clinical patient vital signs monitor and medical equipment supplied by FAB Medical Supplies Ltd."
-                  className="w-full h-auto object-cover shadow-[0_12px_36px_rgba(15,23,42,0.07)] border border-slate-200/90"
-                  loading="lazy"
+              <div className="relative w-[280px] h-[280px] sm:w-[340px] sm:h-[340px] md:w-[380px] md:h-[380px] lg:w-[400px] lg:h-[400px] xl:w-[440px] xl:h-[440px] flex items-center justify-center">
+                {/* Design 4 Outer Orbital Arc (Left / Bottom concentric curve) */}
+                <svg
+                  className="absolute inset-[-14px] sm:inset-[-20px] lg:inset-[-24px] w-[calc(100%+28px)] sm:w-[calc(100%+40px)] lg:w-[calc(100%+48px)] h-[calc(100%+28px)] sm:h-[calc(100%+40px)] lg:h-[calc(100%+48px)] pointer-events-none -z-0"
+                  viewBox="0 0 500 500"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M 95 95 A 235 235 0 0 0 415 415"
+                    stroke="#21409A"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    className="opacity-90"
+                  />
+                </svg>
+
+                {/* Design 4 Red Technical Horizontal Accent Dash */}
+                <div
+                  className="absolute -right-3 sm:-right-5 lg:-right-6 top-1/2 -translate-y-1/2 w-8 sm:w-12 h-[3px] bg-[#ED1C24] rounded-full z-20 shadow-sm"
+                  aria-hidden="true"
                 />
+
+                {/* Main Circular Mask with Existing Medical Equipment Photograph */}
+                <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-slate-200/90 shadow-[0_16px_48px_rgba(15,23,42,0.12)] bg-slate-100 z-10 group">
+                  <img
+                    src={aboutCompanyEquipImg}
+                    alt="Clinical patient vital signs monitor and medical equipment supplied by FAB Medical Supplies Ltd."
+                    className="w-full h-full object-cover object-center scale-[1.03] group-hover:scale-108 transition-transform duration-700 ease-out"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Technical Pipeline Strip - Design 4 Signature */}
+          <div
+            className="mt-14 sm:mt-16 lg:mt-20 pt-8 sm:pt-10 border-t border-slate-200/90"
+            data-aos="fade-up"
+            data-aos-duration="850"
+            data-aos-delay="150"
+          >
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 lg:gap-8">
+              <div className="flex items-center space-x-2.5 flex-shrink-0">
+                <span className="w-2 h-2 rounded-full bg-[#21409A]" aria-hidden="true" />
+                <span className="text-[11px] sm:text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#21409A]">
+                  HOW FAB SUPPORTS THE SUPPLY
+                </span>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-x-2.5 sm:gap-x-3.5 gap-y-2 text-[11px] sm:text-xs font-mono font-semibold tracking-wider text-slate-700">
+                <span className="text-slate-950 font-bold">PROCUREMENT</span>
+                <span className="text-[#21409A] font-bold">→</span>
+                <span className="text-slate-950 font-bold">SUPPLY</span>
+                <span className="text-[#21409A] font-bold">→</span>
+                <span className="text-slate-950 font-bold">DELIVERY</span>
+                <span className="text-[#21409A] font-bold">→</span>
+                <span className="text-slate-950 font-bold">MARKETING</span>
+                <span className="text-[#21409A] font-bold">→</span>
+                <span className="text-slate-950 font-bold">SALES</span>
+                <span className="text-[#21409A] font-bold">→</span>
+                <span className="text-slate-950 font-bold">SERVICING</span>
+                <span className="text-[#21409A] font-bold">→</span>
+                <span className="text-[#ED1C24] font-bold">REPAIR</span>
               </div>
             </div>
           </div>
