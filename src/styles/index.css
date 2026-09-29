@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-brand-blue: #21409A;
+  --color-brand-red: #ED1C24;
+  --color-white: #FFFFFF;
+  --color-dark: #202A35;
+  --color-muted: #667085;
+  --color-surface-light: #F5F7FA;
+  --color-border: #D9E0E7;
+}
+
+body {
+  margin: 0;
+  color: var(--color-dark);
+  background-color: var(--color-white);
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
