@@ -175,19 +175,19 @@ export default function ParticleRingLoader({
       }`}
     >
       <div className="relative flex flex-col items-center justify-center">
-        {/* Canvas Particle Ring Loader */}
+        {/* Canvas Particle Ring Loader - Responsive sizing */}
         <canvas
           ref={canvasRef}
-          style={{ width: '360px', height: '360px' }}
-          className="block"
+          style={{ width: 'min(340px, 82vw)', height: 'min(340px, 82vw)' }}
+          className="block max-w-full"
         />
 
         {/* Minimalist Medical Brand Metadata Below Ring */}
-        <div className="mt-2 text-center space-y-1.5 z-10">
-          <span className="text-xs sm:text-[13px] font-mono font-bold tracking-[0.28em] text-white uppercase block drop-shadow-sm">
+        <div className="mt-3 text-center space-y-1.5 z-10 px-4 max-w-xs sm:max-w-none">
+          <span className="text-[11px] sm:text-xs md:text-[13px] font-mono font-bold tracking-[0.24em] sm:tracking-[0.28em] text-white uppercase block drop-shadow-sm">
             {label}
           </span>
-          <div className="flex items-center justify-center space-x-2 text-[10px] font-mono tracking-[0.2em] text-[#38BDF8] uppercase font-semibold">
+          <div className="flex items-center justify-center space-x-2 text-[9.5px] sm:text-[10px] font-mono tracking-[0.2em] text-[#38BDF8] uppercase font-semibold">
             <span className="w-1.5 h-1.5 rounded-full bg-[#38BDF8] animate-ping" aria-hidden="true" />
             <span>{sublabel}</span>
           </div>

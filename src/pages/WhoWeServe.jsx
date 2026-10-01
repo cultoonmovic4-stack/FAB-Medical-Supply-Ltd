@@ -456,19 +456,19 @@ export default function WhoWeServe() {
               </span>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
               {environmentNodes.map((node, idx) => (
                 <div
                   key={node.id}
-                  className="flex items-center space-x-4 bg-slate-50/50 p-3.5 border border-slate-100"
+                  className="flex items-center space-x-3 sm:space-x-4 bg-slate-50/60 p-3 sm:p-3.5 border border-slate-100"
                   data-aos="fade-up"
                   data-aos-delay={idx * 80}
                 >
-                  <div className="w-36 sm:w-40 h-auto flex-shrink-0 drop-shadow-sm">
+                  <div className="w-24 xs:w-28 sm:w-36 md:w-40 h-auto flex-shrink-0 drop-shadow-sm">
                     <img src={node.image} alt={node.alt} className="w-full h-auto block" loading="lazy" />
                   </div>
-                  <div className="space-y-1">
-                    <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#21409A] block leading-tight">
+                  <div className="space-y-1 min-w-0">
+                    <span className="text-[11px] sm:text-xs font-mono font-bold uppercase tracking-wider text-[#21409A] block leading-tight">
                       {node.title}
                     </span>
                     <span className="w-6 h-[1.5px] bg-[#21409A] block" aria-hidden="true" />
@@ -629,12 +629,15 @@ export default function WhoWeServe() {
                 </div>
               </div>
 
-              {/* Connecting Arrow 1 (Col 4) */}
+              {/* Connecting Arrow 1 (Col 4 on desktop, vertical on mobile) */}
               <div className="hidden md:flex md:col-span-1 items-center justify-center" aria-hidden="true">
                 <div className="w-full flex items-center">
                   <span className="flex-1 h-[1.5px] bg-[#21409A]" />
                   <span className="text-[#21409A] font-bold text-sm ml-0.5">→</span>
                 </div>
+              </div>
+              <div className="flex md:hidden items-center justify-center text-[#21409A] font-bold text-lg -my-2" aria-hidden="true">
+                ↓
               </div>
 
               {/* Stage 2: Central FAB Anchor (Col 4-5) */}
@@ -658,12 +661,15 @@ export default function WhoWeServe() {
                 </div>
               </div>
 
-              {/* Connecting Arrow 2 (Col 6) */}
+              {/* Connecting Arrow 2 (Col 6 on desktop, vertical on mobile) */}
               <div className="hidden md:flex md:col-span-1 items-center justify-center" aria-hidden="true">
                 <div className="w-full flex items-center">
                   <span className="flex-1 h-[1.5px] bg-[#21409A]" />
                   <span className="text-[#21409A] font-bold text-sm ml-0.5">→</span>
                 </div>
+              </div>
+              <div className="flex md:hidden items-center justify-center text-[#21409A] font-bold text-lg -my-2" aria-hidden="true">
+                ↓
               </div>
 
               {/* Stage 3: Supply Partners (Col 7-9) */}
@@ -686,6 +692,11 @@ export default function WhoWeServe() {
                     <span className="text-slate-500 font-normal text-[9.5px]">(RETAIL &amp; WHOLESALE)</span>
                   </span>
                 </div>
+              </div>
+
+              {/* Mobile transition indicator between Stage 3 and Stage 4 */}
+              <div className="flex md:hidden items-center justify-center text-[#21409A] font-bold text-lg -my-2" aria-hidden="true">
+                ↓
               </div>
 
               {/* Stage 4: Healthcare Environments (Col 10-12) */}

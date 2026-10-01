@@ -247,11 +247,11 @@ export default function ProductDetail({ product, onBack, onSelectProduct }) {
                   </p>
                 </div>
 
-                <div className="flex flex-wrap gap-3.5 pt-1">
+                <div className="flex flex-col sm:flex-row flex-wrap gap-3.5 pt-1">
                   {/* Phone Call Button */}
                   <a
                     href={companyInfo.phones[0].link}
-                    className="inline-flex items-center justify-center px-5 py-3 bg-[#E11D48] hover:bg-[#BE123C] text-white text-xs font-mono font-bold uppercase tracking-[0.16em] transition-colors shadow-sm min-h-[44px]"
+                    className="inline-flex items-center justify-center px-5 py-3.5 bg-[#E11D48] hover:bg-[#BE123C] text-white text-xs font-mono font-bold uppercase tracking-[0.16em] transition-colors shadow-sm min-h-[44px] w-full sm:w-auto text-center"
                     aria-label={`Call about ${product.name}: ${companyInfo.phones[0].number}`}
                   >
                     Call: {companyInfo.phones[0].number}
@@ -262,7 +262,7 @@ export default function ProductDetail({ product, onBack, onSelectProduct }) {
                     href={whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center px-5 py-3 bg-[#21409A] hover:bg-[#1A337A] text-white text-xs font-mono font-bold uppercase tracking-[0.16em] transition-colors shadow-sm min-h-[44px]"
+                    className="inline-flex items-center justify-center px-5 py-3.5 bg-[#21409A] hover:bg-[#1A337A] text-white text-xs font-mono font-bold uppercase tracking-[0.16em] transition-colors shadow-sm min-h-[44px] w-full sm:w-auto text-center"
                     aria-label={`Inquire about ${product.name} on WhatsApp (opens in new window)`}
                   >
                     Inquire on WhatsApp →
@@ -272,7 +272,7 @@ export default function ProductDetail({ product, onBack, onSelectProduct }) {
                   <button
                     type="button"
                     onClick={onBack}
-                    className="inline-flex items-center justify-center px-5 py-3 border border-slate-300 hover:border-[#21409A] text-slate-700 hover:text-[#21409A] text-xs font-mono font-bold uppercase tracking-[0.16em] transition-colors min-h-[44px]"
+                    className="inline-flex items-center justify-center px-5 py-3.5 border border-slate-300 hover:border-[#21409A] text-slate-700 hover:text-[#21409A] text-xs font-mono font-bold uppercase tracking-[0.16em] transition-colors min-h-[44px] w-full sm:w-auto text-center"
                   >
                     Return to Catalogue
                   </button>

@@ -313,10 +313,10 @@ export default function Home({ onNavigate }) {
               </p>
             </div>
 
-            {/* 4. Four Scattered Capability Annotations (Asymmetrically Staggered) */}
-            <div className="pt-4 space-y-6">
-              {/* Function 1: SUPPLY (Aligned Left) */}
-              <div className="space-y-1 max-w-xs pl-2" data-aos="fade-right" data-aos-delay="100">
+            {/* 4. Four Responsive Capability Annotations */}
+            <div className="pt-4 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+              {/* Function 1: SUPPLY */}
+              <div className="space-y-1 bg-slate-50/70 p-3 border-l-2 border-[#21409A]" data-aos="fade-right" data-aos-delay="100">
                 <div className="flex items-center space-x-2">
                   <span className="w-3.5 h-[2px] bg-brand-red flex-shrink-0" aria-hidden="true" />
                   <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-dark">
@@ -328,8 +328,8 @@ export default function Home({ onNavigate }) {
                 </p>
               </div>
 
-              {/* Function 2: DELIVERY (Slightly Offset) */}
-              <div className="space-y-1 max-w-xs pl-6 sm:pl-10" data-aos="fade-right" data-aos-delay="200">
+              {/* Function 2: DELIVERY */}
+              <div className="space-y-1 bg-slate-50/70 p-3 border-l-2 border-[#21409A]" data-aos="fade-right" data-aos-delay="200">
                 <div className="flex items-center space-x-2">
                   <span className="w-3.5 h-[2px] bg-brand-red flex-shrink-0" aria-hidden="true" />
                   <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-dark">
@@ -341,8 +341,8 @@ export default function Home({ onNavigate }) {
                 </p>
               </div>
 
-              {/* Function 3: MARKETING & SALES (Offset Right) */}
-              <div className="space-y-1 max-w-xs pl-10 sm:pl-16" data-aos="fade-up" data-aos-delay="300">
+              {/* Function 3: MARKETING & SALES */}
+              <div className="space-y-1 bg-slate-50/70 p-3 border-l-2 border-[#21409A]" data-aos="fade-up" data-aos-delay="300">
                 <div className="flex items-center space-x-2">
                   <span className="w-3.5 h-[2px] bg-brand-red flex-shrink-0" aria-hidden="true" />
                   <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-dark">
@@ -354,8 +354,8 @@ export default function Home({ onNavigate }) {
                 </p>
               </div>
 
-              {/* Function 4: SERVICE & REPAIR (Offset Further Right) */}
-              <div className="space-y-1 max-w-xs pl-14 sm:pl-20" data-aos="fade-left" data-aos-delay="400">
+              {/* Function 4: SERVICE & REPAIR */}
+              <div className="space-y-1 bg-slate-50/70 p-3 border-l-2 border-[#21409A]" data-aos="fade-left" data-aos-delay="400">
                 <div className="flex items-center space-x-2">
                   <span className="w-3.5 h-[2px] bg-brand-red flex-shrink-0" aria-hidden="true" />
                   <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-dark">

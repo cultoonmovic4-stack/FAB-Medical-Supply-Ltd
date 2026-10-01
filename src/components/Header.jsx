@@ -65,26 +65,26 @@ export default function Header({ activeView = 'home', onNavigate }) {
   return (
     <header className="bg-white border-b border-[#D9E0E7] shadow-[0_1px_3px_0_rgba(0,0,0,0.03)] sticky top-0 z-50 w-full">
       <Container>
-        <div className="h-20 flex items-center justify-between lg:grid lg:grid-cols-[auto_1fr_auto] gap-8 lg:gap-12 xl:gap-16">
+        <div className="h-20 flex items-center justify-between lg:grid lg:grid-cols-[auto_1fr_auto] gap-4 sm:gap-8 lg:gap-12 xl:gap-16">
           {/* Left section: Compact, vertically aligned FAB branding */}
-          <div className="flex items-center justify-start flex-shrink-0">
+          <div className="flex items-center justify-start flex-shrink-0 min-w-0">
             <button
               onClick={() => handleNavClick('home')}
-              className="group flex items-center space-x-3 text-left focus:outline-none focus:ring-2 focus:ring-[#21409A] focus:ring-offset-2 rounded-lg p-1 transition-opacity hover:opacity-95"
+              className="group flex items-center space-x-2.5 sm:space-x-3 text-left focus:outline-none focus:ring-2 focus:ring-[#21409A] focus:ring-offset-2 rounded-lg p-1 transition-opacity hover:opacity-95"
               aria-label="FAB Medical Supplies Ltd. Home"
             >
               <img
                 src="/favicon.svg"
                 alt="FAB Logo"
-                className="w-10 h-10 rounded-lg flex-shrink-0"
+                className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg flex-shrink-0"
                 width="40"
                 height="40"
               />
-              <div className="flex flex-col justify-center">
-                <span className="text-[15px] sm:text-base font-bold tracking-tight text-[#21409A] leading-tight">
+              <div className="flex flex-col justify-center min-w-0">
+                <span className="text-[13px] xs:text-sm sm:text-base font-bold tracking-tight text-[#21409A] leading-tight truncate">
                   FAB MEDICAL SUPPLIES LTD.
                 </span>
-                <span className="text-xs text-[#667085] font-normal tracking-normal mt-0.5 leading-tight">
+                <span className="text-[10.5px] sm:text-xs text-[#667085] font-normal tracking-normal mt-0.5 leading-tight">
                   Service That Exceeds
                 </span>
               </div>
@@ -123,7 +123,7 @@ export default function Header({ activeView = 'home', onNavigate }) {
           </nav>
 
           {/* Right section: Subtle divider + Circular search utility button + Mobile toggle */}
-          <div className="flex items-center justify-end space-x-2 sm:space-x-3">
+          <div className="flex items-center justify-end space-x-1.5 sm:space-x-3 flex-shrink-0">
             {/* Desktop subtle vertical divider */}
             <div
               className="hidden lg:block h-5 w-[1px] bg-[#D9E0E7] mr-1"

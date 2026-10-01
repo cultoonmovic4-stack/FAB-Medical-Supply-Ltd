@@ -60,10 +60,10 @@ export default function Contact() {
                 <span className="w-8 h-[1.5px] bg-[#21409A]" aria-hidden="true" />
               </div>
 
-              {/* Oversized Headline */}
+              {/* Oversized Headline - Responsive scaling */}
               <h1
                 id="contact-hero-heading"
-                className="text-6xl sm:text-7xl lg:text-[88px] xl:text-[96px] font-black tracking-tight leading-[0.92] uppercase select-none"
+                className="text-5xl xs:text-6xl sm:text-7xl lg:text-[88px] xl:text-[96px] font-black tracking-tight leading-[0.92] uppercase select-none"
               >
                 <span className="text-[#0F172A] block">LET&apos;S</span>
                 <span className="text-[#21409A] block">TALK<span className="text-[#21409A]">.</span></span>
@@ -93,6 +93,18 @@ export default function Contact() {
                 Whether you&apos;re sourcing medical equipment, making an inquiry, or looking for assistance, 
                 connect directly with our team.
               </p>
+
+              {/* Mobile / Tablet Direct Support Guarantee */}
+              <div className="flex lg:hidden items-center space-x-3 pt-3 border-t border-slate-200/80">
+                <div className="w-7 h-7 rounded-full border border-slate-200 flex items-center justify-center text-[#21409A] flex-shrink-0">
+                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                </div>
+                <span className="text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.14em] text-slate-500 font-semibold">
+                  REAL PEOPLE • DIRECT SUPPORT • FAST RESPONSE
+                </span>
+              </div>
             </div>
 
             {/* Far-Right Area: Vertical Service Guarantee (Col 3) */}

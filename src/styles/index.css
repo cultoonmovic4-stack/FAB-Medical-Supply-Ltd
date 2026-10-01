@@ -30,6 +30,10 @@ main {
   overflow-x: clip;
 }
 
+/* Base text wrapping and fluid behavior */
+h1, h2, h3, h4, h5, h6, p, span, a {
+  overflow-wrap: break-word;
+}
 
 /* Very Strong AOS Transitions & Keyframes */
 [data-aos] {
@@ -38,7 +42,7 @@ main {
   transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-/* Enhanced displacement for high-impact presence */
+/* Enhanced displacement for high-impact presence (Desktop & Tablet) */
 [data-aos="fade-up"] {
   transform: translate3d(0, 50px, 0);
 }
@@ -58,6 +62,23 @@ main {
   transform: scale(1.15);
 }
 
+/* Mobile-optimized displacement: smoother motion without horizontal viewport shifts */
+@media (max-width: 640px) {
+  [data-aos="fade-right"] {
+    transform: translate3d(-24px, 0, 0);
+  }
+  [data-aos="fade-left"] {
+    transform: translate3d(24px, 0, 0);
+  }
+  [data-aos="fade-up"] {
+    transform: translate3d(0, 30px, 0);
+  }
+  [data-aos="fade-down"] {
+    transform: translate3d(0, -30px, 0);
+  }
+}
+
 [data-aos].aos-animate {
   transform: translate3d(0, 0, 0) scale(1) !important;
 }
+

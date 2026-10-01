@@ -157,15 +157,15 @@ export default function About({ onNavigate }) {
 
             {/* Right: Design 4 Circular Editorial Object with Concentric Orbital Arc & Technical Red Accent */}
             <div
-              className="lg:col-span-5 xl:col-span-5 flex justify-center lg:justify-end"
+              className="lg:col-span-5 xl:col-span-5 flex justify-center lg:justify-end overflow-visible"
               data-aos="fade-left"
               data-aos-duration="950"
               data-aos-delay="100"
             >
-              <div className="relative w-[280px] h-[280px] sm:w-[340px] sm:h-[340px] md:w-[380px] md:h-[380px] lg:w-[400px] lg:h-[400px] xl:w-[440px] xl:h-[440px] flex items-center justify-center">
+              <div className="relative w-[230px] h-[230px] sm:w-[320px] sm:h-[320px] md:w-[360px] md:h-[360px] lg:w-[400px] lg:h-[400px] xl:w-[440px] xl:h-[440px] flex items-center justify-center">
                 {/* Design 4 Outer Orbital Arc (Left / Bottom concentric curve) */}
                 <svg
-                  className="absolute inset-[-14px] sm:inset-[-20px] lg:inset-[-24px] w-[calc(100%+28px)] sm:w-[calc(100%+40px)] lg:w-[calc(100%+48px)] h-[calc(100%+28px)] sm:h-[calc(100%+40px)] lg:h-[calc(100%+48px)] pointer-events-none -z-0"
+                  className="absolute inset-[-10px] sm:inset-[-18px] lg:inset-[-24px] w-[calc(100%+20px)] sm:w-[calc(100%+36px)] lg:w-[calc(100%+48px)] h-[calc(100%+20px)] sm:h-[calc(100%+36px)] lg:h-[calc(100%+48px)] pointer-events-none -z-0"
                   viewBox="0 0 500 500"
                   fill="none"
                   aria-hidden="true"
@@ -181,7 +181,7 @@ export default function About({ onNavigate }) {
 
                 {/* Design 4 Red Technical Horizontal Accent Dash */}
                 <div
-                  className="absolute -right-3 sm:-right-5 lg:-right-6 top-1/2 -translate-y-1/2 w-8 sm:w-12 h-[3px] bg-[#ED1C24] rounded-full z-20 shadow-sm"
+                  className="absolute -right-2 sm:-right-4 lg:-right-6 top-1/2 -translate-y-1/2 w-6 sm:w-10 lg:w-12 h-[3px] bg-[#ED1C24] rounded-full z-20 shadow-sm"
                   aria-hidden="true"
                 />
 
@@ -447,13 +447,13 @@ export default function About({ onNavigate }) {
               />
             </div>
 
-            {/* Four Staggered Functions */}
-            <div className="space-y-6 pt-2">
+            {/* Four Responsive Capability Items */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 pt-2">
               {/* Function 01 */}
-              <div className="space-y-1 max-w-sm pl-2">
-                <div className="flex items-center space-x-2.5 mb-1.5">
+              <div className="space-y-1.5 border-l-2 border-[#21409A] pl-3.5 bg-slate-50/50 py-2.5 pr-2">
+                <div className="flex items-center space-x-2.5 mb-1">
                   <span className="text-sm font-bold text-[#21409A]">01</span>
-                  <span className="w-8 h-[1.5px] bg-[#93C5FD]" aria-hidden="true" />
+                  <span className="w-6 h-[1.5px] bg-[#93C5FD]" aria-hidden="true" />
                 </div>
                 <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#0F172A]">
                   PROCUREMENT &amp; SUPPLY
@@ -464,10 +464,10 @@ export default function About({ onNavigate }) {
               </div>
 
               {/* Function 02 */}
-              <div className="space-y-1 max-w-sm pl-6 sm:pl-10">
-                <div className="flex items-center space-x-2.5 mb-1.5">
+              <div className="space-y-1.5 border-l-2 border-[#21409A] pl-3.5 bg-slate-50/50 py-2.5 pr-2">
+                <div className="flex items-center space-x-2.5 mb-1">
                   <span className="text-sm font-bold text-[#21409A]">02</span>
-                  <span className="w-8 h-[1.5px] bg-[#93C5FD]" aria-hidden="true" />
+                  <span className="w-6 h-[1.5px] bg-[#93C5FD]" aria-hidden="true" />
                 </div>
                 <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#0F172A]">
                   MARKETING &amp; SALES
@@ -478,10 +478,10 @@ export default function About({ onNavigate }) {
               </div>
 
               {/* Function 03 */}
-              <div className="space-y-1 max-w-sm pl-10 sm:pl-16">
-                <div className="flex items-center space-x-2.5 mb-1.5">
+              <div className="space-y-1.5 border-l-2 border-[#21409A] pl-3.5 bg-slate-50/50 py-2.5 pr-2">
+                <div className="flex items-center space-x-2.5 mb-1">
                   <span className="text-sm font-bold text-[#21409A]">03</span>
-                  <span className="w-8 h-[1.5px] bg-[#93C5FD]" aria-hidden="true" />
+                  <span className="w-6 h-[1.5px] bg-[#93C5FD]" aria-hidden="true" />
                 </div>
                 <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#0F172A]">
                   DELIVERY
@@ -492,10 +492,10 @@ export default function About({ onNavigate }) {
               </div>
 
               {/* Function 04 */}
-              <div className="space-y-1 max-w-sm pl-14 sm:pl-20">
-                <div className="flex items-center space-x-2.5 mb-1.5">
+              <div className="space-y-1.5 border-l-2 border-[#21409A] pl-3.5 bg-slate-50/50 py-2.5 pr-2">
+                <div className="flex items-center space-x-2.5 mb-1">
                   <span className="text-sm font-bold text-[#21409A]">04</span>
-                  <span className="w-8 h-[1.5px] bg-[#93C5FD]" aria-hidden="true" />
+                  <span className="w-6 h-[1.5px] bg-[#93C5FD]" aria-hidden="true" />
                 </div>
                 <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#0F172A]">
                   SERVICE &amp; REPAIR

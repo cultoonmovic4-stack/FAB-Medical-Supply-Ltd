@@ -185,7 +185,7 @@ export default function Products({ initialCategory = 'all', onNavigate }) {
       {/* ========================================================
           PART 02: SEARCH & PART 03: CATEGORY NAVIGATION
           ======================================================== */}
-      <section className="bg-white border-b border-slate-200 sticky top-0 z-20 shadow-[0_4px_20px_rgba(0,0,0,0.03)]">
+      <section className="bg-white border-b border-slate-200 relative lg:sticky lg:top-20 z-20 shadow-[0_4px_20px_rgba(0,0,0,0.03)]">
         <Container>
           {/* Part 02: Long Editorial Search Field */}
           <div className="pt-6 pb-4 border-b border-slate-100">
@@ -263,7 +263,7 @@ export default function Products({ initialCategory = 'all', onNavigate }) {
             <div
               role="group"
               aria-label="Filter equipment by clinical specialty"
-              className="flex items-center gap-1.5 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-slate-200"
+              className="flex items-center gap-1.5 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-slate-200 -mx-4 px-4 sm:mx-0 sm:px-0 touch-pan-x"
             >
               {/* 00 — ALL EQUIPMENT */}
               <button
