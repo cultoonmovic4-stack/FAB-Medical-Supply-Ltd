@@ -1,63 +1,75 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import AOS from 'aos';
 import { Header, Footer, BackToTop } from './components';
-import { Home, About, Services, WhoWeServe, Contact, Products } from './pages';
+import { Home, Products } from './pages';
+import { useSEO } from './hooks/useSEO';
 
-const VALID_VIEWS = ['home', 'about', 'services', 'who-we-serve', 'contact', 'products'];
-
-const getInitialView = () => {
-  // 1. Check URL hash (e.g. #about)
-  const hash = window.location.hash.replace(/^#\/?/, '').split('?')[0].trim();
-  if (VALID_VIEWS.includes(hash)) return hash;
-
-  // 2. Check URL pathname (e.g. /about)
-  const path = window.location.pathname.replace(/^\//, '').split('/')[0].trim();
-  if (VALID_VIEWS.includes(path)) return path;
-
-  // 3. Check sessionStorage fallback
-  try {
-    const saved = sessionStorage.getItem('fab_active_view');
-    if (VALID_VIEWS.includes(saved)) return saved;
-  } catch (e) {
-    // Ignore storage access errors
-  }
-
-  return 'home';
-};
+const About = lazy(() => import('./pages/About'));
+const Services = lazy(() => import('./pages/Services'));
+const WhoWeServe = lazy(() => import('./pages/WhoWeServe'));
+const Contact = lazy(() => import('./pages/Contact'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 export default function App() {
-  const [activeView, setActiveView] = useState(getInitialView);
+  const location = useLocation();
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState('all');
 
-  // Synchronize browser history / URL hash and storage
+  // Dynamically update document title, canonical, Open Graph & Twitter metadata per route
+  useSEO();
+
+  // Legacy Hash Compatibility: Gracefully transition #about -> /about, #products -> /products, etc.
+  useEffect(() => {
+    const rawHash = window.location.hash.replace(/^#\/?/, '').split('?')[0].trim();
+    const hashRouteMap = {
+      home: '/',
+      about: '/about',
+      products: '/products',
+      services: '/services',
+      'who-we-serve': '/who-we-serve',
+      contact: '/contact',
+    };
+    if (rawHash && hashRouteMap[rawHash]) {
+      navigate(hashRouteMap[rawHash], { replace: true });
+    }
+  }, [navigate]);
+
+  // Static Hosting / SPA redirect handler (fallback if 404.html redirected)
+  useEffect(() => {
+    const redirectPath = sessionStorage.getItem('fab_spa_redirect');
+    if (redirectPath) {
+      sessionStorage.removeItem('fab_spa_redirect');
+      navigate(redirectPath, { replace: true });
+    }
+  }, [navigate]);
+
+  // Synchronize navigation for component handlers that trigger programmatic view changes
   const handleNavigate = (viewId, categoryId = 'all') => {
-    setActiveView(viewId);
-    if (categoryId) {
-      setSelectedCategory(categoryId);
+    if (viewId === 'products' && categoryId && categoryId !== 'all') {
+      navigate(`/products/${categoryId}`);
+      return;
     }
-    try {
-      sessionStorage.setItem('fab_active_view', viewId);
-    } catch (e) {
-      // Ignore storage access errors
-    }
-    window.location.hash = viewId === 'home' ? '' : viewId;
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    const pathMap = {
+      home: '/',
+      about: '/about',
+      products: '/products',
+      services: '/services',
+      'who-we-serve': '/who-we-serve',
+      contact: '/contact',
+    };
+    const targetPath = pathMap[viewId] || (viewId.startsWith('/') ? viewId : `/${viewId}`);
+    navigate(targetPath);
   };
 
-  // Listen to browser Back / Forward navigation
+  // Scroll to top and refresh AOS on route change
   useEffect(() => {
-    const handleUrlChange = () => {
-      const view = getInitialView();
-      setActiveView(view);
-    };
-
-    window.addEventListener('hashchange', handleUrlChange);
-    window.addEventListener('popstate', handleUrlChange);
-    return () => {
-      window.removeEventListener('hashchange', handleUrlChange);
-      window.removeEventListener('popstate', handleUrlChange);
-    };
-  }, []);
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    const timer = setTimeout(() => {
+      AOS.refreshHard();
+    }, 120);
+    return () => clearTimeout(timer);
+  }, [location.pathname]);
 
   // Initialize AOS with strong, responsive animation curves
   useEffect(() => {
@@ -71,38 +83,6 @@ export default function App() {
     });
   }, []);
 
-  // Re-calculate and trigger AOS on view navigation
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      AOS.refreshHard();
-    }, 120);
-    return () => clearTimeout(timer);
-  }, [activeView]);
-
-  const renderCurrentPage = () => {
-    switch (activeView) {
-      case 'home':
-        return <Home onNavigate={handleNavigate} />;
-      case 'about':
-        return <About onNavigate={handleNavigate} />;
-      case 'services':
-        return <Services onNavigate={handleNavigate} />;
-      case 'who-we-serve':
-        return <WhoWeServe onNavigate={handleNavigate} />;
-      case 'contact':
-        return <Contact />;
-      case 'products':
-        return (
-          <Products
-            initialCategory={selectedCategory}
-            onNavigate={handleNavigate}
-          />
-        );
-      default:
-        return <Home onNavigate={handleNavigate} />;
-    }
-  };
-
   return (
     <div className="min-h-screen flex flex-col bg-white text-dark antialiased">
       {/* Skip to Main Content Link for Keyboard Accessibility */}
@@ -114,11 +94,28 @@ export default function App() {
       </a>
 
       {/* Shared Site Header */}
-      <Header activeView={activeView} onNavigate={handleNavigate} />
+      <Header activePath={location.pathname} onNavigate={handleNavigate} />
 
       {/* Main Landmark Area */}
       <main id="main-content" tabIndex="-1" className="flex-grow focus:outline-none">
-        {renderCurrentPage()}
+        <Suspense
+          fallback={
+            <div className="min-h-[40vh] flex items-center justify-center bg-white" aria-busy="true">
+              <span className="sr-only">Loading content...</span>
+            </div>
+          }
+        >
+          <Routes>
+            <Route path="/" element={<Home onNavigate={handleNavigate} />} />
+            <Route path="/about" element={<About onNavigate={handleNavigate} />} />
+            <Route path="/products" element={<Products onNavigate={handleNavigate} />} />
+            <Route path="/products/:categoryId" element={<Products onNavigate={handleNavigate} />} />
+            <Route path="/services" element={<Services onNavigate={handleNavigate} />} />
+            <Route path="/who-we-serve" element={<WhoWeServe />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
       </main>
 
       {/* Shared Site Footer */}

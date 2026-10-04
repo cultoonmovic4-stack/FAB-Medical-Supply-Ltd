@@ -7,4 +7,7 @@ export { default as Button } from './Button';
 export { default as ProductCard } from './ProductCard';
 export { default as ProductDetail } from './ProductDetail';
 export { default as ParticleRingLoader } from './ParticleRingLoader';
+export { default as LogoLoader } from './LogoLoader';
 export { default as BackToTop } from './BackToTop';
+export { default as HomeHero, HERO_PRODUCTS } from './HomeHero';
+export { default as CustomDropdown } from './CustomDropdown';

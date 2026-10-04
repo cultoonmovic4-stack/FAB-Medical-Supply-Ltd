@@ -1,23 +1,27 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Container from '../components/Container';
 
 // Section 1 & 2 photographic assets
-import heroPhotoImg from '../assets/wws-hero-photo.png';
-import envRadiologyImg from '../assets/env_radiology.png';
-import envOutpatientImg from '../assets/env_outpatient.png';
-import envEmergencyImg from '../assets/env_emergency.png';
-import envMaternityImg from '../assets/env_maternity.png';
-import envTheatreImg from '../assets/env_theatre.png';
-import envWardImg from '../assets/env_ward.png';
-import envLabImg from '../assets/env_lab.png';
-import envUtilityImg from '../assets/env_utility.png';
+import heroPhotoImg from '../assets/wws-hero-photo.webp';
+import envRadiologyImg from '../assets/env_radiology.jpg';
+import envOutpatientImg from '../assets/env_outpatient.jpg';
+import envEmergencyImg from '../assets/env_emergency.jpg';
+import envMaternityImg from '../assets/env_maternity.jpg';
+import envTheatreImg from '../assets/env_theatre.jpg';
+import envWardImg from '../assets/env_ward.jpg';
+import envLabImg from '../assets/env_lab.jpg';
+import envUtilityImg from '../assets/env_utility.jpg';
 
-// Section 3 & 4 photographic assets (Design D: Supply Network)
-import supplyNetworkDiagramImg from '../assets/supply_network_diagram.png';
-import chainSuppliersImg from '../assets/chain_suppliers.png';
-import chainPartnersImg from '../assets/chain_partners.png';
-import chainHospitalsImg from '../assets/chain_hospitals.png';
-import ugandaMapImg from '../assets/ecosystem-uganda-map.png';
+// Section 3 photographic assets (Two Featured Clinical Environments)
+import supplyTheatreImg from '../assets/wws-supply-theatre.webp';
+import supplyLabImg from '../assets/wws-supply-lab.webp';
+
+// Section 4 photographic assets (Supply Chain Pipeline)
+import chainSuppliersImg from '../assets/chain_suppliers.webp';
+import chainPartnersImg from '../assets/chain_partners.webp';
+import chainHospitalsImg from '../assets/chain_hospitals.webp';
+import ugandaMapImg from '../assets/ecosystem-uganda-map.webp';
 
 /**
  * Who We Serve Page — FAB Medical Supplies Ltd.
@@ -48,63 +52,63 @@ export default function WhoWeServe() {
       id: 'radiology',
       title: 'RADIOLOGY & IMAGING',
       image: envRadiologyImg,
-      alt: 'Advanced CT scanner and clinical radiology imaging equipment',
+      alt: 'Clinical radiology and diagnostic imaging equipment',
     },
     {
       id: 'outpatient',
       title: 'OUTPATIENT & CONSULTATION',
       image: envOutpatientImg,
-      alt: 'Outpatient consultation room and clinical examination couch',
+      alt: 'Outpatient consultation room and clinical examination environment',
     },
     {
       id: 'emergency',
       title: 'EMERGENCY & ICU',
       image: envEmergencyImg,
-      alt: 'Intensive care patient monitor and critical care diagnostic system',
+      alt: 'Electrocardiograph ECG monitor and intensive care diagnostic telemetry',
     },
     {
       id: 'maternity',
       title: 'MATERNITY & PEDIATRICS',
       image: envMaternityImg,
-      alt: 'Mother and newborn baby in pediatric care ward',
+      alt: 'Maternity and pediatric care ward environment',
     },
     {
       id: 'lab',
       title: 'LABORATORY',
       image: envLabImg,
-      alt: 'Diagnostic laboratory optical microscope and chemical reagents',
+      alt: 'Clinical diagnostic laboratory and testing facility',
     },
     {
       id: 'theatre',
       title: 'THEATRE',
       image: envTheatreImg,
-      alt: 'Surgical operating theatre with clinical lamps and operating table',
+      alt: 'Surgical operating theatre with operating bed and shadowless lamp',
     },
     {
       id: 'ward',
       title: 'GENERAL WARD',
       image: envWardImg,
-      alt: 'General inpatient hospital ward beds and patient care infrastructure',
+      alt: 'General inpatient hospital ward beds and clinical care infrastructure',
     },
     {
       id: 'utility',
       title: 'SUPPORTING / UTILITY SERVICES',
       image: envUtilityImg,
-      alt: 'Sterilization autoclave and healthcare facility utility services',
+      alt: 'Clinical utility equipment and healthcare support machinery',
     },
   ];
 
-  // Section 3: Supply Network Environments List
-  const supplyEnvironments = [
-    'RADIOLOGY & IMAGING',
-    'OUTPATIENT & CONSULTATION',
-    'EMERGENCY & ICU',
-    'MATERNITY & PEDIATRICS',
-    'LABORATORY',
-    'THEATRE',
-    'GENERAL WARD',
-    'SPECIALIZED DEPARTMENTS',
-    'SUPPORTING / UTILITY SERVICES',
+  // Section 3: 9 Clinical Departments Directory
+  const supplyDepartments = [
+    { num: '01', id: 'radiology-imaging', name: 'RADIOLOGY & IMAGING', desc: 'Fixed & mobile X-ray, CT scanners, ultrasound' },
+    { num: '02', id: 'opd-consultation', name: 'OUTPATIENT & CONSULTATION', desc: 'Examination couches, diagnostic sets, BP monitors' },
+    { num: '03', id: 'emergency-icu', name: 'EMERGENCY & ICU', desc: 'Critical care monitors, ventilators, oxygen systems' },
+    { num: '04', id: 'maternity-pediatrics', name: 'MATERNITY & PEDIATRICS', desc: 'Infant incubators, warmers, fetal monitors' },
+    { num: '05', id: 'laboratory', name: 'LABORATORY', desc: 'Clinical microscopes, diagnostic analyzers, centrifuges' },
+    { num: '06', id: 'theatre-room', name: 'THEATRE ROOM', desc: 'Anesthesia machines, operating tables, electrosurgical units' },
+    { num: '07', id: 'hospital-furniture', name: 'GENERAL HOSPITAL FURNITURE', desc: 'Ward beds, bedside lockers, stretchers, wheelchairs' },
+    { num: '08', id: 'specialized-departments', name: 'SPECIALIZED DEPARTMENTS', desc: 'Dialysis machines, dental chair units, ENT units' },
+    { num: '09', id: 'utility-services', name: 'SUPPORTING / UTILITY SERVICES', desc: 'Autoclave sterilizers, pharmacy fridges, waste bins' },
   ];
 
   return (
@@ -214,7 +218,11 @@ export default function WhoWeServe() {
                   src={heroPhotoImg}
                   alt="Clinical healthcare environment perspective with modern hospital illumination"
                   className="w-full h-full object-cover object-right block drop-shadow-sm"
+                  width="360"
+                  height="384"
+                  fetchpriority="high"
                   loading="eager"
+                  decoding="async"
                 />
               </div>
             </div>
@@ -300,8 +308,8 @@ export default function WhoWeServe() {
                   data-aos-duration="850"
                   data-aos-delay="100"
                 >
-                  <div className="w-40 sm:w-48 lg:w-56 xl:w-60 h-auto flex-shrink-0 drop-shadow-sm transition-transform duration-300 group-hover:scale-[1.03]">
-                    <img src={envRadiologyImg} alt="Radiology & Imaging" className="w-full h-auto block select-none" />
+                  <div className="w-40 sm:w-48 lg:w-56 xl:w-60 aspect-[16/9] flex-shrink-0 drop-shadow-sm transition-transform duration-300 group-hover:scale-[1.03] overflow-hidden rounded-md border border-slate-200/80 bg-slate-100">
+                    <img src={envRadiologyImg} alt="Radiology & Imaging" className="w-full h-full object-cover block select-none" width="240" height="135" loading="lazy" decoding="async" />
                   </div>
                   <div className="space-y-1">
                     <span className="text-xs sm:text-[13px] font-mono font-bold uppercase tracking-wider text-[#21409A] block leading-tight">
@@ -317,8 +325,8 @@ export default function WhoWeServe() {
                   data-aos-duration="850"
                   data-aos-delay="150"
                 >
-                  <div className="w-40 sm:w-48 lg:w-56 xl:w-60 h-auto flex-shrink-0 drop-shadow-sm transition-transform duration-300 group-hover:scale-[1.03]">
-                    <img src={envOutpatientImg} alt="Outpatient & Consultation" className="w-full h-auto block select-none" />
+                  <div className="w-40 sm:w-48 lg:w-56 xl:w-60 aspect-[16/9] flex-shrink-0 drop-shadow-sm transition-transform duration-300 group-hover:scale-[1.03] overflow-hidden rounded-md border border-slate-200/80 bg-slate-100">
+                    <img src={envOutpatientImg} alt="Outpatient & Consultation" className="w-full h-full object-cover block select-none" width="240" height="135" loading="lazy" decoding="async" />
                   </div>
                   <div className="space-y-1">
                     <span className="text-xs sm:text-[13px] font-mono font-bold uppercase tracking-wider text-[#21409A] block leading-tight">
@@ -334,8 +342,8 @@ export default function WhoWeServe() {
                   data-aos-duration="850"
                   data-aos-delay="200"
                 >
-                  <div className="w-40 sm:w-48 lg:w-56 xl:w-60 h-auto flex-shrink-0 drop-shadow-sm transition-transform duration-300 group-hover:scale-[1.03]">
-                    <img src={envEmergencyImg} alt="Emergency & ICU" className="w-full h-auto block select-none" />
+                  <div className="w-40 sm:w-48 lg:w-56 xl:w-60 aspect-[16/9] flex-shrink-0 drop-shadow-sm transition-transform duration-300 group-hover:scale-[1.03] overflow-hidden rounded-md border border-slate-200/80 bg-slate-100">
+                    <img src={envEmergencyImg} alt="Emergency & ICU" className="w-full h-full object-cover block select-none" width="240" height="135" loading="lazy" decoding="async" />
                   </div>
                   <div className="space-y-1">
                     <span className="text-xs sm:text-[13px] font-mono font-bold uppercase tracking-wider text-[#21409A] block leading-tight">
@@ -354,8 +362,8 @@ export default function WhoWeServe() {
                   data-aos-duration="850"
                   data-aos-delay="250"
                 >
-                  <div className="w-40 sm:w-48 lg:w-56 xl:w-60 h-auto flex-shrink-0 drop-shadow-sm transition-transform duration-300 group-hover:scale-[1.03]">
-                    <img src={envMaternityImg} alt="Maternity & Pediatrics" className="w-full h-auto block select-none" />
+                  <div className="w-40 sm:w-48 lg:w-56 xl:w-60 aspect-[16/9] flex-shrink-0 drop-shadow-sm transition-transform duration-300 group-hover:scale-[1.03] overflow-hidden rounded-md border border-slate-200/80 bg-slate-100">
+                    <img src={envMaternityImg} alt="Maternity & Pediatrics" className="w-full h-full object-cover block select-none" width="240" height="135" loading="lazy" decoding="async" />
                   </div>
                   <div className="space-y-1">
                     <span className="text-xs sm:text-[13px] font-mono font-bold uppercase tracking-wider text-[#21409A] block leading-tight">
@@ -373,8 +381,8 @@ export default function WhoWeServe() {
                   data-aos-duration="850"
                   data-aos-delay="300"
                 >
-                  <div className="w-40 sm:w-48 lg:w-56 xl:w-60 h-auto flex-shrink-0 drop-shadow-sm transition-transform duration-300 group-hover:scale-[1.03]">
-                    <img src={envLabImg} alt="Laboratory" className="w-full h-auto block select-none" />
+                  <div className="w-40 sm:w-48 lg:w-56 xl:w-60 aspect-[16/9] flex-shrink-0 drop-shadow-sm transition-transform duration-300 group-hover:scale-[1.03] overflow-hidden rounded-md border border-slate-200/80 bg-slate-100">
+                    <img src={envLabImg} alt="Laboratory" className="w-full h-full object-cover block select-none" width="240" height="135" loading="lazy" decoding="async" />
                   </div>
                   <div className="space-y-1">
                     <span className="text-xs sm:text-[13px] font-mono font-bold uppercase tracking-wider text-[#21409A] block leading-tight">
@@ -393,8 +401,8 @@ export default function WhoWeServe() {
                   data-aos-duration="850"
                   data-aos-delay="350"
                 >
-                  <div className="w-40 sm:w-48 lg:w-56 xl:w-60 h-auto flex-shrink-0 drop-shadow-sm transition-transform duration-300 group-hover:scale-[1.03]">
-                    <img src={envTheatreImg} alt="Theatre" className="w-full h-auto block select-none" />
+                  <div className="w-40 sm:w-48 lg:w-56 xl:w-60 aspect-[16/9] flex-shrink-0 drop-shadow-sm transition-transform duration-300 group-hover:scale-[1.03] overflow-hidden rounded-md border border-slate-200/80 bg-slate-100">
+                    <img src={envTheatreImg} alt="Theatre" className="w-full h-full object-cover block select-none" width="240" height="135" loading="lazy" decoding="async" />
                   </div>
                   <div className="space-y-1">
                     <span className="text-xs sm:text-[13px] font-mono font-bold uppercase tracking-wider text-[#21409A] block leading-tight">
@@ -410,8 +418,8 @@ export default function WhoWeServe() {
                   data-aos-duration="850"
                   data-aos-delay="400"
                 >
-                  <div className="w-40 sm:w-48 lg:w-56 xl:w-60 h-auto flex-shrink-0 drop-shadow-sm transition-transform duration-300 group-hover:scale-[1.03]">
-                    <img src={envWardImg} alt="General Ward" className="w-full h-auto block select-none" />
+                  <div className="w-40 sm:w-48 lg:w-56 xl:w-60 aspect-[16/9] flex-shrink-0 drop-shadow-sm transition-transform duration-300 group-hover:scale-[1.03] overflow-hidden rounded-md border border-slate-200/80 bg-slate-100">
+                    <img src={envWardImg} alt="General Ward" className="w-full h-full object-cover block select-none" width="240" height="135" loading="lazy" decoding="async" />
                   </div>
                   <div className="space-y-1">
                     <span className="text-xs sm:text-[13px] font-mono font-bold uppercase tracking-wider text-[#21409A] block leading-tight">
@@ -427,8 +435,8 @@ export default function WhoWeServe() {
                   data-aos-duration="850"
                   data-aos-delay="450"
                 >
-                  <div className="w-40 sm:w-48 lg:w-56 xl:w-60 h-auto flex-shrink-0 drop-shadow-sm transition-transform duration-300 group-hover:scale-[1.03]">
-                    <img src={envUtilityImg} alt="Supporting / Utility Services" className="w-full h-auto block select-none" />
+                  <div className="w-40 sm:w-48 lg:w-56 xl:w-60 aspect-[16/9] flex-shrink-0 drop-shadow-sm transition-transform duration-300 group-hover:scale-[1.03] overflow-hidden rounded-md border border-slate-200/80 bg-slate-100">
+                    <img src={envUtilityImg} alt="Supporting / Utility Services" className="w-full h-full object-cover block select-none" width="240" height="135" loading="lazy" decoding="async" />
                   </div>
                   <div className="space-y-1">
                     <span className="text-xs sm:text-[13px] font-mono font-bold uppercase tracking-wider text-[#21409A] block leading-tight">
@@ -460,12 +468,12 @@ export default function WhoWeServe() {
               {environmentNodes.map((node, idx) => (
                 <div
                   key={node.id}
-                  className="flex items-center space-x-3 sm:space-x-4 bg-slate-50/60 p-3 sm:p-3.5 border border-slate-100"
+                  className="flex items-center space-x-3 sm:space-x-4 bg-slate-50/60 p-3 sm:p-3.5 border border-slate-100 rounded-lg"
                   data-aos="fade-up"
                   data-aos-delay={idx * 80}
                 >
-                  <div className="w-24 xs:w-28 sm:w-36 md:w-40 h-auto flex-shrink-0 drop-shadow-sm">
-                    <img src={node.image} alt={node.alt} className="w-full h-auto block" loading="lazy" />
+                  <div className="w-24 xs:w-28 sm:w-36 md:w-40 aspect-[16/9] flex-shrink-0 drop-shadow-sm overflow-hidden rounded-md border border-slate-200/80 bg-slate-100">
+                    <img src={node.image} alt={node.alt} className="w-full h-full object-cover block select-none" width="160" height="90" loading="lazy" decoding="async" />
                   </div>
                   <div className="space-y-1 min-w-0">
                     <span className="text-[11px] sm:text-xs font-mono font-bold uppercase tracking-wider text-[#21409A] block leading-tight">
@@ -482,7 +490,7 @@ export default function WhoWeServe() {
 
       {/* ========================================================
           SECTION 3 — WHAT WE SUPPLY ACROSS HEALTHCARE
-          (Approved Design D: Supply Network Concept)
+          (Editorial Two-Image Client Photography Spread)
           ======================================================== */}
       <section
         className="py-16 lg:py-24 bg-white border-b border-slate-200 overflow-hidden"
@@ -491,74 +499,307 @@ export default function WhoWeServe() {
         <Container className="max-w-7xl">
           {/* Section Introduction */}
           <div
-            className="max-w-3xl mb-12 lg:mb-16 space-y-3"
+            className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12 lg:mb-14"
             data-aos="fade-up"
             data-aos-duration="850"
           >
-            <div className="flex items-center space-x-2.5">
-              <span className="px-2 py-0.5 bg-[#21409A] text-white text-[10px] font-mono font-bold tracking-wider">
-                03
-              </span>
-              <span className="text-xs font-mono font-bold tracking-[0.22em] text-[#21409A] uppercase">
-                EQUIPMENT &amp; SUPPLY CONTEXTS
-              </span>
+            <div className="space-y-3">
+              <div className="flex items-center space-x-2.5">
+                <span className="text-xs font-mono font-bold text-[#21409A]">03</span>
+                <span className="w-5 h-[2px] bg-[#E11D48]" aria-hidden="true" />
+                <span className="text-xs font-mono font-bold tracking-[0.22em] text-[#21409A] uppercase">
+                  EQUIPMENT &amp; SUPPLY CONTEXTS
+                </span>
+              </div>
+              <h2
+                id="supply-contexts-heading"
+                className="text-3xl sm:text-4xl lg:text-[44px] xl:text-[48px] font-black text-[#0F172A] tracking-tight uppercase leading-[1.06]"
+              >
+                WHAT WE SUPPLY <br />
+                <span className="text-[#21409A]">ACROSS HEALTHCARE</span>
+              </h2>
             </div>
-            <h2
-              id="supply-contexts-heading"
-              className="text-3xl sm:text-4xl lg:text-[44px] font-black text-[#0F172A] tracking-tight uppercase leading-[1.08]"
-            >
-              WHAT WE SUPPLY <br />
-              ACROSS HEALTHCARE
-            </h2>
-            <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed max-w-xl">
-              FAB Medical Supplies Ltd. supplies medical equipment, instruments and reagents across a 
-              range of clinical environments and departments.
-            </p>
+
+            <div className="border-l-2 border-[#E11D48] pl-4 sm:pl-5 max-w-sm lg:max-w-md pb-1 self-start lg:self-end">
+              <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
+                FAB Medical Supplies Ltd. supplies medical equipment, instruments and reagents across a 
+                range of clinical environments and departments.
+              </p>
+            </div>
           </div>
 
-          {/* Supply Network Composition (Design D Layout) */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-            {/* Left Column: 9 Environments Network List with Circuit Nodes */}
+          {/* Paired Client Clinical Photography Showcase (2 Editorial Panels) */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12 lg:mb-14">
+            {/* Panel 1: Surgical Theatres & Critical Care */}
             <div
-              className="lg:col-span-5 space-y-4"
+              className="lg:col-span-7 group bg-[#FAFCFE] border border-slate-200/90 overflow-hidden shadow-xs"
               data-aos="fade-right"
               data-aos-duration="900"
             >
-              <div className="border border-slate-100 bg-[#FAFCFE] p-6 sm:p-8 space-y-4">
-                <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-slate-400 block pb-1 border-b border-slate-200">
-                  HEALTHCARE SUPPLY SCOPE
-                </span>
-
-                <div className="space-y-3.5">
-                  {supplyEnvironments.map((env) => (
-                    <div key={env} className="flex items-center justify-between group">
-                      <span className="text-xs sm:text-[13px] font-mono font-bold uppercase tracking-[0.14em] text-[#0F172A] group-hover:text-[#21409A] transition-colors">
-                        {env}
-                      </span>
-                      <div className="flex items-center pl-3 space-x-1.5" aria-hidden="true">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#21409A]" />
-                        <span className="w-8 h-[1.5px] bg-[#93C5FD] group-hover:bg-[#21409A] transition-colors" />
-                      </div>
-                    </div>
-                  ))}
+              <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
+                <img
+                  src={supplyTheatreImg}
+                  alt="Modern surgical operating theatre equipped with operating bed, shadowless lamps, and vital signs monitoring"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-103"
+                  width="1200"
+                  height="750"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-xs px-3 py-1.5 border border-slate-200 shadow-xs">
+                  <span className="text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider text-[#21409A]">
+                    FACILITY: THEATRE &amp; CRITICAL CARE
+                  </span>
                 </div>
+              </div>
+              <div className="p-5 sm:p-6 space-y-1.5 bg-white border-t border-slate-100">
+                <h3 className="text-base sm:text-lg font-bold font-mono text-[#0F172A] uppercase tracking-wide">
+                  Surgical Theatres &amp; Operative Suites
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                  Supplying operating tables, anesthesia machines, electrosurgical units, shadowless theatre illumination, and patient telemetry systems.
+                </p>
               </div>
             </div>
 
-            {/* Right Column: Visual Network Diagram with Stepped Parallelogram Photos */}
+            {/* Panel 2: Clinical Laboratories & Diagnostics */}
             <div
-              className="lg:col-span-7 flex justify-center lg:justify-end"
+              className="lg:col-span-5 group bg-[#FAFCFE] border border-slate-200/90 overflow-hidden shadow-xs flex flex-col justify-between"
               data-aos="fade-left"
-              data-aos-duration="1000"
-              data-aos-delay="200"
+              data-aos-duration="900"
             >
-              <div className="relative w-full max-w-2xl overflow-hidden bg-white">
+              <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
                 <img
-                  src={supplyNetworkDiagramImg}
-                  alt="FAB Medical Supplies Network linking clinical environments with diagnostic machinery, ICU systems, surgical theatres, and hospital ward infrastructure"
-                  className="w-full h-auto object-contain block drop-shadow-sm select-none"
+                  src={supplyLabImg}
+                  alt="Diagnostic clinical laboratory desk with research microscopes and diagnostic instruments"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-103"
+                  width="1200"
+                  height="750"
                   loading="lazy"
+                  decoding="async"
                 />
+                <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-xs px-3 py-1.5 border border-slate-200 shadow-xs">
+                  <span className="text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider text-[#21409A]">
+                    FACILITY: LABORATORY &amp; DIAGNOSTICS
+                  </span>
+                </div>
+              </div>
+              <div className="p-5 sm:p-6 space-y-1.5 bg-white border-t border-slate-100 flex-grow">
+                <h3 className="text-base sm:text-lg font-bold font-mono text-[#0F172A] uppercase tracking-wide">
+                  Clinical Diagnostics &amp; Pathology
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                  Equipping diagnostic laboratories with optical microscopes, automated analyzers, benchtop centrifuges, and cold-chain storage.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Interactive 9-Department Navigation Grid */}
+          <div className="space-y-4" data-aos="fade-up" data-aos-duration="900">
+            <div className="flex items-center space-x-2 pb-2 border-b border-slate-200 text-xs font-mono font-bold uppercase tracking-[0.18em] text-slate-500">
+              <span className="text-[#21409A] font-bold">CATALOGUE DIRECTORY</span>
+              <span>/</span>
+              <span>EXPLORE ALL 9 CLINICAL DEPARTMENTS</span>
+            </div>
+
+            {/* Desktop / Tablet Grid (md+) */}
+            <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+              {supplyDepartments.map((dept) => (
+                <Link
+                  key={dept.num}
+                  to={`/products/${dept.id}`}
+                  className="group p-4 bg-[#FAFCFE] hover:bg-white border border-slate-200/90 hover:border-[#21409A] transition-all duration-200 shadow-2xs hover:shadow-xs flex flex-col justify-between cursor-pointer"
+                >
+                  <div className="space-y-1.5">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-2">
+                        <span className="text-xs font-mono font-bold text-[#21409A]">{dept.num}</span>
+                        <span className="text-[#E11D48] text-xs font-bold">—</span>
+                        <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F172A] group-hover:text-[#21409A] transition-colors">
+                          {dept.name}
+                        </span>
+                      </div>
+                      <span className="text-[#21409A] text-xs font-bold transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">
+                        &rarr;
+                      </span>
+                    </div>
+                    <p className="text-[11px] text-slate-500 leading-relaxed pl-6">
+                      {dept.desc}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+
+            {/* Mobile Editorial Photo-Break Composition (<md) */}
+            <div className="block md:hidden space-y-6">
+              {/* Group 1: Departments 01, 02, 03 */}
+              <div className="space-y-3.5">
+                {/* PHOTO BREAK 01: Radiology & Outpatient Consultation */}
+                <div className="grid grid-cols-2 gap-3 pt-1">
+                  <div className="aspect-square relative rounded-lg overflow-hidden border border-slate-200/90 shadow-sm bg-slate-100 select-none">
+                    <img
+                      src={envRadiologyImg}
+                      alt="Radiology and clinical imaging equipment"
+                      className="w-full h-full object-cover"
+                      width="320"
+                      height="320"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <div className="aspect-square relative rounded-lg overflow-hidden border border-slate-200/90 shadow-sm bg-slate-100 select-none">
+                    <img
+                      src={envOutpatientImg}
+                      alt="Outpatient consultation room and examination couch"
+                      className="w-full h-full object-cover"
+                      width="320"
+                      height="320"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                </div>
+
+                {/* Department Links 01-03 */}
+                <div className="space-y-2.5 pt-1">
+                  {supplyDepartments.slice(0, 3).map((dept) => (
+                    <Link
+                      key={dept.num}
+                      to={`/products/${dept.id}`}
+                      className="group block p-3.5 bg-[#FAFCFE] active:bg-white border border-slate-200/90 active:border-[#21409A] transition-all rounded-lg shadow-2xs"
+                    >
+                      <div className="flex items-center justify-between mb-1">
+                        <div className="flex items-center space-x-2">
+                          <span className="text-xs font-mono font-bold text-[#21409A]">{dept.num}</span>
+                          <span className="text-[#E11D48] text-xs font-bold">—</span>
+                          <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F172A] group-hover:text-[#21409A] transition-colors">
+                            {dept.name}
+                          </span>
+                        </div>
+                        <span className="text-[#21409A] text-xs font-bold transition-transform group-hover:translate-x-1" aria-hidden="true">
+                          &rarr;
+                        </span>
+                      </div>
+                      <p className="text-[11px] text-slate-500 leading-relaxed pl-6">
+                        {dept.desc}
+                      </p>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* Group 2: Departments 04, 05, 06 */}
+              <div className="space-y-3.5 pt-2">
+                {/* PHOTO BREAK 02: Maternity & Laboratory */}
+                <div className="grid grid-cols-2 gap-3 pt-1">
+                  <div className="aspect-square relative rounded-lg overflow-hidden border border-slate-200/90 shadow-sm bg-slate-100 select-none">
+                    <img
+                      src={envMaternityImg}
+                      alt="Maternity and pediatric care environment"
+                      className="w-full h-full object-cover"
+                      width="320"
+                      height="320"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <div className="aspect-square relative rounded-lg overflow-hidden border border-slate-200/90 shadow-sm bg-slate-100 select-none">
+                    <img
+                      src={envLabImg}
+                      alt="Clinical diagnostic laboratory environment"
+                      className="w-full h-full object-cover"
+                      width="320"
+                      height="320"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                </div>
+
+                {/* Department Links 04-06 */}
+                <div className="space-y-2.5 pt-1">
+                  {supplyDepartments.slice(3, 6).map((dept) => (
+                    <Link
+                      key={dept.num}
+                      to={`/products/${dept.id}`}
+                      className="group block p-3.5 bg-[#FAFCFE] active:bg-white border border-slate-200/90 active:border-[#21409A] transition-all rounded-lg shadow-2xs"
+                    >
+                      <div className="flex items-center justify-between mb-1">
+                        <div className="flex items-center space-x-2">
+                          <span className="text-xs font-mono font-bold text-[#21409A]">{dept.num}</span>
+                          <span className="text-[#E11D48] text-xs font-bold">—</span>
+                          <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F172A] group-hover:text-[#21409A] transition-colors">
+                            {dept.name}
+                          </span>
+                        </div>
+                        <span className="text-[#21409A] text-xs font-bold transition-transform group-hover:translate-x-1" aria-hidden="true">
+                          &rarr;
+                        </span>
+                      </div>
+                      <p className="text-[11px] text-slate-500 leading-relaxed pl-6">
+                        {dept.desc}
+                      </p>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* Group 3: Departments 07, 08, 09 */}
+              <div className="space-y-3.5 pt-2">
+                {/* PHOTO BREAK 03: Theatre & Ward Furniture */}
+                <div className="grid grid-cols-2 gap-3 pt-1">
+                  <div className="aspect-square relative rounded-lg overflow-hidden border border-slate-200/90 shadow-sm bg-slate-100 select-none">
+                    <img
+                      src={envTheatreImg}
+                      alt="Operating theatre room and surgical suite"
+                      className="w-full h-full object-cover"
+                      width="320"
+                      height="320"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <div className="aspect-square relative rounded-lg overflow-hidden border border-slate-200/90 shadow-sm bg-slate-100 select-none">
+                    <img
+                      src={envWardImg}
+                      alt="General hospital ward beds and furniture infrastructure"
+                      className="w-full h-full object-cover"
+                      width="320"
+                      height="320"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                </div>
+
+                {/* Department Links 07-09 */}
+                <div className="space-y-2.5 pt-1">
+                  {supplyDepartments.slice(6, 9).map((dept) => (
+                    <Link
+                      key={dept.num}
+                      to={`/products/${dept.id}`}
+                      className="group block p-3.5 bg-[#FAFCFE] active:bg-white border border-slate-200/90 active:border-[#21409A] transition-all rounded-lg shadow-2xs"
+                    >
+                      <div className="flex items-center justify-between mb-1">
+                        <div className="flex items-center space-x-2">
+                          <span className="text-xs font-mono font-bold text-[#21409A]">{dept.num}</span>
+                          <span className="text-[#E11D48] text-xs font-bold">—</span>
+                          <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#0F172A] group-hover:text-[#21409A] transition-colors">
+                            {dept.name}
+                          </span>
+                        </div>
+                        <span className="text-[#21409A] text-xs font-bold transition-transform group-hover:translate-x-1" aria-hidden="true">
+                          &rarr;
+                        </span>
+                      </div>
+                      <p className="text-[11px] text-slate-500 leading-relaxed pl-6">
+                        {dept.desc}
+                      </p>
+                    </Link>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -617,9 +858,12 @@ export default function WhoWeServe() {
                 <div className="w-full aspect-[16/9] sm:aspect-[2/1] overflow-hidden bg-slate-100 border border-slate-200 shadow-sm">
                   <img
                     src={chainSuppliersImg}
-                    alt="International medical equipment warehouses and verified manufacturers"
+                    alt="Surgical operating equipment, instruments, and sterile supplies from verified manufacturers"
                     className="w-full h-full object-cover block"
+                    width="280"
+                    height="158"
                     loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <div>
@@ -648,7 +892,7 @@ export default function WhoWeServe() {
               >
                 {/* Background Uganda Map Silhouette */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-15 pointer-events-none select-none" aria-hidden="true">
-                  <img src={ugandaMapImg} alt="" className="w-28 h-auto object-contain" />
+                  <img src={ugandaMapImg} alt="" className="w-28 h-auto object-contain" width="112" height="112" loading="lazy" decoding="async" />
                 </div>
 
                 <div className="relative z-10 space-y-1">
@@ -681,9 +925,12 @@ export default function WhoWeServe() {
                 <div className="w-full aspect-[16/9] sm:aspect-[2/1] overflow-hidden bg-slate-100 border border-slate-200 shadow-sm">
                   <img
                     src={chainPartnersImg}
-                    alt="Healthcare supply partners, pharmacies, retail and wholesale sellers"
+                    alt="Equipped clinical healthcare facility and medical consultation room for healthcare supply partners"
                     className="w-full h-full object-cover block"
+                    width="280"
+                    height="158"
                     loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <div>
@@ -708,9 +955,12 @@ export default function WhoWeServe() {
                 <div className="w-full aspect-[16/9] sm:aspect-[2/1] overflow-hidden bg-slate-100 border border-slate-200 shadow-sm">
                   <img
                     src={chainHospitalsImg}
-                    alt="Clinical healthcare environments, hospitals, and outpatient facilities"
+                    alt="Clinical hospital ward beds and patient care infrastructure in healthcare environments"
                     className="w-full h-full object-cover block"
+                    width="280"
+                    height="158"
                     loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <div>

@@ -4,3 +4,5 @@ export { default as Services } from './Services';
 export { default as WhoWeServe } from './WhoWeServe';
 export { default as Contact } from './Contact';
 export { default as Products } from './Products';
+export { default as NotFound } from './NotFound';
+

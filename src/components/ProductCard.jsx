@@ -10,12 +10,7 @@ import React from 'react';
  * - Restrained VIEW DETAILS → text action with hover transition
  * - Technical reference numbering and fine rules
  */
-export default function ProductCard({ product, onSelect, index = 0, total = 54 }) {
-  // Format sequential item number (e.g. "01", "14")
-  const itemNumber = String(index + 1).padStart(2, '0');
-  const totalFormatted = String(total).padStart(2, '0');
-  const refCode = `FAB-${product.id.slice(0, 8).toUpperCase()}`;
-
+export default function ProductCard({ product, onSelect, index = 0 }) {
   // Controlled rhythmic variation (index % 3)
   const variant = index % 3;
 
@@ -33,18 +28,6 @@ export default function ProductCard({ product, onSelect, index = 0, total = 54 }
           : 'hover:border-[#21409A] hover:shadow-[0_12px_28px_rgba(33,64,154,0.06)]'
       }`}
     >
-      {/* Top Technical Metadata Header */}
-      <div className="px-5 pt-4 pb-2.5 flex items-center justify-between border-b border-slate-100 text-[10px] font-mono text-slate-400">
-        <div className="flex items-center space-x-2">
-          <span className="text-[#21409A] font-bold tracking-wider">{itemNumber} / {totalFormatted}</span>
-          <span className="w-1 h-1 rounded-full bg-slate-300" aria-hidden="true" />
-          <span className="tracking-wider uppercase text-slate-500">REF: {refCode}</span>
-        </div>
-        <span className="text-[9px] uppercase tracking-wider text-slate-400 hidden sm:inline">
-          CATALOGUE SPEC
-        </span>
-      </div>
-
       {/* Product Image / Technical Blueprint Documentation Placeholder */}
       <div className="relative p-5 bg-[#FAFCFE] flex items-center justify-center overflow-hidden border-b border-slate-100 select-none">
         {product.image ? (
@@ -53,7 +36,10 @@ export default function ProductCard({ product, onSelect, index = 0, total = 54 }
               src={product.image}
               alt={product.name}
               className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+              width="320"
+              height="240"
               loading="lazy"
+              decoding="async"
             />
           </div>
         ) : (
@@ -114,17 +100,6 @@ export default function ProductCard({ product, onSelect, index = 0, total = 54 }
           <h3 className="font-bold text-[#0F172A] text-base lg:text-[17px] leading-snug tracking-tight group-hover:text-[#21409A] transition-colors">
             {product.name}
           </h3>
-
-          {/* Short Description */}
-          {product.summary ? (
-            <p className="text-xs text-slate-600 leading-relaxed font-normal line-clamp-2">
-              {product.summary}
-            </p>
-          ) : (
-            <p className="text-xs text-slate-400 italic font-normal">
-              Procured and supplied by FAB Medical Supplies Ltd.
-            </p>
-          )}
         </div>
 
         {/* Editorial Action: VIEW DETAILS → */}

@@ -2,10 +2,8 @@ import React from 'react';
 import Container from '../components/Container';
 import { companyInfo } from '../data/company';
 
-// Photographic assets cropped and optimized from the approved design direction
-import contactPhoneImg from '../assets/contact_phone.png';
-import contactWhatsappImg from '../assets/contact_whatsapp.png';
-import contactMapImg from '../assets/contact_map.png';
+// Photographic asset: Approved Design 2 large healthcare environment composition
+import contactReachUsDoctorImg from '../assets/contact-reach-us-doctor.webp';
 
 /**
  * Contact Page — FAB Medical Supplies Ltd.
@@ -132,249 +130,224 @@ export default function Contact() {
       </section>
 
       {/* ========================================================
-          SECTION 2 — CONTACT CHANNELS
+          SECTION 2 — HOW DO YOU WANT TO REACH US?
+          (Approved Design 2: Large Continuous Editorial Composition)
           ======================================================== */}
       <section
-        className="py-16 lg:py-24 bg-[#FAFCFE] border-b border-slate-200"
+        className="relative bg-white border-b border-slate-200 overflow-hidden"
         aria-labelledby="contact-channels-heading"
       >
-        <Container className="max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-start">
-            {/* Introduction: Headline & Premise (Col 3) */}
+        {/* Background Full-Width Photographic Composition (Design 2) */}
+        <div className="absolute inset-0 pointer-events-none select-none z-0">
+          {/* Natural Clinical Healthcare Photograph on Right Half */}
+          <div className="absolute top-0 right-0 bottom-0 w-full lg:w-3/5 xl:w-[58%] overflow-hidden">
+            <img
+              src={contactReachUsDoctorImg}
+              alt="Healthcare professional with digital tablet and stethoscope in a modern clinic environment"
+              className="w-full h-full object-cover object-right-top lg:object-right opacity-90 lg:opacity-100"
+              width="1920"
+              height="1071"
+              loading="lazy"
+              decoding="async"
+            />
+            {/* Seamless Soft Fade Gradient: Preserves natural photography while transitioning to pure white on left */}
             <div
-              className="lg:col-span-3 space-y-4"
+              className="absolute inset-0"
+              style={{
+                background: `
+                  linear-gradient(to right, #FFFFFF 0%, rgba(255, 255, 255, 0.95) 25%, rgba(255, 255, 255, 0.65) 50%, rgba(255, 255, 255, 0.15) 80%, transparent 100%),
+                  linear-gradient(to bottom, rgba(255, 255, 255, 0.35) 0%, transparent 30%, rgba(255, 255, 255, 0.45) 100%)
+                `,
+              }}
+              aria-hidden="true"
+            />
+          </div>
+
+          {/* Solid White Base for Left Area */}
+          <div className="hidden lg:block absolute top-0 left-0 bottom-0 w-2/5 bg-white" aria-hidden="true" />
+        </div>
+
+        {/* Foreground Content Container */}
+        <Container className="relative z-10 max-w-7xl pt-14 pb-14 sm:pt-18 sm:pb-18 lg:pt-20 lg:pb-20">
+          <div className="flex flex-col justify-between min-h-[500px] lg:min-h-[560px] xl:min-h-[600px]">
+            {/* Upper Portion: Editorial Section Eyebrow & Oversized Heading */}
+            <div
+              className="max-w-xl xl:max-w-2xl"
               data-aos="fade-right"
               data-aos-duration="900"
             >
-              <div className="flex items-center space-x-2">
-                <span className="text-xs font-mono font-bold text-[#21409A]">02</span>
-                <span className="w-6 h-[1.5px] bg-[#21409A]" aria-hidden="true" />
+              {/* Eyebrow: 02 — CONTACT */}
+              <div className="flex items-center space-x-2.5 mb-5 sm:mb-6">
+                <span className="text-xs sm:text-sm font-mono font-bold text-[#21409A]">02</span>
+                <span className="w-5 h-[2px] bg-[#E11D48]" aria-hidden="true" />
+                <span className="text-xs sm:text-sm font-mono font-bold tracking-[0.24em] text-[#0F172A] uppercase">
+                  CONTACT
+                </span>
               </div>
 
+              {/* Dominant Editorial Heading */}
               <h2
                 id="contact-channels-heading"
-                className="text-2xl sm:text-3xl font-black text-[#0F172A] tracking-tight uppercase leading-[1.12]"
+                className="text-4xl sm:text-5xl lg:text-[56px] xl:text-[64px] font-black text-[#0F172A] tracking-tight uppercase leading-[0.98]"
               >
-                HOW DO YOU WANT <br />
-                TO REACH US?
+                HOW DO YOU <br />
+                WANT TO <br />
+                <span className="text-[#21409A]">REACH US?</span>
               </h2>
-
-              <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed">
-                We&apos;re here to help. Choose the contact method that works best for you and 
-                get in touch with our team directly.
-              </p>
             </div>
 
-            {/* 3 Channels Grid (Col 9) */}
-            <div className="lg:col-span-9 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 md:divide-x md:divide-slate-200/90">
-              {/* ======================================================== */}
-              {/* CHANNEL 1: CALL FAB */}
-              {/* ======================================================== */}
-              <div
-                className="flex flex-col justify-between space-y-6 md:px-6 lg:px-8 group"
-                data-aos="fade-up"
-                data-aos-duration="900"
-                data-aos-delay="150"
-              >
-                <div className="space-y-4">
-                  {/* Channel Index Tag */}
-                  <div className="flex items-center space-x-2 text-xs font-mono text-slate-400">
-                    <span className="text-[#21409A] font-bold">╭ 01</span>
-                    <span className="w-6 h-[1px] bg-slate-300" aria-hidden="true" />
-                  </div>
-
-                  {/* Channel Eyebrow */}
-                  <span className="text-[11px] font-mono font-bold uppercase tracking-[0.18em] text-[#21409A] block">
-                    CALL FAB
-                  </span>
-
-                  {/* Main Contact Value Display */}
-                  <div className="flex items-center space-x-3 pt-1">
-                    <div className="w-10 h-10 rounded-lg bg-[#21409A] text-white flex items-center justify-center flex-shrink-0 shadow-sm">
-                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+            {/* Lower Portion: Integrated 3-Zone Contact Channels */}
+            <div
+              className="mt-12 sm:mt-16 lg:mt-20 pt-8 sm:pt-10 border-t border-slate-200/90"
+              data-aos="fade-up"
+              data-aos-duration="900"
+              data-aos-delay="150"
+            >
+              <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-slate-200/90">
+                {/* ---------------------------------------------------- */}
+                {/* ZONE 01: CALL FAB */}
+                {/* ---------------------------------------------------- */}
+                <div className="py-6 md:py-0 md:pr-8 lg:pr-10 space-y-4 group">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2">
+                      <span className="text-xs font-mono font-bold text-[#21409A]">01</span>
+                      <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#0F172A]">
+                        CALL FAB
+                      </span>
+                    </div>
+                    {/* Clean Outline Phone Icon */}
+                    <div className="w-8 h-8 rounded-full bg-blue-50/80 border border-blue-100 flex items-center justify-center text-[#21409A] transition-colors group-hover:bg-[#21409A] group-hover:text-white">
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                       </svg>
                     </div>
+                  </div>
+
+                  <div>
                     <a
                       href={companyInfo.phones[0].link}
-                      className="text-xl sm:text-2xl font-black font-mono text-[#0F172A] tracking-tight hover:text-[#21409A] transition-colors"
+                      className="text-2xl sm:text-[28px] lg:text-3xl font-black font-mono text-[#0F172A] tracking-tight hover:text-[#21409A] transition-colors block leading-tight"
                       aria-label={`Call ${primaryPhone}`}
                     >
                       {primaryPhone}
                     </a>
+                    <span className="text-xs font-mono text-slate-500 uppercase tracking-wider block mt-1">
+                      Primary Phone
+                    </span>
                   </div>
 
-                  {/* Factual Description */}
-                  <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                    Speak directly with our team for immediate assistance.
-                  </p>
-
-                  {/* Action Link */}
-                  <div className="pt-2">
+                  <div className="pt-1">
                     <a
                       href={companyInfo.phones[0].link}
-                      className="inline-flex items-center space-x-2 text-xs font-mono font-bold uppercase tracking-[0.16em] text-[#21409A] hover:text-[#0F172A] transition-colors"
+                      className="inline-flex items-center space-x-2 text-xs font-mono font-bold uppercase tracking-[0.18em] text-[#21409A] hover:text-[#0F172A] transition-all group/link"
                     >
-                      <span>CALL NOW</span>
-                      <span className="font-bold text-sm transition-transform group-hover:translate-x-1" aria-hidden="true">
-                        —→
-                      </span>
+                      <span className="border-b border-transparent group-hover/link:border-[#21409A] transition-all">CALL NOW</span>
+                      <span className="transition-transform group-hover/link:translate-x-1" aria-hidden="true">&rarr;</span>
                     </a>
                   </div>
                 </div>
 
-                {/* Supporting Photographic Image */}
-                <div className="w-full aspect-[16/10] overflow-hidden bg-white border border-slate-200/90 shadow-sm relative mt-4">
-                  <img
-                    src={contactPhoneImg}
-                    alt="Professional office telephone for direct calls to FAB Medical Supplies"
-                    className="w-full h-full object-cover block transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-
-              {/* ======================================================== */}
-              {/* CHANNEL 2: MESSAGE FAB */}
-              {/* ======================================================== */}
-              <div
-                className="flex flex-col justify-between space-y-6 md:px-6 lg:px-8 group"
-                data-aos="fade-up"
-                data-aos-duration="900"
-                data-aos-delay="250"
-              >
-                <div className="space-y-4">
-                  {/* Channel Index Tag */}
-                  <div className="flex items-center space-x-2 text-xs font-mono text-slate-400">
-                    <span className="text-[#21409A] font-bold">╭ 02</span>
-                    <span className="w-6 h-[1px] bg-slate-300" aria-hidden="true" />
-                  </div>
-
-                  {/* Channel Eyebrow */}
-                  <span className="text-[11px] font-mono font-bold uppercase tracking-[0.18em] text-[#21409A] block">
-                    MESSAGE FAB
-                  </span>
-
-                  {/* Main Contact Value Display */}
-                  <div className="flex items-center space-x-3 pt-1">
-                    <div className="w-10 h-10 rounded-lg bg-[#21409A] text-white flex items-center justify-center flex-shrink-0 shadow-sm">
-                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+                {/* ---------------------------------------------------- */}
+                {/* ZONE 02: MESSAGE FAB */}
+                {/* ---------------------------------------------------- */}
+                <div className="py-6 md:py-0 md:px-8 lg:px-10 space-y-4 group">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2">
+                      <span className="text-xs font-mono font-bold text-[#21409A]">02</span>
+                      <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#0F172A]">
+                        MESSAGE FAB
+                      </span>
+                    </div>
+                    {/* Clean Outline WhatsApp / Message Icon */}
+                    <div className="w-8 h-8 rounded-full bg-blue-50/80 border border-blue-100 flex items-center justify-center text-[#21409A] transition-colors group-hover:bg-[#21409A] group-hover:text-white">
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                       </svg>
                     </div>
+                  </div>
+
+                  <div>
                     <a
                       href={`https://wa.me/256704757991?text=${encodeURIComponent(
                         'Hello FAB Medical Supplies Ltd., I am reaching out regarding medical equipment and supply inquiries.'
                       )}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xl sm:text-2xl font-black font-mono text-[#0F172A] tracking-tight hover:text-[#21409A] transition-colors"
+                      className="text-2xl sm:text-[28px] lg:text-3xl font-black font-mono text-[#0F172A] tracking-tight hover:text-[#21409A] transition-colors block leading-tight"
                       aria-label={`Open WhatsApp with ${whatsappPhone}`}
                     >
                       {whatsappPhone}
                     </a>
+                    <span className="text-xs font-mono text-slate-500 uppercase tracking-wider block mt-1">
+                      WhatsApp / Phone
+                    </span>
                   </div>
 
-                  {/* Factual Description */}
-                  <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                    Send an inquiry or equipment request directly via WhatsApp.
-                  </p>
-
-                  {/* Action Link */}
-                  <div className="pt-2">
+                  <div className="pt-1">
                     <a
                       href={`https://wa.me/256704757991?text=${encodeURIComponent(
                         'Hello FAB Medical Supplies Ltd., I am reaching out regarding medical equipment and supply inquiries.'
                       )}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center space-x-2 text-xs font-mono font-bold uppercase tracking-[0.16em] text-[#21409A] hover:text-[#0F172A] transition-colors"
+                      className="inline-flex items-center space-x-2 text-xs font-mono font-bold uppercase tracking-[0.18em] text-[#21409A] hover:text-[#0F172A] transition-all group/link"
                     >
-                      <span>OPEN WHATSAPP</span>
-                      <span className="font-bold text-sm transition-transform group-hover:translate-x-1" aria-hidden="true">
-                        —→
-                      </span>
+                      <span className="border-b border-transparent group-hover/link:border-[#21409A] transition-all">OPEN WHATSAPP</span>
+                      <span className="transition-transform group-hover/link:translate-x-1" aria-hidden="true">&rarr;</span>
                     </a>
                   </div>
                 </div>
 
-                {/* Supporting Photographic Image */}
-                <div className="w-full aspect-[16/10] overflow-hidden bg-white border border-slate-200/90 shadow-sm relative mt-4">
-                  <img
-                    src={contactWhatsappImg}
-                    alt="Smartphone display with WhatsApp messaging for direct inquiries to FAB"
-                    className="w-full h-full object-cover block transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-
-              {/* ======================================================== */}
-              {/* CHANNEL 3: VISIT OUR OFFICE */}
-              {/* ======================================================== */}
-              <div
-                className="flex flex-col justify-between space-y-6 md:px-6 lg:px-8 group"
-                data-aos="fade-up"
-                data-aos-duration="900"
-                data-aos-delay="350"
-              >
-                <div className="space-y-4">
-                  {/* Channel Index Tag */}
-                  <div className="flex items-center space-x-2 text-xs font-mono text-slate-400">
-                    <span className="text-[#21409A] font-bold">╭ 03</span>
-                    <span className="w-6 h-[1px] bg-slate-300" aria-hidden="true" />
-                  </div>
-
-                  {/* Channel Eyebrow */}
-                  <span className="text-[11px] font-mono font-bold uppercase tracking-[0.18em] text-[#21409A] block">
-                    VISIT OUR OFFICE
-                  </span>
-
-                  {/* Main Contact Value Display */}
-                  <div className="flex items-start space-x-3 pt-1">
-                    <div className="w-10 h-10 rounded-lg bg-[#21409A] text-white flex items-center justify-center flex-shrink-0 shadow-sm mt-0.5">
-                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+                {/* ---------------------------------------------------- */}
+                {/* ZONE 03: VISIT OUR OFFICE */}
+                {/* ---------------------------------------------------- */}
+                <div className="py-6 md:py-0 md:pl-8 lg:pl-10 space-y-4 group">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2">
+                      <span className="text-xs font-mono font-bold text-[#21409A]">03</span>
+                      <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#0F172A]">
+                        VISIT OUR OFFICE
+                      </span>
+                    </div>
+                    {/* Clean Outline Location Icon */}
+                    <div className="w-8 h-8 rounded-full bg-blue-50/80 border border-blue-100 flex items-center justify-center text-[#21409A] transition-colors group-hover:bg-[#21409A] group-hover:text-white">
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                         <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                       </svg>
                     </div>
-                    <div>
-                      <span className="text-base sm:text-lg font-black text-[#0F172A] tracking-tight block leading-snug">
-                        Emka House
-                      </span>
-                      <span className="text-xs text-slate-600 block leading-tight mt-0.5">
-                        Bombo Road, <br />
-                        Ground Floor, Shop G01 <br />
-                        Kampala, Uganda
-                      </span>
-                    </div>
                   </div>
 
-                  {/* Action Link */}
-                  <div className="pt-2">
+                  <div>
+                    <span className="text-xl sm:text-2xl font-black text-[#0F172A] tracking-tight block leading-tight uppercase font-mono">
+                      EMKA HOUSE
+                    </span>
+                    <span className="text-xs font-mono text-slate-500 leading-relaxed block mt-1">
+                      Bombo Road, Ground Floor, Shop G01, Kampala, Uganda
+                    </span>
+                  </div>
+
+                  <div className="pt-1">
                     <a
                       href="https://www.google.com/maps/search/?api=1&query=Emka+House+Bombo+Road+Kampala+Uganda"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center space-x-2 text-xs font-mono font-bold uppercase tracking-[0.16em] text-[#21409A] hover:text-[#0F172A] transition-colors"
+                      className="inline-flex items-center space-x-2 text-xs font-mono font-bold uppercase tracking-[0.18em] text-[#21409A] hover:text-[#0F172A] transition-all group/link"
                     >
-                      <span>GET DIRECTIONS</span>
-                      <span className="font-bold text-sm transition-transform group-hover:translate-x-1" aria-hidden="true">
-                        —→
-                      </span>
+                      <span className="border-b border-transparent group-hover/link:border-[#21409A] transition-all">GET DIRECTIONS</span>
+                      <span className="transition-transform group-hover/link:translate-x-1" aria-hidden="true">&rarr;</span>
                     </a>
                   </div>
                 </div>
+              </div>
 
-                {/* Supporting Photographic Image */}
-                <div className="w-full aspect-[16/10] overflow-hidden bg-white border border-slate-200/90 shadow-sm relative mt-4">
-                  <img
-                    src={contactMapImg}
-                    alt="Map visual showing Emka House on Bombo Road, Kampala"
-                    className="w-full h-full object-cover block transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy"
-                  />
+              {/* Bottom Technical Identity Marker */}
+              <div className="pt-8 sm:pt-10 flex items-center justify-between text-[11px] font-mono font-semibold tracking-wider text-slate-400">
+                <div className="flex items-center space-x-2">
+                  <span className="w-4 h-[1.5px] bg-[#21409A]" aria-hidden="true" />
+                  <span className="text-[#21409A] font-bold">FAB MEDICAL SUPPLIES LTD.</span>
                 </div>
+                <span className="hidden sm:inline-block">KAMPALA, UGANDA</span>
               </div>
             </div>
           </div>

@@ -1,0 +1,6 @@
+# robots.txt for FAB Medical Supplies Ltd.
+User-agent: *
+Allow: /
+
+# XML Sitemap
+Sitemap: https://fabmedicalsupplies.com/sitemap.xml

@@ -13,36 +13,53 @@ export default function ParticleRingLoader({
   isLoading = true,
   label = 'FAB MEDICAL SUPPLIES LTD.',
   sublabel = 'Service That Exceeds',
-  duration = 12000,
+  duration = 750,
   onComplete,
 }) {
   const canvasRef = useRef(null);
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(() => {
+    // Respect user's motion preferences
+    if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return false;
+    }
+    // Only display once per session so browsing routes is non-blocking and immediate
+    if (typeof window !== 'undefined' && window.sessionStorage) {
+      const alreadySeen = window.sessionStorage.getItem('fab_loader_seen');
+      if (alreadySeen) return false;
+    }
+    return true;
+  });
   const [fading, setFading] = useState(false);
 
+  const dismiss = () => {
+    setFading(true);
+    setTimeout(() => {
+      setVisible(false);
+      if (typeof window !== 'undefined' && window.sessionStorage) {
+        window.sessionStorage.setItem('fab_loader_seen', 'true');
+      }
+      if (onComplete) onComplete();
+    }, 350);
+  };
+
   useEffect(() => {
-    // If not loading right away, hide
-    if (!isLoading) {
-      setFading(true);
-      const timer = setTimeout(() => {
-        setVisible(false);
-        if (onComplete) onComplete();
-      }, 500);
-      return () => clearTimeout(timer);
+    if (!visible) {
+      if (onComplete) onComplete();
+      return;
     }
 
-    // Auto-complete after duration if controlled by timer
+    if (!isLoading) {
+      dismiss();
+      return;
+    }
+
+    // Auto-dismiss after non-blocking duration
     const autoTimer = setTimeout(() => {
-      setFading(true);
-      const hideTimer = setTimeout(() => {
-        setVisible(false);
-        if (onComplete) onComplete();
-      }, 500);
-      return () => clearTimeout(hideTimer);
+      dismiss();
     }, duration);
 
     return () => clearTimeout(autoTimer);
-  }, [isLoading, duration, onComplete]);
+  }, [visible, isLoading, duration]);
 
   // Particle Canvas Animation
   useEffect(() => {
@@ -170,9 +187,11 @@ export default function ParticleRingLoader({
     <div
       role="status"
       aria-label="Loading page content"
-      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#070D18]/95 backdrop-blur-md transition-opacity duration-500 select-none ${
+      onClick={dismiss}
+      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#070D18]/90 backdrop-blur-sm transition-opacity duration-350 select-none cursor-pointer ${
         fading ? 'opacity-0 pointer-events-none' : 'opacity-100'
       }`}
+      title="Click to dismiss loader"
     >
       <div className="relative flex flex-col items-center justify-center">
         {/* Canvas Particle Ring Loader - Responsive sizing */}

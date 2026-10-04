@@ -82,3 +82,20 @@ h1, h2, h3, h4, h5, h6, p, span, a {
   transform: translate3d(0, 0, 0) scale(1) !important;
 }
 
+/* Custom animated dropdown transitions */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-down {
+  animation: fadeInDown 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+

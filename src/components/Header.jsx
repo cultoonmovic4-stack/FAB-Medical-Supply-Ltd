@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Container from './Container';
+import fabLogoImg from '../assets/fab-logo.webp';
 
 /**
  * Minimalist medical/medtech Header component for FAB Medical Supplies Ltd.
@@ -14,20 +16,24 @@ import Container from './Container';
  * - Right section: small circular search utility button with very light blue/gray background and blue search icon
  * - Clean responsive hamburger menu on tablet/mobile maintaining the premium visual hierarchy
  */
-export default function Header({ activeView = 'home', onNavigate }) {
+export default function Header({ activePath, onNavigate }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
+  const location = useLocation();
+  const navigate = useNavigate();
+  const currentPath = activePath || location.pathname;
+
   const searchInputRef = useRef(null);
 
   const navItems = [
-    { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About Us' },
-    { id: 'products', label: 'Products' },
-    { id: 'services', label: 'Services' },
-    { id: 'who-we-serve', label: 'Who We Serve' },
-    { id: 'contact', label: 'Contact' },
+    { id: 'home', path: '/', label: 'Home' },
+    { id: 'about', path: '/about', label: 'About Us' },
+    { id: 'products', path: '/products', label: 'Products' },
+    { id: 'services', path: '/services', label: 'Services' },
+    { id: 'who-we-serve', path: '/who-we-serve', label: 'Who We Serve' },
+    { id: 'contact', path: '/contact', label: 'Contact' },
   ];
 
   // Auto-focus search input when search popover is opened
@@ -49,18 +55,12 @@ export default function Header({ activeView = 'home', onNavigate }) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  const handleNavClick = (viewId, categoryId = 'all') => {
-    if (onNavigate) {
-      onNavigate(viewId, categoryId);
-    }
-    setMobileMenuOpen(false);
-    setSearchOpen(false);
-  };
-
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    handleNavClick('products');
+    setSearchOpen(false);
+    navigate('/products');
   };
+
 
   return (
     <header className="bg-white border-b border-[#D9E0E7] shadow-[0_1px_3px_0_rgba(0,0,0,0.03)] sticky top-0 z-50 w-full">
@@ -68,17 +68,19 @@ export default function Header({ activeView = 'home', onNavigate }) {
         <div className="h-20 flex items-center justify-between lg:grid lg:grid-cols-[auto_1fr_auto] gap-4 sm:gap-8 lg:gap-12 xl:gap-16">
           {/* Left section: Compact, vertically aligned FAB branding */}
           <div className="flex items-center justify-start flex-shrink-0 min-w-0">
-            <button
-              onClick={() => handleNavClick('home')}
+            <Link
+              to="/"
               className="group flex items-center space-x-2.5 sm:space-x-3 text-left focus:outline-none focus:ring-2 focus:ring-[#21409A] focus:ring-offset-2 rounded-lg p-1 transition-opacity hover:opacity-95"
               aria-label="FAB Medical Supplies Ltd. Home"
             >
               <img
-                src="/favicon.svg"
-                alt="FAB Logo"
-                className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg flex-shrink-0"
-                width="40"
-                height="40"
+                src={fabLogoImg}
+                alt="FAB Medical Supplies Ltd."
+                className="w-9 h-9 sm:w-11 sm:h-11 object-contain flex-shrink-0"
+                width="44"
+                height="45"
+                fetchpriority="high"
+                decoding="async"
               />
               <div className="flex flex-col justify-center min-w-0">
                 <span className="text-[13px] xs:text-sm sm:text-base font-bold tracking-tight text-[#21409A] leading-tight truncate">
@@ -88,7 +90,7 @@ export default function Header({ activeView = 'home', onNavigate }) {
                   Service That Exceeds
                 </span>
               </div>
-            </button>
+            </Link>
           </div>
 
           {/* Navigation: Centered visually within header with generous separation from logo */}
@@ -97,12 +99,12 @@ export default function Header({ activeView = 'home', onNavigate }) {
             aria-label="Main Navigation"
           >
             {navItems.map((item) => {
-              const isActive = activeView === item.id;
+              const isActive = item.path === '/' ? currentPath === '/' : currentPath.startsWith(item.path);
 
               return (
-                <button
+                <Link
                   key={item.id}
-                  onClick={() => handleNavClick(item.id)}
+                  to={item.path}
                   className={`relative inline-flex items-center min-h-[44px] px-1.5 text-sm font-semibold transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-[#21409A] focus:ring-offset-2 rounded ${
                     isActive
                       ? 'text-[#21409A]'
@@ -117,7 +119,7 @@ export default function Header({ activeView = 'home', onNavigate }) {
                       aria-hidden="true"
                     />
                   )}
-                </button>
+                </Link>
               );
             })}
           </nav>
@@ -246,13 +248,14 @@ export default function Header({ activeView = 'home', onNavigate }) {
         >
           <nav className="flex flex-col space-y-1" aria-label="Mobile Navigation">
             {navItems.map((item) => {
-              const isActive = activeView === item.id;
+              const isActive = item.path === '/' ? currentPath === '/' : currentPath.startsWith(item.path);
 
               return (
-                <button
+                <Link
                   key={item.id}
-                  onClick={() => handleNavClick(item.id)}
-                  className={`min-h-[44px] text-left px-3.5 py-2.5 rounded-lg text-base font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-[#21409A] ${
+                  to={item.path}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`min-h-[44px] flex items-center px-3.5 py-2.5 rounded-lg text-base font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-[#21409A] ${
                     isActive
                       ? 'bg-[#F4F6FA] text-[#21409A] border-l-4 border-[#ED1C24]'
                       : 'text-[#202A35] hover:bg-[#F4F6FA] hover:text-[#21409A]'
@@ -260,7 +263,7 @@ export default function Header({ activeView = 'home', onNavigate }) {
                   aria-current={isActive ? 'page' : undefined}
                 >
                   {item.label}
-                </button>
+                </Link>
               );
             })}
           </nav>

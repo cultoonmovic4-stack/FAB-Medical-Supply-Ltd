@@ -1,17 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Container from '../components/Container';
 import { companyInfo } from '../data/company';
 
 // Asset imports matching the target visual direction
-import heroPhotoImg from '../assets/service-hero-photo.png';
-import procurementImg from '../assets/service-procurement.png';
-import marketingImg from '../assets/service-marketing.png';
-import deliveryImg from '../assets/service-delivery.png';
-import repairImg from '../assets/service-repair.png';
+import heroPhotoImg from '../assets/service-hero-photo.webp';
+import procurementImg from '../assets/service-procurement.jpg';
+import marketingImg from '../assets/service-marketing.jpg';
+import deliveryImg from '../assets/service-delivery.jpg';
+import repairImg from '../assets/service-repair.jpg';
 
 // Assets for the Design D Graphic Focus closing section (matching About page)
-import fabLogoImg from '../assets/fab-logo.png';
-import contactStethImg from '../assets/contact_steth_circle.png';
+import fabLogoImg from '../assets/fab-logo.webp';
+import contactStethImg from '../assets/contact_steth_circle.webp';
 
 /**
  * Services Page — FAB Medical Supplies Ltd.
@@ -168,7 +169,11 @@ export default function Services({ onNavigate }) {
                     src={heroPhotoImg}
                     alt="Clinical ICU patient monitoring system with electronic vitals display in modern hospital ward"
                     className="w-full h-auto object-cover block"
+                    width="768"
+                    height="380"
+                    fetchpriority="high"
                     loading="eager"
+                    decoding="async"
                   />
                 </div>
 
@@ -234,7 +239,10 @@ export default function Services({ onNavigate }) {
                     src={service.image}
                     alt={service.alt}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    width="208"
+                    height="156"
                     loading="lazy"
+                    decoding="async"
                   />
                   {/* Subtle Corner Registration Crosshair */}
                   <div className="absolute top-1 left-1.5 text-[8px] font-mono text-white/80 select-none drop-shadow" aria-hidden="true">+</div>
@@ -349,6 +357,10 @@ export default function Services({ onNavigate }) {
                   src={fabLogoImg}
                   alt="FAB Medical Supplies Ltd."
                   className="h-9 xl:h-10 w-auto object-contain block"
+                  width="40"
+                  height="41"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             </div>
@@ -395,7 +407,10 @@ export default function Services({ onNavigate }) {
                     src={contactStethImg}
                     alt="Precision medical stethoscope examination equipment supplied by FAB Medical Supplies Ltd."
                     className="w-full h-full object-cover object-center block"
+                    width="240"
+                    height="240"
                     loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </div>
@@ -485,16 +500,15 @@ export default function Services({ onNavigate }) {
 
                 {/* Restrained Text-Style Contact Link: LET'S TALK → */}
                 <div>
-                  <button
-                    type="button"
-                    onClick={() => onNavigate && onNavigate('contact')}
+                  <Link
+                    to="/contact"
                     className="group inline-flex items-center space-x-2 text-xs font-mono font-bold uppercase tracking-[0.22em] text-[#0F172A] hover:text-[#21409A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#21409A] rounded p-1"
                   >
                     <span>LET'S TALK</span>
                     <span className="text-[#E11D48] font-bold text-sm transition-transform group-hover:translate-x-1.5" aria-hidden="true">
                       →
                     </span>
-                  </button>
+                  </Link>
                 </div>
               </div>
 

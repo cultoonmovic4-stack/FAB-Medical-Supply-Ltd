@@ -1,21 +1,120 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Container } from '../components';
 import { companyInfo } from '../data/company';
-import fabLogoImg from '../assets/fab-logo.png';
-import aboutHeroEquipImg from '../assets/about-hero-equipment-clean.png';
-import aboutCompanyEquipImg from '../assets/about-company-equipment.jpg';
-import aboutMicroscopeImg from '../assets/about-microscope-clean.png';
-import categoryLabImg from '../assets/category-laboratory.jpg';
-import categoryTheatreImg from '../assets/category-theatre-room.jpg';
-import categoryCriticalImg from '../assets/category-critical-care.jpg';
-import categoryOpdImg from '../assets/category-opd-consultation.jpg';
-import envWardImg from '../assets/env_ward_clean.png';
-import envLabImg from '../assets/env_lab_clean.png';
-import envTheatreImg from '../assets/env_theatre_clean.png';
-import servicesCCompImg from '../assets/services_c_composition.png';
-import contactStethImg from '../assets/contact_steth_circle.png';
+import fabLogoImg from '../assets/fab-logo.webp';
+import aboutCompanyEquipImg from '../assets/about-company-equipment.webp';
+import aboutMicroscopeImg from '../assets/about-microscope-clean.webp';
+import categoryLabImg from '../assets/category-laboratory.webp';
+import categoryTheatreImg from '../assets/category-theatre-room.webp';
+import categoryCriticalImg from '../assets/category-critical-care.webp';
+import categoryOpdImg from '../assets/category-opd-consultation.webp';
+import envWardImg from '../assets/env_ward_clean.webp';
+import envLabImg from '../assets/env_lab_clean.webp';
+import envTheatreImg from '../assets/env_theatre_clean.webp';
+import envWardSqImg from '../assets/env_ward_sq.webp';
+import envLabSqImg from '../assets/env_lab_sq.webp';
+import envTheatreSqImg from '../assets/env_theatre_sq.webp';
+import envWardHeroImg from '../assets/env_ward_pure.webp';
+import envLabHeroImg from '../assets/env_lab_wide.webp';
+import envTheatreHeroImg from '../assets/env_theatre_wide.webp';
+import serviceHeroTheatreImg from '../assets/service-hero-theatre.webp';
+import serviceProcurementImg from '../assets/service-procurement.jpg';
+import serviceMarketingImg from '../assets/service-marketing.jpg';
+import serviceDeliveryImg from '../assets/service-delivery.jpg';
+import serviceRepairImg from '../assets/service-repair.jpg';
+import contactStethImg from '../assets/contact_steth_circle.webp';
+import whoHospitalImg from '../assets/who-we-serve-hospital.jpg';
+import whoLabImg from '../assets/who-we-serve-laboratory.jpg';
+import whoClinicImg from '../assets/who-we-serve-clinic.jpg';
+import whoPharmacyImg from '../assets/who-we-serve-pharmacy.jpg';
+import whoMedCareImg from '../assets/who-we-serve-medcare.jpg';
+import whoBedsImg from '../assets/who-we-serve-beds.jpg';
+import whoPatientImg from '../assets/who-we-serve-patient.jpg';
+import whoLabDiagnosticImg from '../assets/who-we-serve-lab-diagnostic.jpg';
+
+const servicesList = [
+  {
+    id: 'procurement',
+    num: '01',
+    title: 'PROCUREMENT',
+    description: 'Source the right equipment, instruments and reagents.',
+    image: serviceProcurementImg,
+    alt: 'Medical equipment procurement warehouse with clinical stock',
+  },
+  {
+    id: 'marketing-sales',
+    num: '02',
+    title: 'MARKETING & SALES',
+    description: 'Product support and market development.',
+    image: serviceMarketingImg,
+    alt: 'Healthcare consultation and medical equipment sales support',
+  },
+  {
+    id: 'delivery',
+    num: '03',
+    title: 'DELIVERY',
+    description: 'On-time, secure supply.',
+    image: serviceDeliveryImg,
+    alt: 'FAB Medical Supplies dedicated delivery van and logistics personnel',
+  },
+  {
+    id: 'service-repair',
+    num: '04',
+    title: 'SERVICE & REPAIR',
+    description: 'Technical support and equipment maintenance.',
+    image: serviceRepairImg,
+    alt: 'Certified medical engineering technician servicing healthcare monitoring machinery',
+  },
+];
+
+const clinicalEnvironments = [
+  {
+    id: 'general-ward',
+    num: '01',
+    title: 'GENERAL WARD',
+    tags: 'Beds • Monitoring • Mobility',
+    image: envWardHeroImg,
+    thumbnail: envWardSqImg,
+    alt: 'Clinical general ward equipped with hospital beds, patient monitoring systems and mobility aids',
+    categoryId: 'hospital-furniture',
+  },
+  {
+    id: 'laboratory',
+    num: '02',
+    title: 'LABORATORY',
+    tags: 'Diagnostics • Reagents • Analysis',
+    image: envLabHeroImg,
+    thumbnail: envLabSqImg,
+    alt: 'Professional medical diagnostic laboratory environment equipped with research microscopes, test kits and reagents',
+    categoryId: 'laboratory',
+  },
+  {
+    id: 'theatre',
+    num: '03',
+    title: 'THEATRE',
+    tags: 'Surgical Equipment • Sterile Solutions',
+    image: envTheatreHeroImg,
+    thumbnail: envTheatreSqImg,
+    alt: 'Modern operating surgical theatre room with operating table, surgical lamps, anaesthesia machines and vital monitoring',
+    categoryId: 'theatre-room',
+  },
+];
 
 export default function About({ onNavigate }) {
+  const [activeEnvIndex, setActiveEnvIndex] = useState(0);
+  const [activeServiceIndex, setActiveServiceIndex] = useState(0);
+  const activeEnv = clinicalEnvironments[activeEnvIndex];
+  const companionEnvs = clinicalEnvironments.filter((_, idx) => idx !== activeEnvIndex);
+
+  const handlePrevService = () => {
+    setActiveServiceIndex((prev) => (prev - 1 + servicesList.length) % servicesList.length);
+  };
+
+  const handleNextService = () => {
+    setActiveServiceIndex((prev) => (prev + 1) % servicesList.length);
+  };
+
   return (
     <div>
       {/* About Page Hero Section - Approved Editorial Asymmetry */}
@@ -26,10 +125,14 @@ export default function About({ onNavigate }) {
         {/* Desktop Photographic Object & Slanted Geometry (Touches top/right/bottom edges) */}
         <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-[48%] xl:w-[50%] h-full pointer-events-none select-none z-0">
           <img
-            src={aboutHeroEquipImg}
+            src={serviceHeroTheatreImg}
             alt="Clinical operating theatre equipped with patient vital signs monitor and medical instruments"
             className="w-full h-full object-cover object-left block"
+            width="960"
+            height="600"
+            fetchpriority="high"
             loading="eager"
+            decoding="async"
           />
         </div>
 
@@ -69,10 +172,14 @@ export default function About({ onNavigate }) {
               data-aos-duration="900"
             >
               <img
-                src={aboutHeroEquipImg}
+                src={serviceHeroTheatreImg}
                 alt="Clinical operating theatre equipped with patient vital signs monitor and medical instruments"
                 className="w-full h-64 sm:h-80 object-cover object-center block"
+                width="640"
+                height="320"
+                fetchpriority="high"
                 loading="eager"
+                decoding="async"
               />
             </div>
 
@@ -88,6 +195,9 @@ export default function About({ onNavigate }) {
                   src={fabLogoImg}
                   alt="FAB Medical Supplies Ltd."
                   className="h-10 sm:h-12 w-auto object-contain block"
+                  width="48"
+                  height="50"
+                  decoding="async"
                 />
               </div>
 
@@ -111,124 +221,132 @@ export default function About({ onNavigate }) {
         </Container>
       </section>
 
-      {/* Section 2: THE COMPANY - Approved Design 4 Editorial Composition */}
+      {/* Section 2: THE COMPANY - Approved Design 5 Immersive Editorial Composition */}
       <section
-        className="bg-white border-b border-border py-16 sm:py-20 lg:py-24 xl:py-28 relative overflow-hidden"
+        className="bg-[#F8FAFC] py-14 sm:py-18 lg:py-24 xl:py-28 border-b border-border relative overflow-hidden"
         aria-labelledby="the-company-heading"
       >
         <Container>
-          {/* Main Asymmetric Grid: Typography Hierarchy & Editorial Circular Object */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 xl:gap-16 items-center">
-            {/* Left / Middle: Editorial Identity & Factual Company Statements */}
-            <div
-              className="lg:col-span-7 xl:col-span-7"
-              data-aos="fade-right"
-              data-aos-duration="900"
-            >
-              {/* 1. Small Editorial Label */}
-              <div className="flex items-center space-x-3 mb-5 sm:mb-6">
-                <span className="w-8 h-[2.5px] bg-[#21409A] rounded-full flex-shrink-0" aria-hidden="true" />
-                <span className="text-xs sm:text-sm font-mono font-bold uppercase tracking-[0.2em] text-[#21409A]">
-                  THE COMPANY
-                </span>
-              </div>
+          {/* Distinct Framed Editorial Architecture — Generously Separated from Hero */}
+          <div className="rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200/90 shadow-[0_8px_30px_rgba(15,23,42,0.06)] bg-white">
+            
+            {/* UPPER PART: Immersive Editorial Photography Block with Refined Subtle Overlay */}
+            <div className="relative w-full min-h-[440px] sm:min-h-[500px] lg:min-h-[540px] xl:min-h-[600px] flex items-center overflow-hidden">
+              {/* Background Clinical Operating Theatre / Equipment Photograph */}
+              <img
+                src={aboutCompanyEquipImg}
+                alt="Clinical patient vital signs monitor and surgical operating theatre equipped by FAB Medical Supplies Ltd."
+                className="absolute inset-0 w-full h-full object-cover object-center scale-100"
+                width="1200"
+                height="600"
+                loading="lazy"
+                decoding="async"
+              />
 
-              {/* 2. Dominant Company Identity */}
-              <h2
-                id="the-company-heading"
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-[46px] xl:text-[52px] font-black text-[#0F172A] leading-[1.06] tracking-tight uppercase mb-6 sm:mb-8"
-              >
-                FAB MEDICAL<br />
-                <span className="text-[#21409A]">SUPPLIES LTD.</span>
-              </h2>
+              {/* Refined, Soft, Semi-Transparent Light Overlay (Preserves authentic photography without heavy blue wash) */}
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background: `
+                    linear-gradient(to right, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.88) 32%, rgba(255, 255, 255, 0.45) 58%, rgba(255, 255, 255, 0.05) 82%, transparent 100%),
+                    linear-gradient(to bottom, rgba(240, 246, 252, 0.35) 0%, transparent 40%, rgba(255, 255, 255, 0.4) 100%)
+                  `,
+                }}
+                aria-hidden="true"
+              />
 
-              {/* 3. Concise Company Statement (Source: FAB Company Profile PDF) */}
-              <p className="text-base sm:text-lg lg:text-[19px] font-semibold text-slate-900 leading-relaxed max-w-xl mb-6">
-                FAB Medical Supplies Ltd. deals in the procurement and supply of medical equipment, instruments and reagents used in laboratories, theatres and general medical products.
-              </p>
+              {/* Content Layer Inside Upper Immersive Photography */}
+              <div className="relative z-10 p-6 sm:p-10 lg:p-14 xl:p-16 w-full">
+                <div className="flex flex-col md:flex-row md:items-start justify-between gap-8">
+                  
+                  {/* Left Side: Editorial Typography & Statement */}
+                  <div
+                    className="max-w-xl xl:max-w-2xl"
+                    data-aos="fade-right"
+                    data-aos-duration="900"
+                  >
+                    {/* Small Red Line Indicator + THE COMPANY */}
+                    <div className="flex items-center space-x-2.5 mb-5 sm:mb-6">
+                      <span className="w-5 h-[2px] bg-[#ED1C24] inline-block flex-shrink-0" aria-hidden="true" />
+                      <span className="text-[11px] sm:text-xs font-mono font-bold tracking-[0.24em] text-[#0F172A] uppercase">
+                        THE COMPANY
+                      </span>
+                    </div>
 
-              {/* 4. Supporting Statement (Market Position & Supply Relationships) */}
-              <div className="border-l-2 border-[#21409A] pl-4 sm:pl-5 max-w-lg">
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-                  Drawing on established connections within Uganda&apos;s healthcare supply ecosystem, the company maintains active distribution relationships across wholesale and retail medical channels to ensure dependable delivery to clinical facilities nationwide.
-                </p>
-              </div>
-            </div>
+                    {/* Dominant Company Identity Headline */}
+                    <h2
+                      id="the-company-heading"
+                      className="text-3xl sm:text-5xl lg:text-[3.5rem] xl:text-[4.25rem] font-black text-[#0F172A] leading-[1.04] tracking-tight uppercase mb-6 sm:mb-8"
+                    >
+                      FAB MEDICAL<br />
+                      <span className="text-[#21409A]">SUPPLIES LTD.</span>
+                    </h2>
 
-            {/* Right: Design 4 Circular Editorial Object with Concentric Orbital Arc & Technical Red Accent */}
-            <div
-              className="lg:col-span-5 xl:col-span-5 flex justify-center lg:justify-end overflow-visible"
-              data-aos="fade-left"
-              data-aos-duration="950"
-              data-aos-delay="100"
-            >
-              <div className="relative w-[230px] h-[230px] sm:w-[320px] sm:h-[320px] md:w-[360px] md:h-[360px] lg:w-[400px] lg:h-[400px] xl:w-[440px] xl:h-[440px] flex items-center justify-center">
-                {/* Design 4 Outer Orbital Arc (Left / Bottom concentric curve) */}
-                <svg
-                  className="absolute inset-[-10px] sm:inset-[-18px] lg:inset-[-24px] w-[calc(100%+20px)] sm:w-[calc(100%+36px)] lg:w-[calc(100%+48px)] h-[calc(100%+20px)] sm:h-[calc(100%+36px)] lg:h-[calc(100%+48px)] pointer-events-none -z-0"
-                  viewBox="0 0 500 500"
-                  fill="none"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M 95 95 A 235 235 0 0 0 415 415"
-                    stroke="#21409A"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    className="opacity-90"
-                  />
-                </svg>
+                    {/* Left Red Vertical Accent Rule + Concise Statement */}
+                    <div className="border-l-2 border-[#ED1C24] pl-4 sm:pl-5 max-w-md bg-white/40 backdrop-blur-[2px] py-1 rounded-r">
+                      <p className="text-xs sm:text-sm lg:text-[14.5px] text-slate-800 leading-relaxed font-semibold">
+                        Procurement, importation, and supply of medical equipment, instruments and reagents used in laboratories, theatres and general medical products.
+                      </p>
+                    </div>
+                  </div>
 
-                {/* Design 4 Red Technical Horizontal Accent Dash */}
-                <div
-                  className="absolute -right-2 sm:-right-4 lg:-right-6 top-1/2 -translate-y-1/2 w-6 sm:w-10 lg:w-12 h-[3px] bg-[#ED1C24] rounded-full z-20 shadow-sm"
-                  aria-hidden="true"
-                />
+                  {/* Right Side: Technical Category Indicator (Matches target screenshot upper right) */}
+                  <div
+                    className="hidden md:flex flex-col items-start pl-3.5 border-l border-white/70 text-[10.5px] sm:text-[11px] font-mono tracking-[0.22em] text-[#0F172A] font-bold space-y-1 bg-white/50 backdrop-blur-[4px] py-2 px-3 rounded shadow-xs"
+                    data-aos="fade-left"
+                    data-aos-duration="900"
+                  >
+                    <span>MEDICAL EQUIPMENT</span>
+                    <span>INSTRUMENTS</span>
+                    <span>REAGENTS</span>
+                  </div>
 
-                {/* Main Circular Mask with Existing Medical Equipment Photograph */}
-                <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-slate-200/90 shadow-[0_16px_48px_rgba(15,23,42,0.12)] bg-slate-100 z-10 group">
-                  <img
-                    src={aboutCompanyEquipImg}
-                    alt="Clinical patient vital signs monitor and medical equipment supplied by FAB Medical Supplies Ltd."
-                    className="w-full h-full object-cover object-center scale-[1.03] group-hover:scale-108 transition-transform duration-700 ease-out"
-                    loading="lazy"
-                  />
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* Bottom Technical Pipeline Strip - Design 4 Signature */}
-          <div
-            className="mt-14 sm:mt-16 lg:mt-20 pt-8 sm:pt-10 border-t border-slate-200/90"
-            data-aos="fade-up"
-            data-aos-duration="850"
-            data-aos-delay="150"
-          >
-            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 lg:gap-8">
-              <div className="flex items-center space-x-2.5 flex-shrink-0">
-                <span className="w-2 h-2 rounded-full bg-[#21409A]" aria-hidden="true" />
-                <span className="text-[11px] sm:text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#21409A]">
-                  HOW FAB SUPPORTS THE SUPPLY
-                </span>
+            {/* LOWER PART: Clean White Editorial Statement & Supply Chain Strip */}
+            <div className="bg-white p-6 sm:p-10 lg:p-12 xl:p-14 border-t border-slate-200/80">
+              {/* Split Statement & Explanatory Paragraph */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                
+                {/* Left Headline Area */}
+                <div
+                  className="lg:col-span-7"
+                  data-aos="fade-up"
+                  data-aos-duration="850"
+                >
+                  {/* Eyebrow with Blue Rule */}
+                  <div className="flex items-center space-x-2.5 mb-3 sm:mb-4">
+                    <span className="w-6 h-[2px] bg-[#21409A] flex-shrink-0" aria-hidden="true" />
+                    <span className="text-[11px] sm:text-xs font-mono font-bold tracking-[0.2em] text-[#21409A] uppercase">
+                      SUPPORTING A HEALTHIER UGANDA
+                    </span>
+                  </div>
+
+                  {/* Main Headline */}
+                  <h3 className="text-2xl sm:text-3xl lg:text-[2.5rem] xl:text-[2.85rem] font-black text-[#0F172A] tracking-tight leading-[1.08] uppercase">
+                    EQUIPMENT TODAY.<br />
+                    <span className="text-[#21409A]">BETTER CARE TOMORROW.</span>
+                  </h3>
+                </div>
+
+                {/* Right Supporting Description */}
+                <div
+                  className="lg:col-span-5 lg:border-l lg:border-slate-300 lg:pl-8 flex items-center"
+                  data-aos="fade-up"
+                  data-aos-duration="850"
+                  data-aos-delay="100"
+                >
+                  <p className="text-xs sm:text-sm lg:text-[14.5px] text-slate-600 leading-relaxed font-normal">
+                    FAB Medical Supplies Ltd. deals in the procurement and supply of medical equipment, instruments and reagents used in laboratories, theatres and general medical products.
+                  </p>
+                </div>
+
               </div>
 
-              <div className="flex flex-wrap items-center gap-x-2.5 sm:gap-x-3.5 gap-y-2 text-[11px] sm:text-xs font-mono font-semibold tracking-wider text-slate-700">
-                <span className="text-slate-950 font-bold">PROCUREMENT</span>
-                <span className="text-[#21409A] font-bold">→</span>
-                <span className="text-slate-950 font-bold">SUPPLY</span>
-                <span className="text-[#21409A] font-bold">→</span>
-                <span className="text-slate-950 font-bold">DELIVERY</span>
-                <span className="text-[#21409A] font-bold">→</span>
-                <span className="text-slate-950 font-bold">MARKETING</span>
-                <span className="text-[#21409A] font-bold">→</span>
-                <span className="text-slate-950 font-bold">SALES</span>
-                <span className="text-[#21409A] font-bold">→</span>
-                <span className="text-slate-950 font-bold">SERVICING</span>
-                <span className="text-[#21409A] font-bold">→</span>
-                <span className="text-[#ED1C24] font-bold">REPAIR</span>
-              </div>
             </div>
+
           </div>
         </Container>
       </section>
@@ -284,6 +402,10 @@ export default function About({ onNavigate }) {
                 src={fabLogoImg}
                 alt="FAB Medical Supplies Ltd."
                 className="h-10 xl:h-11 w-auto object-contain block"
+                width="44"
+                height="45"
+                loading="lazy"
+                decoding="async"
               />
             </div>
 
@@ -298,7 +420,10 @@ export default function About({ onNavigate }) {
                 src={aboutMicroscopeImg}
                 alt="High-precision laboratory research microscope optics supplied by FAB Medical Supplies Ltd."
                 className="w-full h-auto object-contain block filter drop-shadow-[0_8px_24px_rgba(33,64,154,0.06)]"
+                width="420"
+                height="420"
                 loading="lazy"
+                decoding="async"
               />
             </div>
 
@@ -424,6 +549,10 @@ export default function About({ onNavigate }) {
                 src={fabLogoImg}
                 alt="FAB Medical Supplies Ltd."
                 className="h-8 sm:h-9 w-auto object-contain block"
+                width="36"
+                height="37"
+                loading="lazy"
+                decoding="async"
               />
             </div>
 
@@ -443,7 +572,10 @@ export default function About({ onNavigate }) {
                 src={aboutMicroscopeImg}
                 alt="High-precision laboratory research microscope optics supplied by FAB Medical Supplies Ltd."
                 className="w-full h-auto object-contain block filter drop-shadow-[0_6px_20px_rgba(33,64,154,0.07)]"
+                width="340"
+                height="340"
                 loading="lazy"
+                decoding="async"
               />
             </div>
 
@@ -540,6 +672,10 @@ export default function About({ onNavigate }) {
                 src={fabLogoImg}
                 alt="FAB Medical Supplies Ltd."
                 className="h-8 xl:h-9 w-auto object-contain block mb-6"
+                width="36"
+                height="37"
+                loading="lazy"
+                decoding="async"
               />
 
               <div className="flex items-center space-x-2.5 mb-4">
@@ -576,7 +712,10 @@ export default function About({ onNavigate }) {
                 src={categoryLabImg}
                 alt="Laboratory diagnostic microscope and reagents supplied by FAB Medical Supplies Ltd."
                 className="w-full h-full object-cover object-center block"
+                width="310"
+                height="310"
                 loading="lazy"
+                decoding="async"
               />
             </div>
 
@@ -626,7 +765,10 @@ export default function About({ onNavigate }) {
                 src={categoryTheatreImg}
                 alt="Operating theatre surgical instruments supplied by FAB Medical Supplies Ltd."
                 className="w-full h-full object-cover object-center block"
+                width="335"
+                height="220"
                 loading="lazy"
+                decoding="async"
               />
             </div>
 
@@ -637,7 +779,10 @@ export default function About({ onNavigate }) {
                 src={categoryCriticalImg}
                 alt="Critical care patient monitoring and life support systems supplied by FAB Medical Supplies Ltd."
                 className="w-full h-full object-cover object-center block"
+                width="245"
+                height="300"
                 loading="lazy"
+                decoding="async"
               />
             </div>
 
@@ -666,7 +811,10 @@ export default function About({ onNavigate }) {
                 src={categoryOpdImg}
                 alt="General medical consultation and diagnostic equipment supplied by FAB Medical Supplies Ltd."
                 className="w-full h-full object-cover object-center block"
+                width="315"
+                height="210"
                 loading="lazy"
+                decoding="async"
               />
             </div>
 
@@ -756,6 +904,10 @@ export default function About({ onNavigate }) {
                   src={fabLogoImg}
                   alt="FAB Medical Supplies Ltd."
                   className="h-8 w-auto object-contain block"
+                  width="32"
+                  height="33"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="flex items-center space-x-2 text-[10px] sm:text-xs font-bold uppercase tracking-[0.14em] text-[#21409A]">
                   <span>BETTER EQUIPMENT. BETTER CARE.</span>
@@ -786,7 +938,10 @@ export default function About({ onNavigate }) {
                   src={categoryLabImg}
                   alt="Laboratory diagnostic equipment"
                   className="w-full h-full object-cover object-center block"
+                  width="224"
+                  height="224"
                   loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div className="space-y-1.5 text-center sm:text-left">
@@ -817,7 +972,10 @@ export default function About({ onNavigate }) {
                   src={categoryTheatreImg}
                   alt="Surgical theatre instruments and equipment"
                   className="w-full h-full object-cover object-center block"
+                  width="272"
+                  height="176"
                   loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div className="space-y-1.5 text-center sm:text-left">
@@ -845,7 +1003,10 @@ export default function About({ onNavigate }) {
                   src={categoryCriticalImg}
                   alt="Critical care monitors and life support"
                   className="w-full h-full object-cover object-center block"
+                  width="208"
+                  height="256"
                   loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div className="space-y-1.5 text-center sm:text-left">
@@ -873,7 +1034,10 @@ export default function About({ onNavigate }) {
                   src={categoryOpdImg}
                   alt="General medical consultation examination tools"
                   className="w-full h-full object-cover object-center block"
+                  width="256"
+                  height="176"
                   loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div className="space-y-1.5 text-center sm:text-left">
@@ -910,142 +1074,155 @@ export default function About({ onNavigate }) {
         </Container>
       </section>
 
-      {/* Section 5: CLINICAL ENVIRONMENTS - Approved Design A Editorial Split Composition */}
+      {/* Section 5: CLINICAL ENVIRONMENTS - Approved Design 2 Full-Bleed Image Gallery with Captions */}
       <section
         className="bg-white border-b border-border py-16 sm:py-20 lg:py-24 xl:py-28 relative overflow-hidden"
         aria-labelledby="clinical-environments-heading"
       >
         <Container className="max-w-7xl relative">
-          <div className="flex flex-col lg:flex-row items-stretch lg:justify-between gap-12 lg:gap-8 xl:gap-12">
-            {/* ======================================================== */}
-            {/* LEFT SIDE: Spacious Editorial Information Area (40-45%) */}
-            {/* ======================================================== */}
-            <div className="w-full lg:w-[42%] xl:w-[40%] flex flex-col justify-between py-2 lg:py-4 z-10">
-              <div>
-                {/* Authentic FAB Logo */}
-                <div className="mb-6 xl:mb-8">
-                  <img
-                    src={fabLogoImg}
-                    alt="FAB Medical Supplies Ltd."
-                    className="h-8 sm:h-9 xl:h-10 w-auto object-contain block"
-                  />
+          {/* SECTION HEADER: Dual-Column Composition (Approved Design 2 Header) */}
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 lg:gap-12 mb-8 sm:mb-10 lg:mb-12">
+            <div className="max-w-2xl" data-aos="fade-right">
+              {/* Eyebrow with Red Rule */}
+              <div className="flex items-center space-x-2.5 mb-4 sm:mb-5">
+                <span className="text-xs sm:text-[13px] font-bold uppercase tracking-[0.16em] text-[#21409A]">
+                  CLINICAL ENVIRONMENTS
+                </span>
+                <span className="w-7 h-[2px] bg-[#E11D48] rounded-full inline-block" aria-hidden="true" />
+              </div>
+
+              {/* Dominant Headline */}
+              <h2
+                id="clinical-environments-heading"
+                className="text-3xl sm:text-4xl lg:text-[44px] xl:text-[48px] font-bold uppercase tracking-tight text-[#0F172A] leading-[1.08]"
+              >
+                REAL ENVIRONMENTS.<br />
+                LASTING IMPACT.
+              </h2>
+            </div>
+
+            {/* Supporting Introduction */}
+            <div className="max-w-md lg:max-w-lg lg:pb-1" data-aos="fade-left" data-aos-delay="100">
+              <p className="text-xs sm:text-sm lg:text-[15px] text-slate-600 leading-relaxed font-normal">
+                FAB supplies medical equipment, instruments and reagents across the environments where care happens — from general wards to laboratories and theatre rooms.
+              </p>
+            </div>
+          </div>
+
+          {/* DESIGN 2 GALLERY: Featured Large Image with Captions + Companion Cards Below */}
+          <div className="space-y-5 sm:space-y-6" data-aos="fade-up" data-aos-duration="800">
+            {/* 1. Large Featured Full-Bleed Environment Card */}
+            <div
+              className="relative w-full aspect-[16/10] sm:aspect-[2/1] lg:aspect-[2.35/1] overflow-hidden rounded-sm bg-slate-900 group shadow-[0_12px_36px_rgba(15,23,42,0.08)] cursor-pointer"
+              onClick={() => onNavigate && onNavigate('products', activeEnv.categoryId)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  onNavigate && onNavigate('products', activeEnv.categoryId);
+                }
+              }}
+            >
+              {/* High-Resolution Photography */}
+              <img
+                key={activeEnv.id}
+                src={activeEnv.image}
+                alt={activeEnv.alt}
+                className="w-full h-full object-cover object-center transition-all duration-700 ease-out group-hover:scale-105"
+                width="1200"
+                height="510"
+                loading="lazy"
+                decoding="async"
+              />
+
+              {/* Subtle Vignette for Photography Clarity & Caption Legibility */}
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent pointer-events-none" />
+
+              {/* Bottom-Left Overlay Caption (Design 2 Reference) */}
+              <div className="absolute left-6 sm:left-8 lg:left-10 bottom-6 sm:bottom-8 lg:bottom-10 z-10 text-left pointer-events-none max-w-md">
+                <div className="text-xs sm:text-sm font-mono font-medium text-white/90 mb-1">
+                  {activeEnv.num}
                 </div>
-
-                {/* Eyebrow with Red Rule */}
-                <div className="flex items-center space-x-2.5 mb-5 sm:mb-6">
-                  <span className="text-xs sm:text-[13px] font-bold uppercase tracking-[0.16em] text-[#21409A]">
-                    CLINICAL ENVIRONMENTS
-                  </span>
-                  <span className="w-7 h-[2px] bg-[#E11D48] rounded-full inline-block" aria-hidden="true" />
-                </div>
-
-                {/* Dominant Headline */}
-                <h2
-                  id="clinical-environments-heading"
-                  className="text-3xl sm:text-4xl lg:text-[44px] xl:text-[50px] font-bold uppercase tracking-tight text-[#0F172A] leading-[1.05] mb-5 sm:mb-6"
-                >
-                  REAL<br />
-                  ENVIRONMENTS.<br />
-                  LASTING IMPACT.
-                </h2>
-
-                {/* Supporting Introduction */}
-                <p className="text-xs sm:text-sm lg:text-[15px] text-slate-600 leading-relaxed font-normal max-w-md">
-                  FAB supplies medical equipment, instruments and reagents across the environments where care happens — from general wards to laboratories and theatre rooms.
+                <h3 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold uppercase tracking-tight text-white leading-tight mb-1.5 drop-shadow-sm">
+                  {activeEnv.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-white/80 font-normal tracking-wide">
+                  {activeEnv.tags}
                 </p>
               </div>
 
-              {/* Bottom-Left Technical Brand Statement */}
-              <div className="mt-12 sm:mt-16 lg:mt-24 pt-2">
-                <div className="w-8 h-[2px] bg-[#E11D48] mb-3 sm:mb-4" aria-hidden="true" />
-                <div className="space-y-1 text-xs sm:text-[13px] font-bold uppercase tracking-[0.16em] text-[#21409A]">
-                  <div>QUALITY SUPPLIERS.</div>
-                  <div>HEALTHIER TOMORROWS.</div>
-                </div>
-              </div>
+              {/* Bottom-Right Circular Button with Arrow (Design 2 Reference) */}
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActiveEnvIndex((prev) => (prev + 1) % clinicalEnvironments.length);
+                }}
+                aria-label="Next clinical environment"
+                className="absolute right-6 sm:right-8 lg:right-10 bottom-6 sm:bottom-8 lg:bottom-10 z-20 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white text-[#0F172A] hover:bg-[#21409A] hover:text-white flex items-center justify-center shadow-lg transition-all duration-300 transform group-hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white"
+              >
+                <svg
+                  className="w-4 h-4 sm:w-5 sm:h-5 fill-current transform transition-transform group-hover:translate-x-0.5"
+                  viewBox="0 0 20 20"
+                  aria-hidden="true"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </button>
             </div>
 
-            {/* ======================================================== */}
-            {/* RIGHT SIDE: Vertical Photographic Ribbon (55-60%) */}
-            {/* ======================================================== */}
-            <div className="w-full lg:w-[58%] xl:w-[60%] flex flex-col space-y-3 sm:space-y-4 relative">
-              {/* Panel 01: GENERAL WARD */}
-              <div className="relative group overflow-hidden shadow-[0_8px_24px_rgba(15,23,42,0.04)]">
-                <img
-                  src={envWardImg}
-                  alt="Clinical general ward equipped with hospital beds, patient monitoring systems and mobility aids"
-                  className="w-full h-auto object-cover object-left-top block"
-                  loading="lazy"
-                />
-                {/* Editorial Annotation Label */}
-                <div className="absolute right-3 sm:right-6 lg:right-7 bottom-2 sm:bottom-4 md:bottom-5 text-left max-w-[210px] sm:max-w-[260px] xl:max-w-[280px]">
-                  <div className="flex items-center space-x-2 text-[10px] sm:text-xs font-bold text-[#21409A] mb-0.5">
-                    <span>01</span>
-                    <span className="w-5 h-[1.5px] bg-[#3B82F6]" aria-hidden="true" />
+            {/* 2. Directly Below: Two Companion Environment Cards (Design 2 Reference) */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 pt-1">
+              {companionEnvs.map((env) => (
+                <div
+                  key={env.id}
+                  onClick={() => {
+                    const targetIndex = clinicalEnvironments.findIndex((e) => e.id === env.id);
+                    if (targetIndex !== -1) setActiveEnvIndex(targetIndex);
+                  }}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      const targetIndex = clinicalEnvironments.findIndex((item) => item.id === env.id);
+                      if (targetIndex !== -1) setActiveEnvIndex(targetIndex);
+                    }
+                  }}
+                  className="flex items-center space-x-4 sm:space-x-5 p-2.5 sm:p-3 rounded-sm border border-slate-100 hover:border-slate-200/90 hover:bg-slate-50/80 transition-all duration-300 group cursor-pointer text-left focus:outline-none focus:ring-2 focus:ring-[#21409A]"
+                >
+                  {/* Left Full Square Thumbnail Image */}
+                  <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-28 md:h-28 lg:w-32 lg:h-32 aspect-square overflow-hidden rounded-sm flex-shrink-0 bg-slate-100 shadow-sm border border-slate-200/80">
+                    <img
+                      src={env.thumbnail}
+                      alt={env.alt}
+                      className="w-full h-full object-cover object-center transform transition-transform duration-500 ease-out group-hover:scale-105"
+                      width="128"
+                      height="128"
+                      loading="lazy"
+                      decoding="async"
+                    />
                   </div>
-                  <h3 className="text-sm sm:text-base lg:text-lg xl:text-xl font-bold uppercase tracking-tight text-[#0F172A] leading-tight">
-                    GENERAL WARD
-                  </h3>
-                  <p className="text-[10px] sm:text-xs text-slate-500 font-medium mt-0.5 leading-snug">
-                    Beds • Monitoring • Mobility
-                  </p>
-                  <div className="text-xs sm:text-sm font-bold text-[#21409A] mt-1" aria-hidden="true">
-                    →
-                  </div>
-                </div>
-              </div>
 
-              {/* Panel 02: LABORATORY */}
-              <div className="relative group overflow-hidden shadow-[0_8px_24px_rgba(15,23,42,0.04)]">
-                <img
-                  src={envLabImg}
-                  alt="Professional medical diagnostic laboratory environment equipped with research microscopes, test kits and reagents"
-                  className="w-full h-auto object-cover object-left-top block"
-                  loading="lazy"
-                />
-                {/* Editorial Annotation Label */}
-                <div className="absolute right-3 sm:right-6 lg:right-7 bottom-2 sm:bottom-4 md:bottom-5 text-left max-w-[210px] sm:max-w-[260px] xl:max-w-[280px]">
-                  <div className="flex items-center space-x-2 text-[10px] sm:text-xs font-bold text-[#21409A] mb-0.5">
-                    <span>02</span>
-                    <span className="w-5 h-[1.5px] bg-[#3B82F6]" aria-hidden="true" />
-                  </div>
-                  <h3 className="text-sm sm:text-base lg:text-lg xl:text-xl font-bold uppercase tracking-tight text-[#0F172A] leading-tight">
-                    LABORATORY
-                  </h3>
-                  <p className="text-[10px] sm:text-xs text-slate-500 font-medium mt-0.5 leading-snug">
-                    Diagnostics • Reagents • Analysis
-                  </p>
-                  <div className="text-xs sm:text-sm font-bold text-[#21409A] mt-1" aria-hidden="true">
-                    →
+                  {/* Right Typography Block */}
+                  <div className="min-w-0 flex-1">
+                    <div className="text-[11px] sm:text-xs font-mono font-bold text-[#21409A] mb-0.5">
+                      {env.num}
+                    </div>
+                    <h4 className="text-sm sm:text-base lg:text-lg font-bold uppercase tracking-tight text-[#0F172A] leading-tight group-hover:text-[#21409A] transition-colors">
+                      {env.title}
+                    </h4>
+                    <p className="text-[11px] sm:text-xs text-slate-500 font-normal mt-1 leading-snug">
+                      {env.tags}
+                    </p>
                   </div>
                 </div>
-              </div>
-
-              {/* Panel 03: THEATRE ROOM */}
-              <div className="relative group overflow-hidden shadow-[0_8px_24px_rgba(15,23,42,0.04)]">
-                <img
-                  src={envTheatreImg}
-                  alt="Modern operating surgical theatre room with operating table, surgical lamps, anaesthesia machines and vital monitoring"
-                  className="w-full h-auto object-cover object-left-top block"
-                  loading="lazy"
-                />
-                {/* Editorial Annotation Label */}
-                <div className="absolute right-3 sm:right-6 lg:right-7 bottom-2 sm:bottom-4 md:bottom-5 text-left max-w-[210px] sm:max-w-[260px] xl:max-w-[280px]">
-                  <div className="flex items-center space-x-2 text-[10px] sm:text-xs font-bold text-[#21409A] mb-0.5">
-                    <span>03</span>
-                    <span className="w-5 h-[1.5px] bg-[#3B82F6]" aria-hidden="true" />
-                  </div>
-                  <h3 className="text-sm sm:text-base lg:text-lg xl:text-xl font-bold uppercase tracking-tight text-[#0F172A] leading-tight">
-                    THEATRE ROOM
-                  </h3>
-                  <p className="text-[10px] sm:text-xs text-slate-500 font-medium mt-0.5 leading-snug">
-                    Anaesthesia • Surgical • Life Support
-                  </p>
-                  <div className="text-xs sm:text-sm font-bold text-[#21409A] mt-1" aria-hidden="true">
-                    →
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </Container>
@@ -1106,6 +1283,10 @@ export default function About({ onNavigate }) {
                   src={fabLogoImg}
                   alt="FAB Medical Supplies Ltd."
                   className="h-7 xl:h-8 w-auto object-contain mb-2"
+                  width="32"
+                  height="33"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="flex items-center space-x-2 text-[9px] font-mono uppercase tracking-[0.22em] text-[#21409A] font-bold">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#E11D48] inline-block" />
@@ -1328,149 +1509,254 @@ export default function About({ onNavigate }) {
           </div>
 
           {/* ======================================================== */}
-          {/* MOBILE & TABLET STAGGERED EDITORIAL SEQUENCE (<lg) */}
+          {/* MOBILE & TABLET EDITORIAL PHOTO-BREAK COMPOSITION (<lg) */}
           {/* ======================================================== */}
-          <div className="block lg:hidden space-y-12">
-            {/* Central Identity Card Badge */}
-            <div className="inline-flex flex-col items-start bg-white p-4 border border-slate-200 shadow-sm rounded-sm max-w-xs">
-              <img
-                src={fabLogoImg}
-                alt="FAB Medical Supplies Ltd."
-                className="h-7 w-auto object-contain mb-1.5"
-              />
-              <div className="flex items-center space-x-1.5 text-[9px] font-mono uppercase tracking-[0.18em] text-[#21409A] font-bold">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#E11D48] inline-block" />
-                <span>CENTRAL HEALTHCARE SUPPLY HUB</span>
-              </div>
-            </div>
-
+          <div className="block lg:hidden space-y-10 sm:space-y-12 max-w-2xl">
             {/* LEVEL 01: HEALTHCARE ORGANIZATIONS */}
-            <div className="space-y-8">
-              <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#21409A] font-bold flex items-center space-x-2 border-b border-slate-200 pb-2">
-                <span className="w-2 h-[2px] bg-[#21409A]" />
-                <span>LEVEL 01 — HEALTHCARE ORGANIZATIONS</span>
+            <div className="space-y-6 sm:space-y-8">
+              {/* Level 01 Section Divider */}
+              <div className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.2em] text-[#21409A] font-bold flex items-center space-x-2 border-b border-slate-200 pb-2.5">
+                <span className="w-2.5 h-[2px] bg-[#21409A]" aria-hidden="true" />
+                <span>LEVEL 01 // HEALTHCARE ORGANIZATIONS</span>
               </div>
 
-              {/* 01 */}
-              <div className="space-y-1.5 pl-2 max-w-lg">
-                <div className="flex items-center space-x-2 text-xs font-mono font-bold text-[#21409A]">
-                  <span>01</span>
-                  <span className="w-8 h-[1.5px] bg-[#93C5FD]" aria-hidden="true" />
+              {/* IMAGE PAIR 01: Hospital & Laboratory (Square Photos Side-by-Side) */}
+              <div className="grid grid-cols-2 gap-3 sm:gap-4 pt-1">
+                <div className="aspect-square relative rounded-lg overflow-hidden border border-slate-200/90 shadow-sm bg-slate-100 select-none">
+                  <img
+                    src={whoHospitalImg}
+                    alt="Mulago Specialised Hospital healthcare infrastructure"
+                    className="w-full h-full object-cover"
+                    width="320"
+                    height="320"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
-                <h3 className="text-base sm:text-lg font-bold uppercase tracking-tight text-[#0F172A]">
-                  HOSPITALS &amp; HEALTH FACILITIES
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-                  Healthcare facilities requiring medical equipment, instruments and supplies.
-                </p>
+                <div className="aspect-square relative rounded-lg overflow-hidden border border-slate-200/90 shadow-sm bg-slate-100 select-none">
+                  <img
+                    src={whoLabImg}
+                    alt="Clinical diagnostic testing laboratory environment"
+                    className="w-full h-full object-cover"
+                    width="320"
+                    height="320"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
               </div>
 
-              {/* 02 */}
-              <div className="space-y-1.5 pl-5 sm:pl-8 max-w-lg">
-                <div className="flex items-center space-x-2 text-xs font-mono font-bold text-[#21409A]">
-                  <span>02</span>
-                  <span className="w-8 h-[1.5px] bg-[#93C5FD]" aria-hidden="true" />
+              {/* Level 01 Content Group A (01, 02) */}
+              <div className="space-y-6 sm:space-y-7 pt-1">
+                {/* 01 */}
+                <div className="space-y-1.5 max-w-lg">
+                  <div className="flex items-center space-x-2 text-xs font-mono font-bold text-[#21409A]">
+                    <span>01</span>
+                    <span className="w-8 h-[1.5px] bg-[#93C5FD]" aria-hidden="true" />
+                  </div>
+                  <h3 className="text-base sm:text-lg font-bold uppercase tracking-tight text-[#0F172A] leading-snug">
+                    HOSPITALS &amp; HEALTH FACILITIES
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                    Healthcare facilities requiring medical equipment, instruments and supplies.
+                  </p>
                 </div>
-                <h3 className="text-base sm:text-lg font-bold uppercase tracking-tight text-[#0F172A]">
-                  LABORATORIES &amp; DIAGNOSTIC CENTRES
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-                  Facilities using laboratory equipment, reagents and diagnostic supplies.
-                </p>
+
+                {/* 02 */}
+                <div className="space-y-1.5 max-w-lg">
+                  <div className="flex items-center space-x-2 text-xs font-mono font-bold text-[#21409A]">
+                    <span>02</span>
+                    <span className="w-8 h-[1.5px] bg-[#93C5FD]" aria-hidden="true" />
+                  </div>
+                  <h3 className="text-base sm:text-lg font-bold uppercase tracking-tight text-[#0F172A] leading-snug">
+                    LABORATORIES &amp; DIAGNOSTIC CENTRES
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                    Facilities using laboratory equipment, reagents and diagnostic supplies.
+                  </p>
+                </div>
               </div>
 
-              {/* 03 */}
-              <div className="space-y-1.5 pl-2 max-w-lg">
-                <div className="flex items-center space-x-2 text-xs font-mono font-bold text-[#21409A]">
-                  <span>03</span>
-                  <span className="w-8 h-[1.5px] bg-[#93C5FD]" aria-hidden="true" />
+              {/* IMAGE PAIR 02: Clinic & Pharmacy (Square Photos Side-by-Side Visual Break) */}
+              <div className="grid grid-cols-2 gap-3 sm:gap-4 pt-2">
+                <div className="aspect-square relative rounded-lg overflow-hidden border border-slate-200/90 shadow-sm bg-slate-100 select-none">
+                  <img
+                    src={whoClinicImg}
+                    alt="Modern clinical examination and consultation environment"
+                    className="w-full h-full object-cover"
+                    width="320"
+                    height="320"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
-                <h3 className="text-sm sm:text-base font-bold uppercase tracking-tight text-[#0F172A]">
-                  CLINICS &amp; MEDICAL PRACTICES
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-                  Healthcare practices requiring equipment and general medical supplies.
-                </p>
+                <div className="aspect-square relative rounded-lg overflow-hidden border border-slate-200/90 shadow-sm bg-slate-100 select-none">
+                  <img
+                    src={whoPharmacyImg}
+                    alt="Professional healthcare pharmacy and dispensary"
+                    className="w-full h-full object-cover"
+                    width="320"
+                    height="320"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
               </div>
 
-              {/* 04 */}
-              <div className="space-y-1.5 pl-6 sm:pl-10 max-w-lg">
-                <div className="flex items-center space-x-2 text-xs font-mono font-bold text-[#21409A]">
-                  <span>04</span>
-                  <span className="w-8 h-[1.5px] bg-[#93C5FD]" aria-hidden="true" />
+              {/* Level 01 Content Group B (03, 04) */}
+              <div className="space-y-6 sm:space-y-7 pt-1">
+                {/* 03 */}
+                <div className="space-y-1.5 max-w-lg">
+                  <div className="flex items-center space-x-2 text-xs font-mono font-bold text-[#21409A]">
+                    <span>03</span>
+                    <span className="w-8 h-[1.5px] bg-[#93C5FD]" aria-hidden="true" />
+                  </div>
+                  <h3 className="text-base sm:text-lg font-bold uppercase tracking-tight text-[#0F172A] leading-snug">
+                    CLINICS &amp; MEDICAL PRACTICES
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                    Healthcare practices requiring equipment and general medical supplies.
+                  </p>
                 </div>
-                <h3 className="text-sm sm:text-base font-bold uppercase tracking-tight text-[#0F172A]">
-                  GOVERNMENT HEALTH BODIES
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-                  Public-sector health organizations involved in healthcare delivery.
-                </p>
+
+                {/* 04 */}
+                <div className="space-y-1.5 max-w-lg">
+                  <div className="flex items-center space-x-2 text-xs font-mono font-bold text-[#21409A]">
+                    <span>04</span>
+                    <span className="w-8 h-[1.5px] bg-[#93C5FD]" aria-hidden="true" />
+                  </div>
+                  <h3 className="text-base sm:text-lg font-bold uppercase tracking-tight text-[#0F172A] leading-snug">
+                    GOVERNMENT HEALTH BODIES
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                    Public-sector health organizations involved in healthcare delivery.
+                  </p>
+                </div>
               </div>
 
-              {/* 05 */}
-              <div className="space-y-1.5 pl-3 sm:pl-4 max-w-lg">
-                <div className="flex items-center space-x-2 text-xs font-mono font-bold text-[#21409A]">
-                  <span>05</span>
-                  <span className="w-8 h-[1.5px] bg-[#93C5FD]" aria-hidden="true" />
+              {/* IMAGE PAIR 03: Medical Care & Diagnostic Facilities (Square Photos Side-by-Side Visual Break) */}
+              <div className="grid grid-cols-2 gap-3 sm:gap-4 pt-2">
+                <div className="aspect-square relative rounded-lg overflow-hidden border border-slate-200/90 shadow-sm bg-slate-100 select-none">
+                  <img
+                    src={whoMedCareImg}
+                    alt="Medical care and healthcare supply delivery"
+                    className="w-full h-full object-cover"
+                    width="320"
+                    height="320"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
-                <h3 className="text-sm sm:text-base font-bold uppercase tracking-tight text-[#0F172A]">
-                  PHARMACIES
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-                  Pharmacies within the wider healthcare supply network.
-                </p>
+                <div className="aspect-square relative rounded-lg overflow-hidden border border-slate-200/90 shadow-sm bg-slate-100 select-none">
+                  <img
+                    src={whoLabDiagnosticImg}
+                    alt="Healthcare diagnostic equipment and laboratory facility"
+                    className="w-full h-full object-cover"
+                    width="320"
+                    height="320"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
               </div>
 
-              {/* 06 */}
-              <div className="space-y-1.5 pl-6 sm:pl-10 max-w-lg">
-                <div className="flex items-center space-x-2 text-xs font-mono font-bold text-[#21409A]">
-                  <span>06</span>
-                  <span className="w-8 h-[1.5px] bg-[#93C5FD]" aria-hidden="true" />
+              {/* Level 01 Content Group C (05, 06) */}
+              <div className="space-y-6 sm:space-y-7 pt-1">
+                {/* 05 */}
+                <div className="space-y-1.5 max-w-lg">
+                  <div className="flex items-center space-x-2 text-xs font-mono font-bold text-[#21409A]">
+                    <span>05</span>
+                    <span className="w-8 h-[1.5px] bg-[#93C5FD]" aria-hidden="true" />
+                  </div>
+                  <h3 className="text-base sm:text-lg font-bold uppercase tracking-tight text-[#0F172A] leading-snug">
+                    PHARMACIES
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                    Pharmacies within the wider healthcare supply network.
+                  </p>
                 </div>
-                <h3 className="text-sm sm:text-base font-bold uppercase tracking-tight text-[#0F172A]">
-                  HEALTHCARE INSTITUTIONS &amp; ORGANIZATIONS
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-                  Organizations supporting healthcare delivery and related services.
-                </p>
+
+                {/* 06 */}
+                <div className="space-y-1.5 max-w-lg">
+                  <div className="flex items-center space-x-2 text-xs font-mono font-bold text-[#21409A]">
+                    <span>06</span>
+                    <span className="w-8 h-[1.5px] bg-[#93C5FD]" aria-hidden="true" />
+                  </div>
+                  <h3 className="text-base sm:text-lg font-bold uppercase tracking-tight text-[#0F172A] leading-snug">
+                    HEALTHCARE INSTITUTIONS &amp; ORGANIZATIONS
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                    Organizations supporting healthcare delivery and related services.
+                  </p>
+                </div>
               </div>
             </div>
 
             {/* LEVEL 02: PEOPLE AT THE CENTRE OF HEALTHCARE */}
-            <div className="space-y-8 pt-4">
-              <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#21409A] font-bold flex items-center space-x-2 border-b border-slate-200 pb-2">
-                <span className="w-2 h-[2px] bg-[#E11D48]" />
-                <span>LEVEL 02 — PEOPLE AT THE CENTRE OF HEALTHCARE</span>
+            <div className="space-y-6 sm:space-y-8 pt-4 border-t border-slate-200/80">
+              {/* Level 02 Section Divider */}
+              <div className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.2em] text-[#21409A] font-bold flex items-center space-x-2 border-b border-slate-200 pb-2.5">
+                <span className="w-2.5 h-[2px] bg-[#E11D48]" aria-hidden="true" />
+                <span>LEVEL 02 // PEOPLE AT THE CENTRE OF HEALTHCARE</span>
               </div>
 
-              {/* 07 */}
-              <div className="space-y-1.5 pl-3 sm:pl-5 max-w-lg">
-                <div className="flex items-center space-x-2 text-xs font-mono font-bold text-[#21409A]">
-                  <span>07</span>
-                  <span className="w-8 h-[1.5px] bg-[#E11D48]" aria-hidden="true" />
-                  <span className="text-[9px] font-mono uppercase tracking-wider text-slate-400">CLINICAL PRACTICE</span>
+              {/* Level 02 Content (07, 08) */}
+              <div className="space-y-6 sm:space-y-7 pt-1">
+                {/* 07 */}
+                <div className="space-y-1.5 max-w-lg">
+                  <div className="flex items-center space-x-2 text-xs font-mono font-bold text-[#21409A]">
+                    <span>07</span>
+                    <span className="w-8 h-[1.5px] bg-[#E11D48]" aria-hidden="true" />
+                    <span className="text-[9px] font-mono uppercase tracking-wider text-slate-400">CLINICAL PRACTICE</span>
+                  </div>
+                  <h3 className="text-base sm:text-lg font-bold uppercase tracking-tight text-[#0F172A] leading-snug">
+                    INDIVIDUAL HEALTHCARE PROFESSIONALS
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                    Professionals working within clinical and healthcare environments.
+                  </p>
                 </div>
-                <h3 className="text-base sm:text-lg font-bold uppercase tracking-tight text-[#0F172A]">
-                  INDIVIDUAL HEALTHCARE PROFESSIONALS
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-                  Professionals working within clinical and healthcare environments.
-                </p>
+
+                {/* 08 */}
+                <div className="space-y-1.5 max-w-lg">
+                  <div className="flex items-center space-x-2 text-xs font-mono font-bold text-[#21409A]">
+                    <span>08</span>
+                    <span className="w-8 h-[1.5px] bg-[#E11D48]" aria-hidden="true" />
+                    <span className="text-[9px] font-mono uppercase tracking-wider text-slate-400">END BENEFICIARIES</span>
+                  </div>
+                  <h3 className="text-base sm:text-lg font-bold uppercase tracking-tight text-[#0F172A] leading-snug">
+                    INDIVIDUALS &amp; PATIENTS
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                    People who ultimately benefit from the healthcare services supported by reliable medical supply.
+                  </p>
+                </div>
               </div>
 
-              {/* 08 */}
-              <div className="space-y-1.5 pl-6 sm:pl-10 max-w-lg">
-                <div className="flex items-center space-x-2 text-xs font-mono font-bold text-[#21409A]">
-                  <span>08</span>
-                  <span className="w-8 h-[1.5px] bg-[#E11D48]" aria-hidden="true" />
-                  <span className="text-[9px] font-mono uppercase tracking-wider text-slate-400">END BENEFICIARIES</span>
+              {/* IMAGE PAIR 04: Hospital Inpatient Beds & Patient Recovery Room (Clean Authentic Equipment & Setting) */}
+              <div className="grid grid-cols-2 gap-3 sm:gap-4 pt-2">
+                <div className="aspect-square relative rounded-lg overflow-hidden border border-slate-200/90 shadow-sm bg-slate-100 select-none">
+                  <img
+                    src={whoBedsImg}
+                    alt="Hospital inpatient beds and patient ward infrastructure"
+                    className="w-full h-full object-cover"
+                    width="320"
+                    height="320"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
-                <h3 className="text-base sm:text-lg font-bold uppercase tracking-tight text-[#0F172A]">
-                  INDIVIDUALS &amp; PATIENTS
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-                  People who ultimately benefit from the healthcare services supported by reliable medical supply.
-                </p>
+                <div className="aspect-square relative rounded-lg overflow-hidden border border-slate-200/90 shadow-sm bg-slate-100 select-none">
+                  <img
+                    src={whoPatientImg}
+                    alt="Patient recovery room and authentic inpatient care setting"
+                    className="w-full h-full object-cover"
+                    width="320"
+                    height="320"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -1490,274 +1776,240 @@ export default function About({ onNavigate }) {
         </Container>
       </section>
 
-      {/* Section 7: SERVICES - Approved Design C Integrated Editorial Typography */}
+      {/* Section 7: SERVICES - Approved Premium Modern Healthcare-Corporate Aesthetic */}
       <section
         className="bg-white border-b border-border py-16 sm:py-20 lg:py-24 xl:py-28 relative overflow-hidden"
         aria-labelledby="services-heading"
       >
-        {/* Subtle Technical Engineering / Architectural Hairline Grid */}
-        <div
-          className="absolute inset-0 pointer-events-none select-none opacity-[0.35]"
-          style={{
-            backgroundImage:
-              'linear-gradient(to right, rgba(203, 213, 225, 0.25) 1px, transparent 1px), linear-gradient(to bottom, rgba(203, 213, 225, 0.25) 1px, transparent 1px)',
-            backgroundSize: '70px 70px',
-          }}
-          aria-hidden="true"
-        />
-
         <Container className="relative max-w-7xl">
-          <div className="flex flex-col lg:flex-row items-stretch lg:justify-between gap-12 lg:gap-8 xl:gap-12">
-            {/* ======================================================== */}
-            {/* LEFT SIDE: Editorial Information & Statement Area (~40%) */}
-            {/* ======================================================== */}
-            <div className="w-full lg:w-[40%] xl:w-[38%] flex flex-col justify-between py-2 lg:py-4 z-10">
-              <div>
-                {/* Authentic FAB Logo */}
-                <div className="mb-6 xl:mb-8">
-                  <img
-                    src={fabLogoImg}
-                    alt="FAB Medical Supplies Ltd."
-                    className="h-8 sm:h-9 xl:h-10 w-auto object-contain block"
-                  />
-                </div>
-
-                {/* Eyebrow with Red Rule */}
-                <div className="flex items-center space-x-2.5 mb-5 sm:mb-6">
-                  <span className="text-xs sm:text-[13px] font-bold uppercase tracking-[0.18em] text-[#21409A]">
-                    SERVICES
-                  </span>
-                  <span className="w-7 h-[2px] bg-[#E11D48] rounded-full inline-block" aria-hidden="true" />
-                </div>
-
-                {/* Dominant Headline */}
-                <h2
-                  id="services-heading"
-                  className="text-3xl sm:text-4xl lg:text-[44px] xl:text-[52px] font-bold uppercase tracking-tight text-[#0F172A] leading-[1.05] mb-5 sm:mb-6"
-                >
-                  FROM SUPPLY<br />
-                  TO SERVICE.
-                </h2>
-
-                {/* Supporting Paragraph */}
-                <p className="text-xs sm:text-sm lg:text-[15px] text-slate-600 leading-relaxed font-normal max-w-md">
-                  FAB Medical Supplies Ltd. supports healthcare providers through the procurement, marketing, delivery, servicing and repair of medical equipment, instruments and reagents.
-                </p>
-              </div>
-
-              {/* Bottom-Left Editorial Brand Statement (Not a CTA) */}
-              <div className="mt-12 sm:mt-16 lg:mt-24 pt-2">
-                <div className="w-8 h-[2px] bg-[#E11D48] mb-3 sm:mb-4" aria-hidden="true" />
-                <div className="space-y-1 text-xs sm:text-[13px] font-bold uppercase tracking-[0.16em] text-[#21409A]">
-                  <div>QUALITY SUPPLIERS.</div>
-                  <div>HEALTHIER TOMORROWS.</div>
-                </div>
-              </div>
+          {/* ======================================================== */}
+          {/* 1. HERO VISUAL BLOCK: Operating Theatre + Editorial Intro */}
+          {/* ======================================================== */}
+          <div
+            className="relative w-full rounded-2xl sm:rounded-3xl overflow-hidden bg-[#FAFCFE] border border-slate-200/90 shadow-[0_8px_32px_rgba(15,23,42,0.05)] min-h-[380px] sm:min-h-[420px] lg:min-h-[460px] flex items-center"
+            data-aos="fade-up"
+            data-aos-duration="900"
+          >
+            {/* Background Operating Theatre Photograph spanning right portion */}
+            <div className="absolute right-0 top-0 bottom-0 w-full sm:w-[85%] md:w-[76%] lg:w-[70%] xl:w-[68%] h-full pointer-events-none select-none z-0">
+              <img
+                src={serviceHeroTheatreImg}
+                alt="Modern clinical operating theatre with healthcare professional interacting with patient monitoring equipment"
+                className="w-full h-full object-cover object-right block"
+                width="1024"
+                height="365"
+                loading="lazy"
+                decoding="async"
+              />
+              {/* Soft Light Gradient on Left to ensure 100% typography legibility without heavy blue overlays */}
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background:
+                    'linear-gradient(to right, #FAFCFE 0%, #FAFCFE 18%, rgba(250, 252, 254, 0.94) 34%, rgba(250, 252, 254, 0.5) 58%, transparent 82%)',
+                }}
+                aria-hidden="true"
+              />
             </div>
 
-            {/* ======================================================== */}
-            {/* RIGHT SIDE: Integrated Visual Landscape (~60%) */}
-            {/* ======================================================== */}
-            <div className="w-full lg:w-[60%] xl:w-[62%] relative">
-              {/* DESKTOP INTEGRATED COMPOSITION (lg+) */}
-              <div className="hidden lg:block relative min-h-[640px] xl:min-h-[700px]">
-                {/* Central / Right Curvilinear Photographic Composition Backdrop */}
-                <div className="w-full h-full flex justify-end">
-                  <img
-                    src={servicesCCompImg}
-                    alt="FAB Medical Services lifecycle showing procurement, marketing, delivery, and equipment servicing"
-                    className="w-full max-w-[580px] xl:max-w-[640px] h-auto object-contain block ml-auto select-none pointer-events-none"
-                    loading="lazy"
-                  />
-                </div>
-
-                {/* 01 — PROCUREMENT & SUPPLY (Upper-Right) */}
-                <div className="absolute right-0 top-[30px] xl:top-[35px] max-w-[240px] xl:max-w-[270px] z-10 text-left">
-                  <div className="flex items-center space-x-2 text-xs font-mono font-bold text-[#21409A] mb-1">
-                    <span>01</span>
-                    <span className="w-6 h-[1.5px] bg-[#3B82F6]" aria-hidden="true" />
-                  </div>
-                  <h3 className="text-sm xl:text-base font-bold uppercase tracking-tight text-[#0F172A] leading-tight mb-1">
-                    PROCUREMENT &amp; SUPPLY
-                  </h3>
-                  <p className="text-[11px] xl:text-xs text-slate-600 leading-snug font-normal mb-1">
-                    Medical equipment, instruments and reagents.
-                  </p>
-                  <p className="text-[10px] xl:text-[11px] text-[#2563EB] font-semibold tracking-wide">
-                    Global sourcing. Quality assurance. Reliable supply.
-                  </p>
-                </div>
-
-                {/* 02 — MARKETING & SALES (Mid-Right) */}
-                <div className="absolute right-0 top-[205px] xl:top-[225px] max-w-[240px] xl:max-w-[270px] z-10 text-left">
-                  <div className="flex items-center space-x-2 text-xs font-mono font-bold text-[#21409A] mb-1">
-                    <span>02</span>
-                    <span className="w-6 h-[1.5px] bg-[#3B82F6]" aria-hidden="true" />
-                  </div>
-                  <h3 className="text-sm xl:text-base font-bold uppercase tracking-tight text-[#0F172A] leading-tight mb-1">
-                    MARKETING &amp; SALES
-                  </h3>
-                  <p className="text-[11px] xl:text-xs text-slate-600 leading-snug font-normal mb-1">
-                    Supporting the marketing and sales of medical products and equipment.
-                  </p>
-                  <p className="text-[10px] xl:text-[11px] text-[#2563EB] font-semibold tracking-wide">
-                    Expert advice. Product support. Long-term partnerships.
-                  </p>
-                </div>
-
-                {/* 03 — DELIVERY OF SUPPLIES (Middle-Left next to van) */}
-                <div className="absolute left-[2%] xl:left-[3%] top-[345px] xl:top-[375px] max-w-[220px] xl:max-w-[250px] z-10 text-left">
-                  <div className="flex items-center space-x-2 text-xs font-mono font-bold text-[#21409A] mb-1">
-                    <span>03</span>
-                    <span className="w-6 h-[1.5px] bg-[#3B82F6]" aria-hidden="true" />
-                  </div>
-                  <h3 className="text-sm xl:text-base font-bold uppercase tracking-tight text-[#0F172A] leading-tight mb-1">
-                    DELIVERY OF SUPPLIES
-                  </h3>
-                  <p className="text-[11px] xl:text-xs text-slate-600 leading-snug font-normal mb-1">
-                    Delivery of medical supplies and equipment.
-                  </p>
-                  <p className="text-[10px] xl:text-[11px] text-[#2563EB] font-semibold tracking-wide">
-                    On-time. Secure. Efficient.
-                  </p>
-                </div>
-
-                {/* 04 — SERVICE & REPAIR (Lower-Left / Strongest Secondary Focal Point) */}
-                <div className="absolute left-[6%] xl:left-[7%] bottom-[50px] xl:bottom-[55px] max-w-[310px] xl:max-w-[350px] z-10 text-left bg-white/95 backdrop-blur-sm p-4 border-l-2 border-[#21409A] shadow-[0_8px_20px_rgba(33,64,154,0.06)]">
-                  <div className="flex items-center space-x-2 text-xs font-mono font-bold text-[#21409A] mb-1">
-                    <span>04</span>
-                    <span className="w-8 h-[1.5px] bg-[#E11D48]" aria-hidden="true" />
-                    <span className="text-[9px] font-mono uppercase tracking-wider text-slate-400">CORE SUPPORT</span>
-                  </div>
-                  <h3 className="text-base xl:text-lg font-black uppercase tracking-tight text-[#0F172A] leading-tight mb-1">
-                    SERVICE &amp; REPAIR
-                  </h3>
-                  <p className="text-xs text-slate-600 leading-relaxed font-normal mb-1.5">
-                    Servicing and repair of the equipment that FAB supplies.
-                  </p>
-                  <p className="text-[10.5px] xl:text-xs text-[#2563EB] font-bold tracking-wide mb-2">
-                    Expert support. Maximum uptime. Longer equipment life.
-                  </p>
-                  {/* Subtle technical annotations around Service & Repair */}
-                  <div className="pt-2 border-t border-slate-100 flex flex-wrap gap-x-2 gap-y-1 text-[9px] font-mono uppercase tracking-wider text-slate-400">
-                    <span>MAINTENANCE</span>
-                    <span>•</span>
-                    <span>REPAIRS</span>
-                    <span>•</span>
-                    <span>TECHNICAL SUPPORT</span>
-                    <span>•</span>
-                    <span>EQUIPMENT SERVICE</span>
-                  </div>
-                </div>
-
-                {/* Bottom-Right Editorial Tracker */}
-                <div className="absolute right-0 bottom-1 z-10 text-right">
-                  <span className="text-[10px] font-mono tracking-[0.22em] uppercase text-slate-400">
-                    SUPPORT / SUPPLY / SERVICE / TOGETHER
-                  </span>
-                </div>
+            {/* Editorial Content on Left */}
+            <div className="relative z-10 p-6 sm:p-10 lg:p-14 xl:p-16 max-w-xl lg:max-w-2xl">
+              {/* Eyebrow with red accent line */}
+              <div className="flex items-center space-x-2.5 mb-4 sm:mb-5">
+                <span className="text-xs sm:text-[13px] font-bold uppercase tracking-[0.18em] text-[#0F172A]">
+                  SERVICES
+                </span>
+                <span className="w-8 h-[2px] bg-[#E11D48] rounded-full inline-block" aria-hidden="true" />
               </div>
 
-              {/* MOBILE & TABLET STAGGERED EDITORIAL SEQUENCE (<lg) */}
-              <div className="block lg:hidden space-y-10">
-                {/* Photographic Composite Graphic */}
-                <div className="rounded-lg overflow-hidden border border-slate-200 shadow-sm max-w-lg mx-auto">
-                  <img
-                    src={servicesCCompImg}
-                    alt="FAB Medical Services lifecycle showing procurement, marketing, delivery, and equipment servicing"
-                    className="w-full h-auto object-contain block"
-                    loading="lazy"
-                  />
-                </div>
+              {/* Main Headline */}
+              <h2
+                id="services-heading"
+                className="text-3xl sm:text-4xl lg:text-[48px] xl:text-[54px] font-black uppercase tracking-tight text-[#0F172A] leading-[1.04] mb-4 sm:mb-5"
+              >
+                FROM SUPPLY<br />
+                TO SERVICE.
+              </h2>
 
-                {/* 4 Staggered Service Items */}
-                <div className="space-y-6 pt-2">
-                  {/* 01 */}
-                  <div className="space-y-1 pl-2 border-l-2 border-slate-200">
-                    <div className="flex items-center space-x-2 text-xs font-mono font-bold text-[#21409A]">
-                      <span>01</span>
-                      <span className="w-6 h-[1.5px] bg-[#3B82F6]" aria-hidden="true" />
+              {/* Supporting Paragraph */}
+              <p className="text-xs sm:text-sm lg:text-[15px] text-slate-600 leading-relaxed font-normal max-w-md">
+                FAB Medical Supplies Ltd. supports healthcare providers through the procurement, marketing, delivery, servicing and repair of medical equipment, instruments and reagents.
+              </p>
+            </div>
+          </div>
+
+          {/* ======================================================== */}
+          {/* 2. HORIZONTAL SERVICE CAROUSEL: 4 Cards with Nav Arrows  */}
+          {/* ======================================================== */}
+          <div className="relative mt-8 sm:mt-10 lg:mt-12" data-aos="fade-up" data-aos-duration="900" data-aos-delay="150">
+            {/* Left Circular Navigation Arrow */}
+            <button
+              type="button"
+              onClick={handlePrevService}
+              aria-label="Previous service"
+              className="hidden xl:flex absolute -left-5 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white border border-slate-200/90 shadow-[0_4px_16px_rgba(15,23,42,0.08)] text-slate-600 hover:text-[#21409A] hover:border-[#21409A] hover:scale-105 active:scale-95 items-center justify-center transition-all focus:outline-none focus:ring-2 focus:ring-[#21409A] focus:ring-offset-2"
+            >
+              <svg className="w-4 h-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+
+            {/* Right Circular Navigation Arrow */}
+            <button
+              type="button"
+              onClick={handleNextService}
+              aria-label="Next service"
+              className="hidden xl:flex absolute -right-5 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white border border-slate-200/90 shadow-[0_4px_16px_rgba(15,23,42,0.08)] text-slate-600 hover:text-[#21409A] hover:border-[#21409A] hover:scale-105 active:scale-95 items-center justify-center transition-all focus:outline-none focus:ring-2 focus:ring-[#21409A] focus:ring-offset-2"
+            >
+              <svg className="w-4 h-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+
+            {/* 4 Cards Grid (Swipeable on mobile, 4-column on desktop) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
+              {servicesList.map((service, idx) => {
+                const isActive = idx === activeServiceIndex;
+                return (
+                  <div
+                    key={service.id}
+                    onClick={() => setActiveServiceIndex(idx)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        setActiveServiceIndex(idx);
+                      }
+                    }}
+                    aria-label={`Service ${service.num}: ${service.title}`}
+                    className={`flex flex-col justify-between rounded-xl overflow-hidden bg-white cursor-pointer transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-[#21409A] focus:ring-offset-2 ${
+                      isActive
+                        ? 'border border-[#21409A]/30 shadow-[0_12px_28px_rgba(33,64,154,0.1)] ring-1 ring-[#21409A]/15'
+                        : 'border border-slate-200/80 shadow-sm hover:border-slate-300 hover:shadow-md'
+                    }`}
+                  >
+                    {/* Large Photographic Thumbnail */}
+                    <div className="aspect-[16/10] w-full overflow-hidden bg-slate-100 relative">
+                      <img
+                        src={service.image}
+                        alt={service.alt}
+                        className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                        width="380"
+                        height="238"
+                        loading="lazy"
+                        decoding="async"
+                      />
                     </div>
-                    <h3 className="text-base font-bold uppercase tracking-tight text-[#0F172A]">
-                      PROCUREMENT &amp; SUPPLY
-                    </h3>
-                    <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                      Medical equipment, instruments and reagents.
-                    </p>
-                    <p className="text-[11px] text-[#2563EB] font-medium">
-                      Global sourcing. Quality assurance. Reliable supply.
-                    </p>
+
+                    {/* Card Content Block */}
+                    <div className="p-5 sm:p-6 flex flex-col justify-between flex-1">
+                      <div>
+                        {/* Number with Horizontal Line */}
+                        <div className="flex items-center space-x-2 mb-2.5">
+                          <span
+                            className={`text-xs sm:text-sm font-mono font-bold tracking-wider transition-colors ${
+                              isActive ? 'text-[#21409A]' : 'text-[#21409A]/80'
+                            }`}
+                          >
+                            {service.num}
+                          </span>
+                          <span
+                            className={`w-6 h-[1.5px] transition-colors ${
+                              isActive ? 'bg-[#21409A]' : 'bg-slate-300'
+                            }`}
+                            aria-hidden="true"
+                          />
+                        </div>
+
+                        {/* Service Title */}
+                        <h3 className="text-sm sm:text-base font-bold uppercase tracking-tight text-[#0F172A] mb-1.5 leading-snug">
+                          {service.title}
+                        </h3>
+
+                        {/* Short Description */}
+                        <p className="text-xs text-slate-500 leading-relaxed font-normal">
+                          {service.description}
+                        </p>
+                      </div>
+
+                      {/* Subtle Arrow Indicator */}
+                      <div className="flex justify-end pt-4">
+                        <span
+                          className={`text-xs font-bold transition-all duration-300 group-hover:translate-x-1 ${
+                            isActive ? 'text-[#21409A]' : 'text-slate-400 group-hover:text-[#21409A]'
+                          }`}
+                          aria-hidden="true"
+                        >
+                          →
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Bottom Blue Accent Underline for Active Card (As shown in target design) */}
+                    <div
+                      className={`h-[3px] w-full transition-all duration-300 ${
+                        isActive ? 'bg-[#21409A]' : 'bg-transparent'
+                      }`}
+                      aria-hidden="true"
+                    />
                   </div>
+                );
+              })}
+            </div>
 
-                  {/* 02 */}
-                  <div className="space-y-1 pl-5 sm:pl-8 border-l-2 border-slate-200">
-                    <div className="flex items-center space-x-2 text-xs font-mono font-bold text-[#21409A]">
-                      <span>02</span>
-                      <span className="w-6 h-[1.5px] bg-[#3B82F6]" aria-hidden="true" />
-                    </div>
-                    <h3 className="text-base font-bold uppercase tracking-tight text-[#0F172A]">
-                      MARKETING &amp; SALES
-                    </h3>
-                    <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                      Supporting the marketing and sales of medical products and equipment.
-                    </p>
-                    <p className="text-[11px] text-[#2563EB] font-medium">
-                      Expert advice. Product support. Long-term partnerships.
-                    </p>
-                  </div>
-
-                  {/* 03 */}
-                  <div className="space-y-1 pl-2 border-l-2 border-slate-200">
-                    <div className="flex items-center space-x-2 text-xs font-mono font-bold text-[#21409A]">
-                      <span>03</span>
-                      <span className="w-6 h-[1.5px] bg-[#3B82F6]" aria-hidden="true" />
-                    </div>
-                    <h3 className="text-base font-bold uppercase tracking-tight text-[#0F172A]">
-                      DELIVERY OF SUPPLIES
-                    </h3>
-                    <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                      Delivery of medical supplies and equipment.
-                    </p>
-                    <p className="text-[11px] text-[#2563EB] font-medium">
-                      On-time. Secure. Efficient.
-                    </p>
-                  </div>
-
-                  {/* 04 */}
-                  <div className="space-y-1.5 pl-4 sm:pl-6 border-l-2 border-[#21409A] bg-slate-50/60 p-4 rounded-r-md">
-                    <div className="flex items-center space-x-2 text-xs font-mono font-bold text-[#21409A]">
-                      <span>04</span>
-                      <span className="w-6 h-[1.5px] bg-[#E11D48]" aria-hidden="true" />
-                      <span className="text-[9px] font-mono uppercase tracking-wider text-slate-400">CORE SUPPORT</span>
-                    </div>
-                    <h3 className="text-lg font-black uppercase tracking-tight text-[#0F172A]">
-                      SERVICE &amp; REPAIR
-                    </h3>
-                    <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                      Servicing and repair of the equipment that FAB supplies.
-                    </p>
-                    <p className="text-xs text-[#2563EB] font-bold">
-                      Expert support. Maximum uptime. Longer equipment life.
-                    </p>
-                    <div className="pt-2 border-t border-slate-200/80 flex flex-wrap gap-x-2 gap-y-1 text-[9px] font-mono uppercase tracking-wider text-slate-400">
-                      <span>MAINTENANCE</span>
-                      <span>•</span>
-                      <span>REPAIRS</span>
-                      <span>•</span>
-                      <span>TECHNICAL SUPPORT</span>
-                      <span>•</span>
-                      <span>EQUIPMENT SERVICE</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Mobile Bottom Tracker */}
-                <div className="pt-2 text-center">
-                  <span className="text-[10px] font-mono tracking-[0.2em] uppercase text-slate-400">
-                    SUPPORT / SUPPLY / SERVICE / TOGETHER
-                  </span>
-                </div>
+            {/* Mobile / Tablet Circular Navigation Arrows (< xl) */}
+            <div className="flex xl:hidden items-center justify-center space-x-4 mt-6">
+              <button
+                type="button"
+                onClick={handlePrevService}
+                aria-label="Previous service"
+                className="w-10 h-10 rounded-full bg-white border border-slate-200/90 shadow-sm text-slate-600 hover:text-[#21409A] hover:border-[#21409A] flex items-center justify-center transition-all focus:outline-none focus:ring-2 focus:ring-[#21409A]"
+              >
+                <svg className="w-4 h-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <div className="text-xs font-mono font-bold text-[#21409A]">
+                {servicesList[activeServiceIndex].num} / 04
               </div>
+              <button
+                type="button"
+                onClick={handleNextService}
+                aria-label="Next service"
+                className="w-10 h-10 rounded-full bg-white border border-slate-200/90 shadow-sm text-slate-600 hover:text-[#21409A] hover:border-[#21409A] flex items-center justify-center transition-all focus:outline-none focus:ring-2 focus:ring-[#21409A]"
+              >
+                <svg className="w-4 h-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          {/* ======================================================== */}
+          {/* 3. BOTTOM STATEMENT: Quality Suppliers + Accent Line     */}
+          {/* ======================================================== */}
+          <div
+            className="mt-14 sm:mt-18 lg:mt-20 pt-8 border-t border-slate-100 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6"
+            data-aos="fade-up"
+            data-aos-duration="800"
+          >
+            <div>
+              {/* Short red horizontal accent line */}
+              <span className="w-8 h-[2px] bg-[#E11D48] rounded-full inline-block mb-3.5" aria-hidden="true" />
+              {/* Statement */}
+              <h3 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-[#21409A] leading-tight">
+                QUALITY SUPPLIERS.<br />
+                HEALTHIER TOMORROWS.
+              </h3>
+            </div>
+
+            {/* Subtle Technical Architectural Guideline matching target mockup */}
+            <div className="hidden sm:flex items-center space-x-3 text-slate-300 select-none pointer-events-none pb-1" aria-hidden="true">
+              <span className="w-10 h-[2.5px] bg-[#E11D48] rounded-full inline-block" />
+              <svg className="w-24 h-6 text-slate-200" viewBox="0 0 100 24" fill="none">
+                <path d="M 0 16 L 55 16 L 75 4 L 100 4" stroke="currentColor" strokeWidth="1.5" />
+              </svg>
             </div>
           </div>
         </Container>
@@ -1806,6 +2058,10 @@ export default function About({ onNavigate }) {
                   src={fabLogoImg}
                   alt="FAB Medical Supplies Ltd."
                   className="h-9 xl:h-10 w-auto object-contain block"
+                  width="40"
+                  height="41"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             </div>
@@ -1847,7 +2103,10 @@ export default function About({ onNavigate }) {
                     src={contactStethImg}
                     alt="Precision medical stethoscope examination equipment supplied by FAB Medical Supplies Ltd."
                     className="w-full h-full object-cover object-center block"
+                    width="240"
+                    height="240"
                     loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </div>
@@ -1927,16 +2186,15 @@ export default function About({ onNavigate }) {
 
                 {/* Restrained Text-Style Contact Link: LET'S TALK → */}
                 <div>
-                  <button
-                    type="button"
-                    onClick={() => onNavigate('contact')}
+                  <Link
+                    to="/contact"
                     className="group inline-flex items-center space-x-2 text-xs font-mono font-bold uppercase tracking-[0.22em] text-[#0F172A] hover:text-[#21409A] transition-colors"
                   >
                     <span>LET'S TALK</span>
                     <span className="text-[#E11D48] font-bold text-sm transition-transform group-hover:translate-x-1.5" aria-hidden="true">
                       →
                     </span>
-                  </button>
+                  </Link>
                 </div>
               </div>
 

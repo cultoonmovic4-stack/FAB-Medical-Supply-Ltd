@@ -8,6 +8,36 @@
  * - No invented models, prices, stock statuses, or manufacturer claims.
  */
 
+// Product Equipment Photography Assets (Client-supplied & Verified High-Resolution Renders)
+import ctScannerImg from '../assets/products/ct_scanner_siemens.webp';
+import ultrasoundScannerImg from '../assets/products/ultrasound_scanner_trolley.webp';
+import dopplerUltrasoundImg from '../assets/products/ultrasound_color_doppler.webp';
+import bpMonitorImg from '../assets/products/blood_pressure_monitor.webp';
+import patientMonitorIcuImg from '../assets/products/patient_monitor_icu_ge.webp';
+import oxygenConcentratorImg from '../assets/products/oxygen_concentrator.webp';
+import autoclaveBenchtopImg from '../assets/products/autoclave_benchtop.webp';
+import autoclaveTongshuoImg from '../assets/products/autoclave_tongshuo.webp';
+import pharmacyFridgeImg from '../assets/products/pharmacy_refrigerator.webp';
+import wheelchairImg from '../assets/products/wheelchair_manual.webp';
+import bedsideLockerImg from '../assets/products/bedside_locker.webp';
+import diagnosticAnalyzerImg from '../assets/products/diagnostic_ecg_analyzer.webp';
+import microscopeImg from '../assets/products/microscope_optical.webp';
+import centrifugeImg from '../assets/products/centrifuge_benchtop.webp';
+import biosafetyCabinetImg from '../assets/products/biosafety_cabinet_clean.webp';
+import anesthesiaMachineImg from '../assets/products/anesthesia_machine.webp';
+import operatingTableImg from '../assets/products/operating_table.webp';
+import electrosurgicalUnitImg from '../assets/products/electrosurgical_unit.webp';
+import vitalSignsMonitorImg from '../assets/products/vital_signs_monitor_philips.webp';
+import surgicalInstrumentsImg from '../assets/products/surgical_instruments_theatre.webp';
+import biosafetyLabImg from '../assets/products/biosafety_cabinet_lab.webp';
+import centrifugeRotorImg from '../assets/products/centrifuge_rotor.webp';
+import microscopeBinocularImg from '../assets/products/microscope_binocular.webp';
+import wheelchairElectricImg from '../assets/products/wheelchair_electric.webp';
+import surgicalKitImg from '../assets/products/surgical_instruments_kit.webp';
+import surgicalTrayImg from '../assets/products/surgical_instruments_tray.webp';
+import endoscopeImg from '../assets/products/endoscope.webp';
+
+
 export const categories = [
   {
     id: 'radiology-imaging',
@@ -72,9 +102,9 @@ export const products = [
     name: 'CT Scanner (Computed Tomography)',
     categoryId: 'radiology-imaging',
     categoryName: 'Radiology and Imaging Equipment (Diagnostic)',
-    summary: null,
+    summary: 'Clinical computed tomography scanner for multi-slice diagnostic imaging.',
     specifications: [],
-    image: null,
+    image: ctScannerImg,
   },
   {
     id: 'mri-machine',
@@ -90,9 +120,18 @@ export const products = [
     name: 'Ultrasound Scanner',
     categoryId: 'radiology-imaging',
     categoryName: 'Radiology and Imaging Equipment (Diagnostic)',
-    summary: 'For real-time, non-invasive imaging.',
+    summary: 'Clinical diagnostic ultrasound scanner with multi-frequency probes for real-time imaging.',
     specifications: [],
-    image: null,
+    image: ultrasoundScannerImg,
+  },
+  {
+    id: 'color-doppler-ultrasound',
+    name: 'Color Doppler Ultrasound Scanner',
+    categoryId: 'radiology-imaging',
+    categoryName: 'Radiology and Imaging Equipment (Diagnostic)',
+    summary: 'High-definition digital color Doppler ultrasound diagnostic console for vascular and cardiac imaging.',
+    specifications: [],
+    image: dopplerUltrasoundImg,
   },
   {
     id: 'mammography-machine',
@@ -119,9 +158,9 @@ export const products = [
     name: 'Examination Couch',
     categoryId: 'opd-consultation',
     categoryName: 'Outpatient Department (OPD) and Consultation Room',
-    summary: null,
+    summary: 'Adjustable clinical examination and treatment couch.',
     specifications: [],
-    image: null,
+    image: operatingTableImg,
   },
   {
     id: 'otoscopes',
@@ -146,9 +185,9 @@ export const products = [
     name: 'Sphygmomanometer',
     categoryId: 'opd-consultation',
     categoryName: 'Outpatient Department (OPD) and Consultation Room',
-    summary: null,
+    summary: 'Clinical blood pressure measurement instrument.',
     specifications: [],
-    image: null,
+    image: bpMonitorImg,
   },
   {
     id: 'blood-pressure-monitors',
@@ -157,7 +196,7 @@ export const products = [
     categoryName: 'Outpatient Department (OPD) and Consultation Room',
     summary: null,
     specifications: [],
-    image: null,
+    image: bpMonitorImg,
   },
   {
     id: 'stethoscope',
@@ -213,7 +252,7 @@ export const products = [
     categoryName: 'Emergency and ICU (Critical Care)',
     summary: 'Tracks vitals (ECG, SpO2, Blood Pressure).',
     specifications: [],
-    image: null,
+    image: patientMonitorIcuImg,
   },
   {
     id: 'crash-cart-trolley',
@@ -231,7 +270,7 @@ export const products = [
     categoryName: 'Emergency and ICU (Critical Care)',
     summary: 'For supplying oxygen.',
     specifications: [],
-    image: null,
+    image: oxygenConcentratorImg,
   },
   {
     id: 'nebulizer',
@@ -278,7 +317,7 @@ export const products = [
     categoryName: 'Maternity and Pediatrics',
     summary: 'Specialized bed for childbirth.',
     specifications: [],
-    image: null,
+    image: operatingTableImg,
   },
 
   // 5. Specialized Departments
@@ -311,12 +350,21 @@ export const products = [
   },
   {
     id: 'ent-unit',
-    name: 'ENT Unit',
+    name: 'ENT Examination Unit & Scope',
     categoryId: 'specialized-departments',
     categoryName: 'Specialized Departments',
-    summary: 'Ear, Nose, and Throat exam equipment.',
+    summary: 'Ear, Nose, and Throat exam equipment with high-definition endoscopic visualization.',
     specifications: [],
-    image: null,
+    image: endoscopeImg,
+  },
+  {
+    id: 'clinical-endoscope-system',
+    name: 'Clinical Video Endoscopy System',
+    categoryId: 'specialized-departments',
+    categoryName: 'Specialized Departments',
+    summary: 'Medical endoscopic diagnostic imaging and visualization system.',
+    specifications: [],
+    image: endoscopeImg,
   },
 
   // 6. Supporting/Utility Services
@@ -327,7 +375,7 @@ export const products = [
     categoryName: 'Supporting/Utility Services',
     summary: 'For sterilizing instruments.',
     specifications: [],
-    image: null,
+    image: autoclaveBenchtopImg,
   },
   {
     id: 'mortuary-cooler-freezer',
@@ -363,7 +411,7 @@ export const products = [
     categoryName: 'Supporting/Utility Services',
     summary: 'For medication storage.',
     specifications: [],
-    image: null,
+    image: pharmacyFridgeImg,
   },
 
   // 7. General Hospital Furniture
@@ -372,9 +420,18 @@ export const products = [
     name: 'Wheelchairs',
     categoryId: 'hospital-furniture',
     categoryName: 'General Hospital Furniture',
-    summary: null,
+    summary: 'Standard foldable manual mobility wheelchairs.',
     specifications: [],
-    image: null,
+    image: wheelchairImg,
+  },
+  {
+    id: 'electric-wheelchair',
+    name: 'Motorized Electric Wheelchair',
+    categoryId: 'hospital-furniture',
+    categoryName: 'General Hospital Furniture',
+    summary: 'Powered patient mobility chair with ergonomic joystick navigation and dual motor drive.',
+    specifications: [],
+    image: wheelchairElectricImg,
   },
   {
     id: 'stretchers',
@@ -401,7 +458,7 @@ export const products = [
     categoryName: 'General Hospital Furniture',
     summary: 'For patient convenience.',
     specifications: [],
-    image: null,
+    image: bedsideLockerImg,
   },
   {
     id: 'patient-screens-partitions',
@@ -421,52 +478,79 @@ export const products = [
     categoryName: 'Laboratory',
     summary: 'Hematology, Chemistry, Immunoassay, Urine.',
     specifications: [],
-    image: null,
+    image: diagnosticAnalyzerImg,
   },
   {
     id: 'microscopes',
     name: 'Microscopes',
     categoryId: 'laboratory',
     categoryName: 'Laboratory',
-    summary: null,
+    summary: 'Clinical optical laboratory microscope.',
     specifications: [],
-    image: null,
+    image: microscopeImg,
+  },
+  {
+    id: 'binocular-microscope',
+    name: 'Binocular Laboratory Research Microscope',
+    categoryId: 'laboratory',
+    categoryName: 'Laboratory',
+    summary: 'High-precision optical magnification with coaxial coarse and fine focus controls.',
+    specifications: [],
+    image: microscopeBinocularImg,
   },
   {
     id: 'centrifuges',
     name: 'Centrifuges',
     categoryId: 'laboratory',
     categoryName: 'Laboratory',
-    summary: null,
+    summary: 'Benchtop clinical sample centrifuge.',
     specifications: [],
-    image: null,
+    image: centrifugeImg,
+  },
+  {
+    id: 'centrifuge-rotor-clinical',
+    name: 'Clinical Centrifuge & High-Speed Rotors',
+    categoryId: 'laboratory',
+    categoryName: 'Laboratory',
+    summary: 'Precision laboratory centrifugation system with multi-tube angle rotors.',
+    specifications: [],
+    image: centrifugeRotorImg,
   },
   {
     id: 'autoclaves-lab',
     name: 'Autoclaves',
     categoryId: 'laboratory',
     categoryName: 'Laboratory',
-    summary: null,
+    summary: 'Vertical autoclave sterilizer for clinical laboratory sterilization.',
     specifications: [],
-    image: null,
+    image: autoclaveTongshuoImg,
   },
   {
     id: 'biosafety-cabinets',
     name: 'Biosafety Cabinets',
     categoryId: 'laboratory',
     categoryName: 'Laboratory',
-    summary: null,
+    summary: 'Class II microbiological safety containment cabinet.',
     specifications: [],
-    image: null,
+    image: biosafetyCabinetImg,
+  },
+  {
+    id: 'biosafety-cabinet-workstation',
+    name: 'Biosafety Cabinet Workstation (Class II)',
+    categoryId: 'laboratory',
+    categoryName: 'Laboratory',
+    summary: 'Laminar flow biological safety cabinet providing sterile personnel and sample protection.',
+    specifications: [],
+    image: biosafetyLabImg,
   },
   {
     id: 'lab-fridges',
     name: 'Lab Fridges',
     categoryId: 'laboratory',
     categoryName: 'Laboratory',
-    summary: null,
+    summary: 'Temperature-controlled clinical laboratory cold storage.',
     specifications: [],
-    image: null,
+    image: pharmacyFridgeImg,
   },
 
   // 9. Theatre Room
@@ -475,9 +559,9 @@ export const products = [
     name: 'Anesthesia Machine',
     categoryId: 'theatre-room',
     categoryName: 'Theatre Room',
-    summary: null,
+    summary: 'Operating theatre anesthesia workstation with integrated ventilator.',
     specifications: [],
-    image: null,
+    image: anesthesiaMachineImg,
   },
   {
     id: 'led-theatre-lights',
@@ -493,27 +577,27 @@ export const products = [
     name: 'Operating Table',
     categoryId: 'theatre-room',
     categoryName: 'Theatre Room',
-    summary: null,
+    summary: 'Multi-function hydraulic/electric surgical operating table.',
     specifications: [],
-    image: null,
+    image: operatingTableImg,
   },
   {
     id: 'electrosurgical-units',
     name: 'Electrosurgical Units',
     categoryId: 'theatre-room',
     categoryName: 'Theatre Room',
-    summary: null,
+    summary: 'High-frequency monopolar and bipolar surgical cutting and coagulation unit.',
     specifications: [],
-    image: null,
+    image: electrosurgicalUnitImg,
   },
   {
     id: 'electric-knife',
     name: 'Electric Knife',
     categoryId: 'theatre-room',
     categoryName: 'Theatre Room',
-    summary: null,
+    summary: 'Electrosurgical cutting pencil and generator system.',
     specifications: [],
-    image: null,
+    image: electrosurgicalUnitImg,
   },
   {
     id: 'suction-machine-theatre',
@@ -529,27 +613,45 @@ export const products = [
     name: 'Patient Monitors',
     categoryId: 'theatre-room',
     categoryName: 'Theatre Room',
-    summary: null,
+    summary: 'Multi-parameter perioperative patient monitor.',
     specifications: [],
-    image: null,
+    image: patientMonitorIcuImg,
   },
   {
     id: 'vital-signs-monitor',
     name: 'Vital Signs Monitor',
     categoryId: 'theatre-room',
     categoryName: 'Theatre Room',
-    summary: null,
+    summary: 'Portable multi-vital signs measurement monitor.',
     specifications: [],
-    image: null,
+    image: vitalSignsMonitorImg,
   },
   {
     id: 'surgical-instruments',
     name: 'Surgical Instruments',
     categoryId: 'theatre-room',
     categoryName: 'Theatre Room',
-    summary: null,
+    summary: 'Operating theatre surgical grade instruments.',
     specifications: [],
-    image: null,
+    image: surgicalInstrumentsImg,
+  },
+  {
+    id: 'surgical-procedure-kit',
+    name: 'Operating Theatre Surgical Procedure Kit',
+    categoryId: 'theatre-room',
+    categoryName: 'Theatre Room',
+    summary: 'High-grade stainless steel surgical instruments set for specialized clinical operations.',
+    specifications: [],
+    image: surgicalKitImg,
+  },
+  {
+    id: 'surgical-instrument-sterilization-tray',
+    name: 'Stainless Steel Surgical Instrument Tray',
+    categoryId: 'theatre-room',
+    categoryName: 'Theatre Room',
+    summary: 'Heavy-duty autoclavable surgical instrument preparation and sterilization container.',
+    specifications: [],
+    image: surgicalTrayImg,
   },
   {
     id: 'defibrillator-theatre',
