@@ -104,10 +104,10 @@ export default function Home({ onNavigate }) {
               <div>
                 <Link
                   to="/about"
-                  className="group inline-flex items-center text-xs xl:text-sm font-bold text-brand-blue hover:text-brand-red transition-colors focus:outline-none focus:underline cursor-pointer"
+                  className="group inline-flex items-center space-x-2 bg-brand-red text-white hover:bg-[#cf171e] font-bold text-xs xl:text-sm tracking-wider uppercase px-4 py-2 sm:px-5 sm:py-2.5 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-red focus:ring-offset-2 min-h-[38px] cursor-pointer"
                 >
-                  <span>About FAB</span>
-                  <span className="ml-1.5 text-brand-red text-base font-bold transition-transform duration-150 group-hover:translate-x-1">
+                  <span>ABOUT FAB</span>
+                  <span className="ml-1 text-white text-base font-bold transition-transform duration-150 group-hover:translate-x-1">
                     &rarr;
                   </span>
                 </Link>
@@ -294,14 +294,14 @@ export default function Home({ onNavigate }) {
               </div>
             </div>
 
-            {/* 5. About FAB Link */}
+            {/* 5. About FAB Button */}
             <div className="pt-2" data-aos="fade-up" data-aos-delay="450">
               <Link
                 to="/about"
-                className="group inline-flex items-center text-xs sm:text-sm font-bold text-brand-blue hover:text-brand-red transition-colors focus:outline-none focus:underline cursor-pointer"
+                className="group inline-flex items-center justify-center space-x-2 bg-brand-red text-white hover:bg-[#cf171e] font-bold text-xs sm:text-sm tracking-wider uppercase px-5 py-2.5 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-red focus:ring-offset-2 min-h-[42px] w-full sm:w-auto cursor-pointer"
               >
-                <span>About FAB</span>
-                <span className="ml-1.5 text-brand-red text-base font-bold transition-transform duration-150 group-hover:translate-x-1">
+                <span>ABOUT FAB</span>
+                <span className="ml-1 text-white text-base font-bold transition-transform duration-150 group-hover:translate-x-1">
                   &rarr;
                 </span>
               </Link>
