@@ -2,14 +2,15 @@ import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import AOS from 'aos';
 import { Header, Footer, BackToTop } from './components';
-import { Home, Products } from './pages';
+import Home from './pages/Home';
+import Products from './pages/Products';
+import NotFound from './pages/NotFound';
 import { useSEO } from './hooks/useSEO';
 
 const About = lazy(() => import('./pages/About'));
 const Services = lazy(() => import('./pages/Services'));
 const WhoWeServe = lazy(() => import('./pages/WhoWeServe'));
 const Contact = lazy(() => import('./pages/Contact'));
-const NotFound = lazy(() => import('./pages/NotFound'));
 
 export default function App() {
   const location = useLocation();

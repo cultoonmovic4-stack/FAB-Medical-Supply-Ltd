@@ -1,117 +1,67 @@
 import React from 'react';
 
 /**
- * ProductCard component — Redesigned into Editorial Medical Equipment Catalogue Item
+ * ProductCard component — Compact Horizontal Architectural Ledger Card
  * 
- * Features:
- * - Controlled editorial variation (Organized Editorial Disorder)
- * - Authentic technical medical documentation placeholder
- * - High-contrast editorial typography
- * - Restrained VIEW DETAILS → text action with hover transition
- * - Technical reference numbering and fine rules
+ * Redesigned for:
+ * - Low card height (eliminates overly long/tall vertical stacking)
+ * - Minimal, focused content (Department, Title, and Action button only)
+ * - Fresh horizontal split layout with equipment thumbnail on left
+ * - Highlighted solid brand blue action button
  */
 export default function ProductCard({ product, onSelect, index = 0 }) {
-  // Controlled rhythmic variation (index % 3)
-  const variant = index % 3;
+  // Clean department short name
+  const cleanDepartment = product.categoryName?.split('(')[0]?.trim() || product.categoryName;
 
   return (
     <article
       onClick={() => onSelect(product)}
       data-aos="fade-up"
-      data-aos-duration="850"
-      data-aos-delay={(index % 4) * 80}
-      className={`group cursor-pointer bg-white border border-slate-200/90 transition-all duration-300 flex flex-col justify-between relative overflow-hidden ${
-        variant === 1
-          ? 'hover:border-[#21409A] hover:shadow-[0_12px_28px_rgba(33,64,154,0.06)]'
-          : variant === 2
-          ? 'hover:border-[#21409A] hover:shadow-[0_12px_28px_rgba(33,64,154,0.06)]'
-          : 'hover:border-[#21409A] hover:shadow-[0_12px_28px_rgba(33,64,154,0.06)]'
-      }`}
+      data-aos-duration="550"
+      data-aos-delay={(index % 6) * 45}
+      className="group cursor-pointer bg-white border border-slate-300 hover:border-[#21409A] transition-all duration-200 p-3 sm:p-4 flex items-center gap-3.5 sm:gap-4 shadow-xs hover:shadow-md relative"
     >
-      {/* Product Image / Technical Blueprint Documentation Placeholder */}
-      <div className="relative p-5 bg-[#FAFCFE] flex items-center justify-center overflow-hidden border-b border-slate-100 select-none">
+      {/* Left: Compact Equipment Thumbnail */}
+      <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 flex-shrink-0 bg-[#F8FAFC] border border-slate-200 p-2 flex items-center justify-center overflow-hidden select-none">
         {product.image ? (
-          <div className="w-full aspect-[4/3] flex items-center justify-center overflow-hidden">
-            <img
-              src={product.image}
-              alt={product.name}
-              className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
-              width="320"
-              height="240"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
+          <img
+            src={product.image}
+            alt={product.name}
+            className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+            width="128"
+            height="128"
+            loading="lazy"
+            decoding="async"
+          />
         ) : (
-          /* High-Precision Technical Medical Equipment Placeholder */
-          <div
-            role="img"
-            aria-label={`Photograph placeholder for ${product.name}: Photograph to be supplied by FAB`}
-            className="w-full aspect-[4/3] relative flex flex-col items-center justify-center p-4 text-center border border-dashed border-slate-200/90 bg-white"
-          >
-            {/* Technical Registration Crosshairs at Corners */}
-            <div className="absolute top-1 left-1.5 text-[10px] font-mono text-slate-300 select-none">+</div>
-            <div className="absolute top-1 right-1.5 text-[10px] font-mono text-slate-300 select-none">+</div>
-            <div className="absolute bottom-1 left-1.5 text-[10px] font-mono text-slate-300 select-none">+</div>
-            <div className="absolute bottom-1 right-1.5 text-[10px] font-mono text-slate-300 select-none">+</div>
-
-            {/* Subtle Blueprint Concentric Ring Graphic */}
-            <svg
-              className="w-14 h-14 text-slate-300/80 mb-2 transition-transform duration-500 group-hover:scale-110"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.2"
-              aria-hidden="true"
-            >
-              <circle cx="12" cy="12" r="9" strokeDasharray="3 3" />
-              <circle cx="12" cy="12" r="4" />
-              <line x1="12" y1="2" x2="12" y2="22" strokeWidth="0.8" />
-              <line x1="2" y1="12" x2="22" y2="12" strokeWidth="0.8" />
-            </svg>
-
-            <span className="text-[11px] font-mono uppercase font-bold text-[#0F172A] tracking-wider block">
-              Product Photograph to be Supplied
-            </span>
-            <span className="text-[10px] font-mono text-slate-400 mt-0.5 block">
-              Pending owner verification
-            </span>
-
-            {/* Subtle Technical Annotation Stamp */}
-            <div className="mt-2.5 px-2 py-0.5 bg-slate-50 border border-slate-200 rounded-[2px] text-[9px] font-mono text-[#21409A] font-medium tracking-widest uppercase">
-              FAB VERIFIED SPECIFICATION
-            </div>
+          <div className="w-full h-full flex flex-col items-center justify-center text-center text-slate-300 text-[10px] font-mono">
+            <span>NO PHOTO</span>
           </div>
         )}
       </div>
 
-      {/* Product Information Body */}
-      <div className="p-5 flex-grow flex flex-col justify-between space-y-4">
-        <div className="space-y-2">
+      {/* Right: Clean, Restrained Information */}
+      <div className="flex-grow flex flex-col justify-between min-w-0 h-full py-0.5 space-y-2">
+        <div className="space-y-1">
           {/* Category Tag */}
-          <div className="flex items-center space-x-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#E11D48] inline-block" aria-hidden="true" />
-            <span className="text-[10.5px] font-mono uppercase tracking-[0.16em] text-[#21409A] font-bold truncate">
-              {product.categoryName}
-            </span>
+          <div className="flex items-center space-x-1.5 text-[10.5px] font-mono font-bold uppercase tracking-wider text-[#21409A] truncate">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#ED1C24] flex-shrink-0" aria-hidden="true" />
+            <span className="truncate">{cleanDepartment}</span>
           </div>
 
           {/* Product Name */}
-          <h3 className="font-bold text-[#0F172A] text-base lg:text-[17px] leading-snug tracking-tight group-hover:text-[#21409A] transition-colors">
+          <h3 className="font-bold text-[#0F172A] text-sm sm:text-[15px] lg:text-base leading-snug tracking-tight group-hover:text-[#21409A] transition-colors line-clamp-2">
             {product.name}
           </h3>
         </div>
 
-        {/* Editorial Action: VIEW DETAILS → */}
-        <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
-          <span className="inline-flex items-center text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#0F172A] group-hover:text-[#21409A] transition-colors">
+        {/* Highlighted Action Button */}
+        <div className="pt-1">
+          <span className="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-[#21409A] group-hover:bg-[#1B3580] text-white text-[10.5px] sm:text-[11px] font-mono font-bold uppercase tracking-wider transition-colors shadow-sm">
             <span>VIEW DETAILS</span>
-            <span className="text-[#E11D48] ml-2 font-bold transition-transform duration-200 group-hover:translate-x-1.5" aria-hidden="true">
+            <span className="text-white font-bold transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">
               →
             </span>
-          </span>
-          <span className="text-[10px] font-mono text-slate-400 tracking-wider">
-            UGANDA SUPPLY
           </span>
         </div>
       </div>

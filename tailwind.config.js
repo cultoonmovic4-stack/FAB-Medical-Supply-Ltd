@@ -24,6 +24,9 @@ export default {
           subtle: palette.neutral.border,
         },
       },
+      screens: {
+        'xs': '420px',
+      },
     },
   },
   plugins: [],

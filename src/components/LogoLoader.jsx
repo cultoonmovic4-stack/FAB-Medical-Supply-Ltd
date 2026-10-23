@@ -12,12 +12,17 @@ import fabLogoPng from '../assets/fab-logo.png';
  * - 6.0-second display duration with instant skip option
  */
 export default function LogoLoader({
-  duration = 6000,
+  duration = 1600,
   onComplete,
 }) {
   const [visible, setVisible] = useState(() => {
-    if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      return false;
+    if (typeof window !== 'undefined') {
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return false;
+      }
+      if (window.sessionStorage && window.sessionStorage.getItem('fab_loader_shown') === 'true') {
+        return false;
+      }
     }
     return true;
   });
@@ -28,6 +33,9 @@ export default function LogoLoader({
   const dismiss = () => {
     if (fading) return;
     setFading(true);
+    if (typeof window !== 'undefined' && window.sessionStorage) {
+      window.sessionStorage.setItem('fab_loader_shown', 'true');
+    }
     setTimeout(() => {
       setVisible(false);
       if (onComplete) onComplete();
@@ -40,7 +48,7 @@ export default function LogoLoader({
       return;
     }
 
-    // Auto-dismiss after 6.0 seconds (6000ms)
+    // Auto-dismiss after configured duration
     timerRef.current = setTimeout(() => {
       dismiss();
     }, duration);
@@ -128,7 +136,7 @@ export default function LogoLoader({
               cx="18"
               cy="18"
               r="14"
-              stroke="#0284C7"
+              stroke="#21409A"
               strokeWidth="3"
               strokeDasharray="88"
               strokeDashoffset="62"
@@ -141,7 +149,7 @@ export default function LogoLoader({
         {/* Clean Corporate Brand Marker */}
         <div className="flex items-center space-x-2 text-[10.5px] font-mono tracking-[0.2em] text-slate-400 uppercase">
           <span>FAB MEDICAL SUPPLIES LTD.</span>
-          <span className="w-1.5 h-1.5 rounded-full bg-[#E11D48]" aria-hidden="true" />
+          <span className="w-1.5 h-1.5 rounded-full bg-[#ED1C24]" aria-hidden="true" />
         </div>
 
       </div>
