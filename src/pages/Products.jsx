@@ -4,7 +4,6 @@ import Container from '../components/Container';
 import CustomDropdown from '../components/CustomDropdown';
 import ProductCard from '../components/ProductCard';
 import ProductDetail from '../components/ProductDetail';
-import LogoLoader from '../components/LogoLoader';
 import NotFound from './NotFound';
 import { categories, products } from '../data/products';
 import { categoryMetadata } from '../config/seo';
@@ -141,9 +140,9 @@ export default function Products({ onNavigate }) {
     return 0;
   });
 
-  const handleCategoryChange = (e) => {
-    const newCat = e.target.value;
-    if (newCat === 'all') {
+  const handleCategoryChange = (targetCat) => {
+    const newCat = typeof targetCat === 'string' ? targetCat : targetCat?.target?.value;
+    if (!newCat || newCat === 'all') {
       navigate('/products');
     } else {
       navigate(`/products/${newCat}`);
@@ -205,12 +204,15 @@ export default function Products({ onNavigate }) {
           if (searchParams.has('product')) {
             const nextParams = new URLSearchParams(searchParams);
             nextParams.delete('product');
-            setSearchParams(nextParams, { replace: true });
+            setSearchParams(nextParams);
           }
           window.scrollTo({ top: 0, behavior: 'instant' });
         }}
         onSelectProduct={(p) => {
           setSelectedProduct(p);
+          const nextParams = new URLSearchParams(searchParams);
+          nextParams.set('product', p.id);
+          setSearchParams(nextParams);
           window.scrollTo({ top: 0, behavior: 'instant' });
         }}
       />
@@ -219,102 +221,98 @@ export default function Products({ onNavigate }) {
 
   return (
     <div className="bg-[#FAFCFE] min-h-screen text-[#0F172A]">
-      {/* Clean Professional Logo Loader (matching Home page) */}
-      <LogoLoader duration={1600} />
-
       {/* ========================================================
-          PART 01: HERO SECTION — MINIMALIST ARCHITECTURAL SHOWCASE
+          PART 01: HERO SECTION — CENTERED EDITORIAL + FEATHERED HORIZON (1A)
           ======================================================== */}
-      <section className="relative bg-[#F8FAFC] border-b border-slate-300 py-10 sm:py-12 lg:py-14">
+      <section
+        className="relative bg-white border-b border-slate-200 pt-14 sm:pt-18 pb-0 overflow-hidden"
+        aria-labelledby="products-hero-heading"
+      >
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            
-            {/* Left Column (7-Col): Bold Title, Brief Subtitle & Micro-Ledger */}
-            <div className="lg:col-span-7 space-y-5 text-center lg:text-left" data-aos="fade-right" data-aos-duration="700">
-              {/* Eyebrow */}
-              <div className="flex items-center justify-center lg:justify-start space-x-2.5">
-                <span className="w-2 h-2 rounded-full bg-[#ED1C24]" aria-hidden="true" />
-                <span className="text-xs font-mono font-bold tracking-[0.2em] text-[#21409A] uppercase">
-                  {isCategoryPage
-                    ? `CLINICAL INDEX / ${activeCategoryObj.shortName.toUpperCase()}`
-                    : 'EQUIPMENT CATALOGUE • UGANDA'}
+          <div
+            className="max-w-3xl mx-auto text-center space-y-4"
+            data-aos="fade-up"
+            data-aos-duration="750"
+          >
+            {/* Eyebrow */}
+            <div className="flex items-center justify-center space-x-2 text-[11px] font-mono font-bold tracking-[0.25em] text-[#ED1C24] uppercase">
+              <span className="w-2 h-2 rounded-full bg-[#ED1C24]" aria-hidden="true" />
+              <span>
+                {isCategoryPage
+                  ? `CLINICAL INDEX / ${activeCategoryObj.shortName.toUpperCase()}`
+                  : 'EQUIPMENT CATALOGUE • UGANDA'}
+              </span>
+            </div>
+
+            {/* Main Headline */}
+            <h1
+              id="products-hero-heading"
+              className="text-3xl sm:text-5xl lg:text-[54px] font-black uppercase text-[#0F172A] tracking-tight leading-[1.04]"
+            >
+              {isCategoryPage ? (
+                categorySeoData?.h1 || activeCategoryObj.name
+              ) : (
+                <>
+                  Medical Equipment <br />
+                  <span className="text-[#21409A]">&amp; Hospital Supplies.</span>
+                </>
+              )}
+            </h1>
+
+            {/* Concise Supporting Line */}
+            <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-xl mx-auto">
+              {isCategoryPage
+                ? categorySeoData?.intro
+                : 'Certified clinical diagnostic systems, surgical apparatus, and hospital infrastructure supplied across Uganda.'}
+            </p>
+
+            {/* Clean Hairline Micro-Ledger */}
+            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 pt-2 text-xs font-mono text-slate-500">
+              <div className="flex items-center space-x-1.5">
+                <span className="font-black text-[#0F172A]">{sortedProducts.length}</span>
+                <span className="uppercase text-[11px] text-slate-500">
+                  {sortedProducts.length === 1 ? 'VERIFIED UNIT' : 'VERIFIED UNITS'}
                 </span>
               </div>
-
-              {/* Main Headline (H1) */}
-              <h1 className="text-3xl sm:text-4xl lg:text-[44px] xl:text-[48px] font-black uppercase text-[#0F172A] tracking-tight leading-[1.06] text-center lg:text-left">
-                {isCategoryPage ? (
-                  categorySeoData?.h1 || activeCategoryObj.name
-                ) : (
-                  <>
-                    Medical Equipment <br />
-                    <span className="text-[#21409A]">&amp; Hospital Supplies.</span>
-                  </>
-                )}
-              </h1>
-
-              {/* Brief Supporting Line (Under 20 Words) */}
-              <p className="text-base sm:text-lg text-slate-600 font-normal leading-relaxed max-w-xl mx-auto lg:mx-0 text-center lg:text-left">
-                {isCategoryPage
-                  ? categorySeoData?.intro
-                  : 'Certified clinical diagnostic systems, surgical apparatus, and hospital infrastructure supplied across Uganda.'}
-              </p>
-
-              {/* Micro-Ledger (Clean & Compact) */}
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-x-5 gap-y-2 pt-2 text-xs font-mono text-slate-500">
-                <div className="flex items-center space-x-2">
-                  <span className="text-base font-black text-[#0F172A] font-mono">{sortedProducts.length}</span>
-                  <span className="uppercase text-[11px] text-slate-500">Verified Units</span>
-                </div>
-                <span className="text-slate-300 hidden sm:inline">•</span>
-                <div className="flex items-center space-x-2">
-                  <span className="text-base font-black text-[#21409A] font-mono">{categories.length}</span>
-                  <span className="uppercase text-[11px] text-slate-500">Departments</span>
-                </div>
-                <span className="text-slate-300 hidden sm:inline">•</span>
-                <div className="flex items-center space-x-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#ED1C24]" />
-                  <span className="uppercase text-[11px] text-slate-600 font-semibold">Kampala Central Stock</span>
-                </div>
+              <span className="text-[#ED1C24]" aria-hidden="true">&bull;</span>
+              <div className="flex items-center space-x-1.5">
+                <span className="font-black text-[#21409A]">09</span>
+                <span className="uppercase text-[11px] text-slate-500">DEPARTMENTS</span>
+              </div>
+              <span className="text-[#ED1C24]" aria-hidden="true">&bull;</span>
+              <div className="flex items-center space-x-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" aria-hidden="true" />
+                <span className="uppercase text-[11px] text-slate-700 font-semibold">KAMPALA CENTRAL STOCK</span>
               </div>
             </div>
-
-            {/* Right Column (5-Col): Crisp Photographic Display */}
-            <div className="lg:col-span-5" data-aos="fade-left" data-aos-duration="750">
-              <div className="relative bg-white border border-slate-300 p-2 shadow-sm">
-                <div className="relative overflow-hidden aspect-[16/10] bg-slate-100">
-                  <img
-                    src={heroEquipmentPhoto}
-                    alt="Clinical diagnostic monitors, vital signs meters, and medical documentation on calibration desk"
-                    className="w-full h-full object-cover"
-                    loading="eager"
-                  />
-                  <div className="absolute top-2.5 right-2.5 bg-white px-2.5 py-1 border border-slate-300 text-[10px] font-mono font-bold text-[#0F172A] uppercase tracking-wider">
-                    CENTRAL INVENTORY
-                  </div>
-                </div>
-              </div>
-            </div>
-
           </div>
         </Container>
+
+        {/* Feathered equipment panorama — dissolves seamlessly into the page */}
+        <div className="relative mt-8 h-[240px] sm:h-[320px] lg:h-[360px] select-none">
+          <img
+            src={heroEquipmentPhoto}
+            alt="Clinical diagnostic monitors, vital signs meters, and medical documentation on calibration desk"
+            className="absolute inset-0 w-full h-full object-cover object-center"
+            fetchpriority="high"
+            loading="eager"
+            decoding="async"
+          />
+          <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white via-white/80 to-transparent pointer-events-none" aria-hidden="true" />
+          <div className="absolute inset-y-0 left-0 w-24 sm:w-48 bg-gradient-to-r from-white to-transparent pointer-events-none" aria-hidden="true" />
+          <div className="absolute inset-y-0 right-0 w-24 sm:w-48 bg-gradient-to-l from-white to-transparent pointer-events-none" aria-hidden="true" />
+        </div>
       </section>
 
       {/* ========================================================
-          PART 02: ARCHITECTURAL FILTER CONSOLE
+          PART 02: ARCHITECTURAL FILTER CONSOLE (Concept 2A)
           ======================================================== */}
-      <section className="bg-white border-b border-slate-300 py-6 relative z-20">
+      <section className="bg-white border-b border-slate-200 py-6 relative z-20">
         <Container>
           <div className="space-y-4">
-            {/* Top Search & Filter Control Strip */}
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                setSearchQuery(searchInput);
-              }}
-              className="flex flex-col md:flex-row items-stretch md:items-center gap-3"
-            >
-              {/* Search input with clean rectangular styling */}
+            {/* Top Control Bar: Live Search Input + Secondary Controls (Application & Sort) */}
+            <div className="flex flex-col md:flex-row items-stretch md:items-center gap-3">
+              {/* Search input with live debounced / responsive filtering */}
               <div className="relative flex-grow">
                 <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
                   <svg className="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -329,7 +327,7 @@ export default function Products({ onNavigate }) {
                     setSearchQuery(e.target.value);
                   }}
                   placeholder="Search equipment by name, department, or technical specification..."
-                  className="w-full bg-[#FAFCFE] border border-slate-300 focus:border-[#21409A] focus:bg-white text-[#0F172A] text-sm rounded-sm pl-10 pr-10 py-3 focus:outline-none transition-all placeholder:text-slate-400 font-sans"
+                  className="w-full bg-[#FAFCFE] border border-slate-300 focus:border-[#21409A] focus:bg-white text-[#0F172A] text-sm rounded-xs pl-10 pr-10 py-3 focus:outline-none transition-all placeholder:text-slate-400 font-sans"
                 />
                 {searchInput && (
                   <button
@@ -338,7 +336,7 @@ export default function Products({ onNavigate }) {
                       setSearchInput('');
                       setSearchQuery('');
                     }}
-                    className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-xs font-mono font-bold text-slate-400 hover:text-[#ED1C24] transition-colors"
+                    className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-xs font-mono font-bold text-slate-400 hover:text-[#ED1C24] transition-colors cursor-pointer"
                     aria-label="Clear search input"
                   >
                     ✕
@@ -346,79 +344,77 @@ export default function Products({ onNavigate }) {
                 )}
               </div>
 
-              {/* Search & Filters Action Buttons (Side-by-side on mobile, horizontal flex on desktop) */}
+              {/* Secondary Controls: Application Filter & Sort Selector */}
               <div className="grid grid-cols-2 md:flex md:items-center gap-2.5 sm:gap-3 flex-shrink-0">
-                <button
-                  type="submit"
-                  className="bg-[#ED1C24] hover:bg-[#D91B24] active:scale-95 text-white font-mono font-bold text-xs uppercase tracking-wider px-5 py-3 rounded-sm transition-all shadow-sm flex items-center justify-center w-full md:w-auto"
-                >
-                  <span>SEARCH</span>
-                </button>
+                <div className="w-full md:w-52 flex-shrink-0">
+                  <CustomDropdown
+                    options={applicationOptions}
+                    value={applicationFilter}
+                    onChange={(val) => setApplicationFilter(val)}
+                    isActive={applicationFilter !== 'all'}
+                    buttonClassName="py-3 rounded-xs border-slate-300"
+                  />
+                </div>
 
+                <div className="w-full md:w-48 flex-shrink-0">
+                  <CustomDropdown
+                    options={sortOptions}
+                    value={sortBy}
+                    onChange={(val) => setSortBy(val)}
+                    buttonClassName="py-3 rounded-xs border-slate-300"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Open 1-Click Horizontal Department Track */}
+            <div className="pt-2 border-t border-slate-100 overflow-x-auto scrollbar-none">
+              <div className="flex items-center space-x-1 sm:space-x-2 min-w-max pb-1" role="tablist" aria-label="Clinical Departments">
                 <button
                   type="button"
-                  onClick={() => setShowFilters(!showFilters)}
-                  className={`flex items-center justify-center space-x-2 px-4 py-3 rounded-sm border text-xs font-mono font-bold uppercase tracking-wider transition-all w-full md:w-auto ${
-                    showFilters
-                      ? 'bg-blue-50/80 border-[#21409A] text-[#21409A]'
-                      : 'bg-white border-slate-300 text-slate-700 hover:bg-slate-50 hover:border-slate-400'
+                  onClick={() => handleCategoryChange('all')}
+                  className={`px-3 py-2 text-xs font-mono font-bold uppercase tracking-wider transition-all inline-flex items-center space-x-1.5 cursor-pointer rounded-xs border-b-2 ${
+                    selectedCategory === 'all'
+                      ? 'border-[#ED1C24] text-[#21409A] bg-blue-50/70'
+                      : 'border-transparent text-slate-600 hover:text-[#0F172A] hover:bg-slate-50'
                   }`}
                 >
-                  <svg className="w-4 h-4 text-[#21409A]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-                  </svg>
-                  <span>FILTERS</span>
-                  {activeFiltersCount > 0 && (
-                    <span className="w-2 h-2 rounded-full bg-[#ED1C24]" />
-                  )}
+                  <span>ALL DEPARTMENTS</span>
+                  <span className={`text-[10px] px-1.5 py-0.2 rounded-xs font-mono ${
+                    selectedCategory === 'all' ? 'bg-[#21409A] text-white' : 'bg-slate-100 text-slate-500'
+                  }`}>
+                    {activeProducts.length}
+                  </span>
                 </button>
-              </div>
 
-              {/* Sort Selector */}
-              <div className="w-full md:w-52 flex-shrink-0">
-                <CustomDropdown
-                  options={sortOptions}
-                  value={sortBy}
-                  onChange={(val) => setSortBy(val)}
-                  buttonClassName="py-3 rounded-sm border-slate-300"
-                />
-              </div>
-            </form>
+                {categories.map((cat, idx) => {
+                  const count = activeProducts.filter((p) => p.categoryId === cat.id).length;
+                  const isSelected = selectedCategory === cat.id;
+                  const numFormatted = String(idx + 1).padStart(2, '0');
 
-            {/* Dropdown Filters Drawer */}
-            {showFilters && (
-              <div className="pt-4 border-t border-slate-200 grid grid-cols-1 sm:grid-cols-2 gap-4 animate-fade-in-down">
-                {/* 1. CLINICAL SPECIALTY */}
-                <CustomDropdown
-                  label={
-                    <span className="flex items-center space-x-1.5 text-[11px] font-mono font-bold tracking-wider text-[#21409A] uppercase">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#ED1C24]" aria-hidden="true" />
-                      <span>CLINICAL SPECIALTY (09 DEPARTMENTS)</span>
-                    </span>
-                  }
-                  options={specialtyOptions}
-                  value={selectedCategory}
-                  onChange={(val) => handleCategoryChange({ target: { value: val } })}
-                  isActive={selectedCategory !== 'all'}
-                  buttonClassName="rounded-sm border-slate-300"
-                />
-
-                {/* 2. EQUIPMENT APPLICATION */}
-                <CustomDropdown
-                  label={
-                    <span className="flex items-center space-x-1.5 text-[11px] font-mono font-bold tracking-wider text-[#21409A] uppercase">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#ED1C24]" aria-hidden="true" />
-                      <span>EQUIPMENT APPLICATION</span>
-                    </span>
-                  }
-                  options={applicationOptions}
-                  value={applicationFilter}
-                  onChange={(val) => setApplicationFilter(val)}
-                  isActive={applicationFilter !== 'all'}
-                  buttonClassName="rounded-sm border-slate-300"
-                />
+                  return (
+                    <button
+                      key={cat.id}
+                      type="button"
+                      onClick={() => handleCategoryChange(cat.id)}
+                      className={`px-3 py-2 text-xs font-mono font-bold uppercase tracking-wider transition-all inline-flex items-center space-x-1.5 cursor-pointer rounded-xs border-b-2 ${
+                        isSelected
+                          ? 'border-[#ED1C24] text-[#21409A] bg-blue-50/70'
+                          : 'border-transparent text-slate-600 hover:text-[#0F172A] hover:bg-slate-50'
+                      }`}
+                    >
+                      <span className={isSelected ? 'text-[#ED1C24]' : 'text-slate-400'}>{numFormatted}</span>
+                      <span>{cat.shortName}</span>
+                      <span className={`text-[10px] px-1.5 py-0.2 rounded-xs font-mono ${
+                        isSelected ? 'bg-[#21409A] text-white' : 'bg-slate-100 text-slate-500'
+                      }`}>
+                        {count}
+                      </span>
+                    </button>
+                  );
+                })}
               </div>
-            )}
+            </div>
 
             {/* Status Ledger & Reset Filters */}
             <div className="pt-3 border-t border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -434,7 +430,7 @@ export default function Products({ onNavigate }) {
                     <button
                       type="button"
                       onClick={() => navigate('/products')}
-                      className="text-slate-400 hover:text-[#ED1C24] ml-1"
+                      className="text-slate-400 hover:text-[#ED1C24] ml-1 cursor-pointer"
                       aria-label="Clear department filter"
                     >
                       ✕
@@ -443,11 +439,11 @@ export default function Products({ onNavigate }) {
                 )}
                 {applicationFilter !== 'all' && (
                   <span className="inline-flex items-center space-x-1 px-2 py-0.5 bg-slate-100 border border-slate-300 text-slate-700 font-semibold text-[11px]">
-                    <span>APP: {applicationFilter}</span>
+                    <span>APP: {applicationOptions.find((o) => o.value === applicationFilter)?.label || applicationFilter}</span>
                     <button
                       type="button"
                       onClick={() => setApplicationFilter('all')}
-                      className="text-slate-400 hover:text-[#ED1C24] ml-1"
+                      className="text-slate-400 hover:text-[#ED1C24] ml-1 cursor-pointer"
                       aria-label="Clear application filter"
                     >
                       ✕
@@ -463,7 +459,7 @@ export default function Products({ onNavigate }) {
                         setSearchInput('');
                         setSearchQuery('');
                       }}
-                      className="text-slate-400 hover:text-[#ED1C24] ml-1"
+                      className="text-slate-400 hover:text-[#ED1C24] ml-1 cursor-pointer"
                       aria-label="Clear search query"
                     >
                       ✕
@@ -476,7 +472,7 @@ export default function Products({ onNavigate }) {
                 <button
                   type="button"
                   onClick={handleResetFilters}
-                  className="self-end sm:self-auto px-3.5 py-1.5 bg-[#F8FAFC] hover:bg-slate-100 border border-slate-300 hover:border-slate-400 text-slate-700 hover:text-[#0F172A] text-xs font-mono font-bold tracking-wider uppercase rounded-sm transition-all flex items-center space-x-1.5 shadow-sm"
+                  className="self-end sm:self-auto px-3.5 py-1.5 bg-[#F8FAFC] hover:bg-slate-100 border border-slate-300 hover:border-slate-400 text-slate-700 hover:text-[#0F172A] text-xs font-mono font-bold tracking-wider uppercase rounded-xs transition-all flex items-center space-x-1.5 shadow-xs cursor-pointer"
                 >
                   <span aria-hidden="true">↺</span>
                   <span>RESET FILTERS</span>
@@ -534,6 +530,9 @@ export default function Products({ onNavigate }) {
                   total={sortedProducts.length}
                   onSelect={(p) => {
                     setSelectedProduct(p);
+                    const nextParams = new URLSearchParams(searchParams);
+                    nextParams.set('product', p.id);
+                    setSearchParams(nextParams);
                     window.scrollTo({ top: 0, behavior: 'instant' });
                   }}
                 />

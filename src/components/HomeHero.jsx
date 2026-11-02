@@ -348,7 +348,7 @@ export default function HomeHero() {
                 alt={activeProduct.alt}
                 width="420"
                 height="420"
-                fetchPriority="high"
+                fetchpriority="high"
                 decoding="async"
                 className={`w-auto object-contain transition-transform duration-500 ease-out group-hover/img:scale-[1.04] ${activeProduct.scaleClass}`}
                 style={{

@@ -8,8 +8,15 @@ import NotFound from './pages/NotFound';
 import { useSEO } from './hooks/useSEO';
 
 const About = lazy(() => import('./pages/About'));
+const AboutHeroTest = lazy(() => import('./pages/AboutHeroTest'));
 const Services = lazy(() => import('./pages/Services'));
 const WhoWeServe = lazy(() => import('./pages/WhoWeServe'));
+const WhoWeServeHeroTest = lazy(() => import('./pages/WhoWeServeHeroTest'));
+const ProductsHeroTest = lazy(() => import('./pages/ProductsHeroTest'));
+const ProductDetailTest = lazy(() => import('./pages/ProductDetailTest'));
+const HomeSection2Test = lazy(() => import('./pages/HomeSection2Test'));
+const HomeSection3Test = lazy(() => import('./pages/HomeSection3Test'));
+const HomeSection4Test = lazy(() => import('./pages/HomeSection4Test'));
 const Contact = lazy(() => import('./pages/Contact'));
 
 export default function App() {
@@ -109,10 +116,17 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home onNavigate={handleNavigate} />} />
             <Route path="/about" element={<About onNavigate={handleNavigate} />} />
+            <Route path="/about-hero-test" element={<AboutHeroTest />} />
             <Route path="/products" element={<Products onNavigate={handleNavigate} />} />
             <Route path="/products/:categoryId" element={<Products onNavigate={handleNavigate} />} />
+            <Route path="/products-hero-test" element={<ProductsHeroTest />} />
+            <Route path="/product-detail-test" element={<ProductDetailTest />} />
+            <Route path="/home-section2-test" element={<HomeSection2Test />} />
+            <Route path="/home-section3-test" element={<HomeSection3Test />} />
+            <Route path="/home-section4-test" element={<HomeSection4Test />} />
             <Route path="/services" element={<Services onNavigate={handleNavigate} />} />
             <Route path="/who-we-serve" element={<WhoWeServe />} />
+            <Route path="/who-we-serve-hero-test" element={<WhoWeServeHeroTest />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

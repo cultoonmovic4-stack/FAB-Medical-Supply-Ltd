@@ -3,15 +3,16 @@ import React from 'react';
 /**
  * ProductCard component — Compact Horizontal Architectural Ledger Card
  * 
- * Redesigned for:
- * - Low card height (eliminates overly long/tall vertical stacking)
- * - Minimal, focused content (Department, Title, and Action button only)
- * - Fresh horizontal split layout with equipment thumbnail on left
- * - Highlighted solid brand blue action button
+ * Swiss Editorial Refinements:
+ * - Fine hairline borders (border-slate-200 hover:border-[#21409A])
+ * - Clean equipment thumbnail on left with slate-50 backdrop
+ * - Monospace reference code (FAB-REF) and clean department tag
+ * - High-contrast title and tactile solid action button
  */
 export default function ProductCard({ product, onSelect, index = 0 }) {
   // Clean department short name
   const cleanDepartment = product.categoryName?.split('(')[0]?.trim() || product.categoryName;
+  const refCode = `FAB-${product.id.slice(0, 10).toUpperCase()}`;
 
   return (
     <article
@@ -19,10 +20,10 @@ export default function ProductCard({ product, onSelect, index = 0 }) {
       data-aos="fade-up"
       data-aos-duration="550"
       data-aos-delay={(index % 6) * 45}
-      className="group cursor-pointer bg-white border border-slate-300 hover:border-[#21409A] transition-all duration-200 p-3 sm:p-4 flex items-center gap-3.5 sm:gap-4 shadow-xs hover:shadow-md relative"
+      className="group cursor-pointer bg-white border border-slate-200 hover:border-[#21409A] transition-all duration-200 p-3 sm:p-4 flex items-center gap-3.5 sm:gap-4 shadow-xs hover:shadow-sm relative rounded-xs"
     >
       {/* Left: Compact Equipment Thumbnail */}
-      <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 flex-shrink-0 bg-[#F8FAFC] border border-slate-200 p-2 flex items-center justify-center overflow-hidden select-none">
+      <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 flex-shrink-0 bg-[#F8FAFC] border border-slate-100 p-2.5 flex items-center justify-center overflow-hidden select-none rounded-xs">
         {product.image ? (
           <img
             src={product.image}
@@ -43,10 +44,15 @@ export default function ProductCard({ product, onSelect, index = 0 }) {
       {/* Right: Clean, Restrained Information */}
       <div className="flex-grow flex flex-col justify-between min-w-0 h-full py-0.5 space-y-2">
         <div className="space-y-1">
-          {/* Category Tag */}
-          <div className="flex items-center space-x-1.5 text-[10.5px] font-mono font-bold uppercase tracking-wider text-[#21409A] truncate">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#ED1C24] flex-shrink-0" aria-hidden="true" />
-            <span className="truncate">{cleanDepartment}</span>
+          {/* Category Tag & Ref Code */}
+          <div className="flex items-center justify-between text-[10.5px] font-mono text-[#21409A]">
+            <div className="flex items-center space-x-1.5 font-bold uppercase tracking-wider truncate">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#ED1C24] flex-shrink-0" aria-hidden="true" />
+              <span className="truncate">{cleanDepartment}</span>
+            </div>
+            <span className="text-[10px] text-slate-400 font-normal hidden sm:inline flex-shrink-0">
+              {refCode}
+            </span>
           </div>
 
           {/* Product Name */}
@@ -55,13 +61,17 @@ export default function ProductCard({ product, onSelect, index = 0 }) {
           </h3>
         </div>
 
-        {/* Highlighted Action Button */}
-        <div className="pt-1">
-          <span className="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-[#21409A] group-hover:bg-[#1B3580] text-white text-[10.5px] sm:text-[11px] font-mono font-bold uppercase tracking-wider transition-colors shadow-sm">
+        {/* Action Button */}
+        <div className="pt-1 flex items-center justify-between">
+          <span className="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-[#21409A] group-hover:bg-[#1B3580] text-white text-[10.5px] sm:text-[11px] font-mono font-bold uppercase tracking-wider transition-colors shadow-xs rounded-xs">
             <span>VIEW DETAILS</span>
             <span className="text-white font-bold transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">
               →
             </span>
+          </span>
+
+          <span className="text-[10px] font-mono text-emerald-600 font-semibold hidden md:inline">
+            In Stock
           </span>
         </div>
       </div>

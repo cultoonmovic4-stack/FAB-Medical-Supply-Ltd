@@ -20,9 +20,6 @@ export default function LogoLoader({
       if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         return false;
       }
-      if (window.sessionStorage && window.sessionStorage.getItem('fab_loader_shown') === 'true') {
-        return false;
-      }
     }
     return true;
   });
@@ -33,9 +30,6 @@ export default function LogoLoader({
   const dismiss = () => {
     if (fading) return;
     setFading(true);
-    if (typeof window !== 'undefined' && window.sessionStorage) {
-      window.sessionStorage.setItem('fab_loader_shown', 'true');
-    }
     setTimeout(() => {
       setVisible(false);
       if (onComplete) onComplete();
