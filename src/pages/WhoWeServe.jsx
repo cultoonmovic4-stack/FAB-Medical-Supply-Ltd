@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Container from '../components/Container';
 
 // Section 1 & 2 photographic assets
-import heroWardImg from '../assets/about/about-who-inpatient-beds.webp';
+import heroRadiologyImg from '../assets/about/about-who-radiology.webp';
 import zoneTheatreImg from '../assets/about/about-company-operating-room.webp';
 import zoneRadiologyImg from '../assets/about/about-company-control-suite.webp';
 import zoneWardImg from '../assets/about/about-company-ward-interior.webp';
@@ -12,7 +12,7 @@ import zoneOutpatientImg from '../assets/env_outpatient.jpg';
 /**
  * Who We Serve Page — FAB Medical Supplies Ltd.
  *
- * 1. Hero: Centered editorial headline with a feathered ward panorama.
+ * 1. Hero: Architectural broadsheet split with full-height clinical photography and bottom sector strip.
  * 2. Clinical Scope: Four core clinical zones (open hairline layout, concise hardware specs).
  * 3. The Institutions We Supply: Open hairline index of the four client groups.
  * 4. From Source to Facility: Typographic 4-stage delivery path.
@@ -132,59 +132,94 @@ export default function WhoWeServe() {
   return (
     <div className="bg-white min-h-screen text-[#0F172A] selection:bg-[#21409A] selection:text-white">
       {/* ========================================================
-          1. HERO: Centered Editorial + Feathered Panorama
+          1. HERO: Architectural Broadsheet Split + Sector Anchor Strip
           ======================================================== */}
       <section
-        className="relative bg-white border-b border-slate-200 pt-16 sm:pt-20 pb-0 overflow-hidden"
+        className="bg-white border-b border-slate-200 overflow-hidden"
         aria-labelledby="wws-hero-heading"
       >
-        <Container>
-          <div
-            className="max-w-3xl mx-auto text-center space-y-5"
-            data-aos="fade-up"
-            data-aos-duration="800"
-          >
-            <div className="text-[11px] font-mono font-bold tracking-[0.25em] text-[#ED1C24] uppercase">
-              WHO WE SERVE
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12">
+            {/* Left Column (7 cols): Editorial Copy & Primary Actions */}
+            <div className="lg:col-span-7 px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 flex flex-col justify-center">
+              <div className="max-w-xl space-y-5">
+                <div className="flex items-center space-x-2 text-[11px] font-mono font-bold tracking-[0.24em] text-[#ED1C24] uppercase">
+                  <span className="w-2 h-2 rounded-full bg-[#ED1C24]" aria-hidden="true" />
+                  <span>WHO WE SERVE &bull; UGANDA</span>
+                </div>
+
+                <h1
+                  id="wws-hero-heading"
+                  className="text-3xl sm:text-5xl lg:text-[52px] font-black uppercase text-[#0F172A] tracking-tight leading-[1.03]"
+                >
+                  Equipping the facilities that{' '}
+                  <span className="text-[#21409A]">care for Uganda.</span>
+                </h1>
+
+                <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+                  Hospitals, clinics, diagnostic laboratories, and health partners depend on FAB for reliable procurement, importation, and biomedical servicing.
+                </p>
+
+                <div className="pt-2 flex flex-wrap items-center gap-3">
+                  <a
+                    href="#clinical-zones-heading"
+                    className="inline-flex items-center space-x-2 bg-[#21409A] hover:bg-[#0F172A] text-white text-xs font-bold uppercase tracking-wider px-5 py-3 rounded-xs transition-colors"
+                  >
+                    <span>See Clinical Coverage</span>
+                    <span aria-hidden="true">&darr;</span>
+                  </a>
+                  <a
+                    href={`https://wa.me/256704757991?text=${encodeURIComponent(
+                      'Hello FAB Medical Supplies Ltd., our healthcare facility would like to request an institutional equipment quote.'
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 border border-slate-300 hover:border-[#0F172A] text-[#0F172A] text-xs font-bold uppercase tracking-wider px-5 py-3 rounded-xs transition-colors"
+                  >
+                    <span>Request Institutional Quote</span>
+                  </a>
+                </div>
+              </div>
             </div>
-            <h1
-              id="wws-hero-heading"
-              className="text-4xl sm:text-5xl lg:text-[56px] font-black tracking-tight text-[#0F172A] leading-[1.04]"
-            >
-              Equipping the facilities that{' '}
-              <span className="text-[#21409A]">care for Uganda.</span>
-            </h1>
-            <p className="text-base text-slate-600 leading-relaxed max-w-xl mx-auto">
-              Hospitals, clinics, laboratories and health partners rely on FAB for vetted medical equipment.
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 pt-1 text-xs font-bold uppercase tracking-[0.18em] text-slate-500">
-              {heroSectors.map((sector, i) => (
-                <React.Fragment key={sector}>
-                  {i > 0 && (
-                    <span className="text-[#ED1C24]" aria-hidden="true">
-                      &bull;
-                    </span>
-                  )}
-                  <span>{sector}</span>
-                </React.Fragment>
-              ))}
+
+            {/* Right Column (5 cols): Full-Bleed Sharp-Edged Clinical Photo */}
+            <div className="lg:col-span-5 relative min-h-[260px] lg:min-h-[380px] border-t lg:border-t-0 lg:border-l border-slate-200 bg-slate-100">
+              <img
+                src={heroRadiologyImg}
+                alt="Hospital radiology and clinical diagnostic facility equipped by FAB Medical Supplies"
+                className="absolute inset-0 w-full h-full object-cover object-center"
+                fetchpriority="high"
+                loading="eager"
+                decoding="async"
+              />
+              <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-xs border border-slate-200 px-3 py-1.5 text-[10px] font-mono font-bold uppercase tracking-wider text-[#0F172A] flex items-center space-x-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" aria-hidden="true" />
+                <span>NATIONWIDE UGANDA DISPATCH</span>
+              </div>
             </div>
           </div>
-        </Container>
+        </div>
 
-        {/* Feathered panorama — dissolves into the page on all sides */}
-        <div className="relative mt-10 h-[260px] sm:h-[340px] lg:h-[400px] select-none">
-          <img
-            src={heroWardImg}
-            alt="Hospital ward equipped with clinical beds"
-            className="absolute inset-0 w-full h-full object-cover object-center"
-            fetchpriority="high"
-            loading="eager"
-            decoding="async"
-          />
-          <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-white via-white/80 to-transparent" aria-hidden="true" />
-          <div className="absolute inset-y-0 left-0 w-24 sm:w-48 bg-gradient-to-r from-white to-transparent" aria-hidden="true" />
-          <div className="absolute inset-y-0 right-0 w-24 sm:w-48 bg-gradient-to-l from-white to-transparent" aria-hidden="true" />
+        {/* Full-Width Bottom 4-Sector Architectural Index Strip */}
+        <div className="bg-[#F8FAFC] border-t border-slate-200">
+          <Container>
+            <div className="py-3.5 grid grid-cols-2 md:grid-cols-4 gap-3 text-[11px] font-mono uppercase tracking-wider text-slate-600">
+              {heroSectors.map((sector, idx) => (
+                <a
+                  key={sector}
+                  href="#institutions-heading"
+                  className="flex items-center space-x-2 group hover:text-[#21409A] transition-colors"
+                >
+                  <span className="font-black text-[#ED1C24]">
+                    {String(idx + 1).padStart(2, '0')}
+                  </span>
+                  <strong className="text-[#0F172A] group-hover:text-[#21409A] transition-colors">
+                    {sector}
+                  </strong>
+                </a>
+              ))}
+            </div>
+          </Container>
         </div>
       </section>
 

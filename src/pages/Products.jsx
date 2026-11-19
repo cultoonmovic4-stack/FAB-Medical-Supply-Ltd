@@ -7,7 +7,6 @@ import ProductDetail from '../components/ProductDetail';
 import NotFound from './NotFound';
 import { categories, products } from '../data/products';
 import { categoryMetadata } from '../config/seo';
-import heroEquipmentPhoto from '../assets/products-hero-equipment.webp';
 
 export default function Products({ onNavigate }) {
   const { categoryId } = useParams();
@@ -222,85 +221,99 @@ export default function Products({ onNavigate }) {
   return (
     <div className="bg-[#FAFCFE] min-h-screen text-[#0F172A]">
       {/* ========================================================
-          PART 01: HERO SECTION — CENTERED EDITORIAL + FEATHERED HORIZON (1A)
+          PART 01: HERO SECTION — COMPACT UTILITY-FIRST CATALOGUE HEADER
           ======================================================== */}
       <section
-        className="relative bg-white border-b border-slate-200 pt-14 sm:pt-18 pb-0 overflow-hidden"
+        className="bg-white border-b border-slate-200 relative"
         aria-labelledby="products-hero-heading"
+        style={{
+          backgroundImage: 'radial-gradient(#cbd5e1 0.85px, transparent 0.85px)',
+          backgroundSize: '20px 20px',
+        }}
       >
-        <Container>
-          <div
-            className="max-w-3xl mx-auto text-center space-y-4"
-            data-aos="fade-up"
-            data-aos-duration="750"
-          >
-            {/* Eyebrow */}
-            <div className="flex items-center justify-center space-x-2 text-[11px] font-mono font-bold tracking-[0.25em] text-[#ED1C24] uppercase">
-              <span className="w-2 h-2 rounded-full bg-[#ED1C24]" aria-hidden="true" />
-              <span>
-                {isCategoryPage
-                  ? `CLINICAL INDEX / ${activeCategoryObj.shortName.toUpperCase()}`
-                  : 'EQUIPMENT CATALOGUE • UGANDA'}
-              </span>
+        {/* Dual-Brand Top Accent Rule */}
+        <div className="h-1 w-full flex" aria-hidden="true">
+          <div className="w-2/3 bg-[#21409A]" />
+          <div className="w-1/3 bg-[#ED1C24]" />
+        </div>
+
+        {/* Softening veil so typography stays razor-sharp */}
+        <div className="bg-white/85 py-8 sm:py-10">
+          <Container>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+              {/* Left Column (7 cols): Compact Editorial Header */}
+              <div className="lg:col-span-7 space-y-2.5 text-center lg:text-left">
+                <div className="inline-flex items-center space-x-2 text-[11px] font-mono font-bold tracking-[0.22em] text-[#ED1C24] uppercase">
+                  <span className="w-2 h-2 rounded-full bg-[#ED1C24]" aria-hidden="true" />
+                  <span>
+                    {isCategoryPage
+                      ? `CLINICAL INDEX / ${activeCategoryObj.shortName.toUpperCase()}`
+                      : 'FAB MEDICAL SUPPLIES • UGANDA CATALOGUE'}
+                  </span>
+                </div>
+
+                <h1
+                  id="products-hero-heading"
+                  className="text-2xl sm:text-4xl lg:text-[42px] font-black uppercase text-[#0F172A] tracking-tight leading-[1.06]"
+                >
+                  {isCategoryPage ? (
+                    categorySeoData?.h1 || activeCategoryObj.name
+                  ) : (
+                    <>
+                      Medical Equipment{' '}
+                      <span className="text-[#21409A]">&amp; Hospital Supplies.</span>
+                    </>
+                  )}
+                </h1>
+
+                <p className="text-sm text-slate-600 max-w-2xl mx-auto lg:mx-0">
+                  {isCategoryPage
+                    ? categorySeoData?.intro
+                    : 'Browse certified diagnostic, ICU, surgical, and laboratory equipment available for procurement across Uganda.'}
+                </p>
+              </div>
+
+              {/* Right Column (5 cols): Compact Architectural Ledger + Direct Quote CTA */}
+              <div className="lg:col-span-5 flex flex-col sm:flex-row lg:flex-col xl:flex-row items-center justify-center lg:justify-end gap-4">
+                <div className="flex items-center divide-x divide-slate-200 bg-white border border-slate-200 px-2 py-2.5 rounded-xs shadow-xs">
+                  <div className="px-3.5 text-center">
+                    <div className="text-lg font-mono font-black text-[#0F172A]">
+                      {sortedProducts.length}
+                    </div>
+                    <div className="text-[10px] font-mono uppercase text-slate-500">
+                      {sortedProducts.length === 1 ? 'Unit' : 'Units'}
+                    </div>
+                  </div>
+                  <div className="px-3.5 text-center">
+                    <div className="text-lg font-mono font-black text-[#21409A]">
+                      {String(categories.length).padStart(2, '0')}
+                    </div>
+                    <div className="text-[10px] font-mono uppercase text-slate-500">Depts</div>
+                  </div>
+                  <div className="px-3.5 text-center">
+                    <div className="flex items-center justify-center space-x-1 text-xs font-mono font-black text-emerald-700 pt-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" aria-hidden="true" />
+                      <span>KLA</span>
+                    </div>
+                    <div className="text-[10px] font-mono uppercase text-slate-500 mt-0.5">Stock</div>
+                  </div>
+                </div>
+
+                <a
+                  href={`https://wa.me/256704757991?text=${encodeURIComponent(
+                    isCategoryPage
+                      ? `Hello FAB Medical Supplies Ltd., I would like to request a quotation for ${activeCategoryObj.shortName} equipment.`
+                      : 'Hello FAB Medical Supplies Ltd., I would like to request a quotation from your medical equipment catalogue.'
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto text-center bg-[#21409A] hover:bg-[#0F172A] text-white text-xs font-bold uppercase tracking-wider px-5 py-3.5 rounded-xs transition-colors whitespace-nowrap"
+                >
+                  Request Quotation
+                </a>
+              </div>
             </div>
-
-            {/* Main Headline */}
-            <h1
-              id="products-hero-heading"
-              className="text-3xl sm:text-5xl lg:text-[54px] font-black uppercase text-[#0F172A] tracking-tight leading-[1.04]"
-            >
-              {isCategoryPage ? (
-                categorySeoData?.h1 || activeCategoryObj.name
-              ) : (
-                <>
-                  Medical Equipment <br />
-                  <span className="text-[#21409A]">&amp; Hospital Supplies.</span>
-                </>
-              )}
-            </h1>
-
-            {/* Concise Supporting Line */}
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-xl mx-auto">
-              {isCategoryPage
-                ? categorySeoData?.intro
-                : 'Certified clinical diagnostic systems, surgical apparatus, and hospital infrastructure supplied across Uganda.'}
-            </p>
-
-            {/* Clean Hairline Micro-Ledger */}
-            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 pt-2 text-xs font-mono text-slate-500">
-              <div className="flex items-center space-x-1.5">
-                <span className="font-black text-[#0F172A]">{sortedProducts.length}</span>
-                <span className="uppercase text-[11px] text-slate-500">
-                  {sortedProducts.length === 1 ? 'VERIFIED UNIT' : 'VERIFIED UNITS'}
-                </span>
-              </div>
-              <span className="text-[#ED1C24]" aria-hidden="true">&bull;</span>
-              <div className="flex items-center space-x-1.5">
-                <span className="font-black text-[#21409A]">09</span>
-                <span className="uppercase text-[11px] text-slate-500">DEPARTMENTS</span>
-              </div>
-              <span className="text-[#ED1C24]" aria-hidden="true">&bull;</span>
-              <div className="flex items-center space-x-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" aria-hidden="true" />
-                <span className="uppercase text-[11px] text-slate-700 font-semibold">KAMPALA CENTRAL STOCK</span>
-              </div>
-            </div>
-          </div>
-        </Container>
-
-        {/* Feathered equipment panorama — dissolves seamlessly into the page */}
-        <div className="relative mt-8 h-[240px] sm:h-[320px] lg:h-[360px] select-none">
-          <img
-            src={heroEquipmentPhoto}
-            alt="Clinical diagnostic monitors, vital signs meters, and medical documentation on calibration desk"
-            className="absolute inset-0 w-full h-full object-cover object-center"
-            fetchpriority="high"
-            loading="eager"
-            decoding="async"
-          />
-          <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white via-white/80 to-transparent pointer-events-none" aria-hidden="true" />
-          <div className="absolute inset-y-0 left-0 w-24 sm:w-48 bg-gradient-to-r from-white to-transparent pointer-events-none" aria-hidden="true" />
-          <div className="absolute inset-y-0 right-0 w-24 sm:w-48 bg-gradient-to-l from-white to-transparent pointer-events-none" aria-hidden="true" />
+          </Container>
         </div>
       </section>
 
