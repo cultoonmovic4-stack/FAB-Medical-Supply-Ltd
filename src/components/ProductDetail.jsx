@@ -111,11 +111,6 @@ export default function ProductDetail({ product, onBack, onSelectProduct }) {
                     Official product photography on record
                   </div>
                 )}
-
-                {/* Technical Corner Badge */}
-                <div className="absolute top-3.5 right-3.5 bg-white px-2.5 py-1 border border-slate-200 text-[10px] font-mono font-bold text-[#0F172A] uppercase tracking-wider">
-                  KAMPALA CENTRAL STOCK
-                </div>
               </div>
 
               {/* Technical Caption Bar */}

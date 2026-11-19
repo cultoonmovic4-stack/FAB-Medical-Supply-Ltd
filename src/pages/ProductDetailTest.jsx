@@ -451,10 +451,6 @@ function Section1BVariation({ product, details, refCode, whatsappInquiryUrl }) {
                     Official product photography on record
                   </div>
                 )}
-
-                <div className="absolute top-4 right-4 bg-white px-3 py-1 border border-slate-200 text-[10px] font-mono font-bold text-[#0F172A] uppercase tracking-wider">
-                  KAMPALA CENTRAL STOCK
-                </div>
               </div>
 
               <div className="pt-2 px-1 text-[11px] font-mono text-slate-400 flex items-center justify-between">
