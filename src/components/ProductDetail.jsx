@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Container from './Container';
+import ProductCard from './ProductCard';
 import { products } from '../data/products';
 import { getProductDetails } from '../data/productKnowledge';
 
@@ -88,26 +89,26 @@ export default function ProductDetail({ product, onBack, onSelectProduct }) {
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             
-            {/* Left Column (6-Col): High-Clarity Equipment Display */}
+            {/* Left Column (6-Col): Widescreen Equipment Display */}
             <div className="lg:col-span-6 space-y-3">
-              <div className="relative bg-[#FAFCFE] border border-slate-200 p-6 sm:p-10 flex items-center justify-center min-h-[320px] sm:min-h-[420px] aspect-[4/3] overflow-hidden select-none rounded-xs">
+              <div className="relative bg-[#F8FAFC] border border-slate-200 aspect-[16/10] overflow-hidden select-none rounded-xs shadow-xs">
                 {/* Technical Corner Pins */}
-                <div className="absolute top-2.5 left-2.5 text-[10px] font-mono text-slate-300 select-none">+</div>
-                <div className="absolute top-2.5 right-2.5 text-[10px] font-mono text-slate-300 select-none">+</div>
-                <div className="absolute bottom-2.5 left-2.5 text-[10px] font-mono text-slate-300 select-none">+</div>
-                <div className="absolute bottom-2.5 right-2.5 text-[10px] font-mono text-slate-300 select-none">+</div>
+                <div className="absolute top-2.5 left-2.5 text-[10px] font-mono text-slate-400 select-none z-10">+</div>
+                <div className="absolute top-2.5 right-2.5 text-[10px] font-mono text-slate-400 select-none z-10">+</div>
+                <div className="absolute bottom-2.5 left-2.5 text-[10px] font-mono text-slate-400 select-none z-10">+</div>
+                <div className="absolute bottom-2.5 right-2.5 text-[10px] font-mono text-slate-400 select-none z-10">+</div>
 
                 {product.image ? (
                   <img
                     src={product.image}
                     alt={product.name}
-                    className="w-full h-full object-contain"
-                    width="540"
-                    height="405"
+                    className="w-full h-full object-cover object-center"
+                    width="640"
+                    height="400"
                     loading="eager"
                   />
                 ) : (
-                  <div className="text-center p-6 text-slate-400 font-mono text-xs">
+                  <div className="w-full h-full flex items-center justify-center text-center p-6 text-slate-400 font-mono text-xs">
                     Official product photography on record
                   </div>
                 )}
@@ -306,53 +307,20 @@ export default function ProductDetail({ product, onBack, onSelectProduct }) {
               </button>
             </div>
 
-            {/* Horizontal Split Cards matching the refined ProductCard standard */}
+            {/* Widescreen Full-Bleed Related Product Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-              {relatedProducts.map((relProduct) => (
-                <article
+              {relatedProducts.map((relProduct, idx) => (
+                <ProductCard
                   key={relProduct.id}
-                  onClick={() => {
+                  product={relProduct}
+                  index={idx}
+                  onSelect={(p) => {
                     if (onSelectProduct) {
-                      onSelectProduct(relProduct);
+                      onSelectProduct(p);
                     }
                     window.scrollTo({ top: 0, behavior: 'instant' });
                   }}
-                  className="group cursor-pointer bg-white border border-slate-200 hover:border-[#21409A] transition-all duration-200 p-3 sm:p-4 flex items-center gap-3.5 sm:gap-4 shadow-xs hover:shadow-sm rounded-xs"
-                >
-                  {/* Thumbnail */}
-                  <div className="w-24 h-24 sm:w-28 sm:h-28 flex-shrink-0 bg-[#F8FAFC] border border-slate-100 p-2 flex items-center justify-center overflow-hidden rounded-xs">
-                    <img
-                      src={relProduct.image}
-                      alt={relProduct.name}
-                      className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
-                      width="112"
-                      height="112"
-                      loading="lazy"
-                    />
-                  </div>
-
-                  {/* Body */}
-                  <div className="flex-grow flex flex-col justify-between min-w-0 h-full py-0.5 space-y-2">
-                    <div className="space-y-1">
-                      <div className="flex items-center space-x-1.5 text-[10.5px] font-mono font-bold uppercase tracking-wider text-[#21409A] truncate">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#ED1C24]" aria-hidden="true" />
-                        <span className="truncate">
-                          {relProduct.categoryName?.split('(')[0]?.trim()}
-                        </span>
-                      </div>
-                      <h3 className="font-bold text-[#0F172A] text-sm leading-snug tracking-tight group-hover:text-[#21409A] transition-colors line-clamp-2">
-                        {relProduct.name}
-                      </h3>
-                    </div>
-
-                    <div>
-                      <span className="inline-flex items-center space-x-1 px-2.5 py-1 bg-[#21409A] group-hover:bg-[#1B3580] text-white text-[10px] font-mono font-bold uppercase tracking-wider transition-colors rounded-xs shadow-xs">
-                        <span>VIEW SHEET</span>
-                        <span>→</span>
-                      </span>
-                    </div>
-                  </div>
-                </article>
+                />
               ))}
             </div>
           </Container>
