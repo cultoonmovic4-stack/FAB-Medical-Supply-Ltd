@@ -16,6 +16,7 @@ const Contact = lazy(() => import('./pages/Contact'));
 const AboutHeroTest = import.meta.env.DEV ? lazy(() => import('./pages/AboutHeroTest')) : null;
 const WhoWeServeHeroTest = import.meta.env.DEV ? lazy(() => import('./pages/WhoWeServeHeroTest')) : null;
 const ProductsHeroTest = import.meta.env.DEV ? lazy(() => import('./pages/ProductsHeroTest')) : null;
+const ProductCardTest = import.meta.env.DEV ? lazy(() => import('./pages/ProductCardTest')) : null;
 const ProductDetailTest = import.meta.env.DEV ? lazy(() => import('./pages/ProductDetailTest')) : null;
 const HomeSection2Test = import.meta.env.DEV ? lazy(() => import('./pages/HomeSection2Test')) : null;
 const HomeSection3Test = import.meta.env.DEV ? lazy(() => import('./pages/HomeSection3Test')) : null;
@@ -127,6 +128,7 @@ export default function App() {
               <>
                 <Route path="/about-hero-test" element={<AboutHeroTest />} />
                 <Route path="/products-hero-test" element={<ProductsHeroTest />} />
+                <Route path="/product-card-test" element={<ProductCardTest />} />
                 <Route path="/product-detail-test" element={<ProductDetailTest />} />
                 <Route path="/home-section2-test" element={<HomeSection2Test />} />
                 <Route path="/home-section3-test" element={<HomeSection3Test />} />
